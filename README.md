@@ -52,11 +52,11 @@ In the whole pipeline, we use `gpt-4-1106-preview` as the LLM.
 ```python
 def generate_dataset(corpus, num_queries, task_type):
     # Generate Triplets
-	triplets = []
+    triplets = []
     documents = sample(corpus, n=num_queries)
-	for d in documents:
+    for d in documents:
         # Generate Query
-    	q = generate_query(d)
+        q = generate_query(d)
         # Generate Hard Negative
         if task_type == 'QA':
             hn = generate_hard_negative(q, d)
@@ -64,22 +64,22 @@ def generate_dataset(corpus, num_queries, task_type):
             hn = None
         # Add New Triplet
         triplets.append((q, d, hn))
-    
+
     # Build Dataset
     dataset = build_dataset(corpus, triplets)
-    
+
     # Quality Control
     new_dataset = quality_control(dataset)
     return new_dataset
 
 def generate_query(document):
-	pass
+    pass
 
 def generate_hard_negative(query, document):
     pass
-    
+
 def quality_control(dataset):
-	pass
+    pass
 ```
 
 #### Corpus Preparation

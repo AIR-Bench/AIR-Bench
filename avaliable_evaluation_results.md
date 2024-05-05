@@ -1,6 +1,7 @@
 # Avaliable Evaluation Results on AIR-Bench
 
 - [Avaliable Evaluation Results on AIR-Bench](#avaliable-evaluation-results-on-air-bench)
+  - [Models List](#models-list)
   - [Consistency with MS MARCO](#consistency-with-ms-marco)
   - [Influence of Hard Negatives](#influence-of-hard-negatives)
   - [QA](#qa)
@@ -18,9 +19,33 @@
     - [nDCG@10 in healthcare](#ndcg10-in-healthcare-1)
     - [nDCG@10 in law](#ndcg10-in-law-1)
 
-## Consistency with MS MARCO
+## Models List
 
-Selected Models: BM25, [multilingual-e5-large](https://huggingface.co/intfloat/multilingual-e5-large), [multilingual-e5-base](https://huggingface.co/intfloat/multilingual-e5-base), [multilingual-e5-small](https://huggingface.co/intfloat/multilingual-e5-small), [bge-large-en-v1.5](https://huggingface.co/BAAI/bge-large-en-v1.5), [bge-base-en-v1.5](https://huggingface.co/BAAI/bge-base-en-v1.5), [bge-small-en-v1.5](https://huggingface.co/BAAI/bge-small-en-v1.5), [e5-mistral-7b-instruct](https://huggingface.co/intfloat/e5-mistral-7b-instruct), [simlm-base-msmarco-finetuned](https://huggingface.co/intfloat/simlm-base-msmarco-finetuned), [jina-embeddings-v2-base-en](https://huggingface.co/jinaai/jina-embeddings-v2-base-en), [bge-m3](https://huggingface.co/BAAI/bge-m3), [msmarco-roberta-base-ance-firstp](https://huggingface.co/sentence-transformers/msmarco-roberta-base-ance-firstp).
+BM25:
+- [BM25](https://github.com/castorini/pyserini)
+
+Dense Embedding Models:
+- [bge-m3](https://huggingface.co/BAAI/bge-m3)
+- [bge-small-en-v1.5](https://huggingface.co/BAAI/bge-small-en-v1.5)
+- [bge-base-en-v1.5](https://huggingface.co/BAAI/bge-base-en-v1.5)
+- [bge-large-en-v1.5](https://huggingface.co/BAAI/bge-large-en-v1.5)
+- [e5-mistral-7b-instruct](https://huggingface.co/intfloat/e5-mistral-7b-instruct)
+- [jina-embeddings-v2-base-en](https://huggingface.co/jinaai/jina-embeddings-v2-base-en)
+- [msmarco-roberta-base-ance-firstp](https://huggingface.co/sentence-transformers/msmarco-roberta-base-ance-firstp).
+- [multilingual-e5-small](https://huggingface.co/intfloat/multilingual-e5-small)
+- [multilingual-e5-base](https://huggingface.co/intfloat/multilingual-e5-base)
+- [multilingual-e5-large](https://huggingface.co/intfloat/multilingual-e5-large)
+- [simlm-base-msmarco-finetuned](https://huggingface.co/intfloat/simlm-base-msmarco-finetuned)
+
+Rerankers:
+- [bce-reranker-base_v1](https://huggingface.co/maidalun1020/bce-reranker-base_v1)
+- [bge-reranker-large](https://huggingface.co/BAAI/bge-reranker-large)
+- [jina-reranker-v1-tiny-en](https://huggingface.co/jinaai/jina-reranker-v1-tiny-en)
+- [jina-reranker-v1-turbo-en](https://huggingface.co/jinaai/jina-reranker-v1-turbo-en)
+- [mmarco-mMiniLMv2-L12-H384-v1](https://huggingface.co/nreimers/mmarco-mMiniLMv2-L12-H384-v1)
+
+
+## Consistency with MS MARCO
 
 nDCG@10 on the **original MS MARCO dev**:
 

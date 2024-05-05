@@ -149,7 +149,7 @@ The following table gives you an overview of the tasks in AIR-Bench.
 
 ## Evaluation Result
 
-Detailed Results are avaliable [here](./evaluation_results.md).
+Detailed Results are avaliable [here](./avaliable_evaluation_results.md).
 
 Analysis about the results:
 

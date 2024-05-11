@@ -8,7 +8,7 @@ python run_AIR-Bench.py \
 --reranker_link https://huggingface.co/BAAI/bge-reranker-v2-m3 \
 --search_top_k 1000 \
 --rerank_top_k 100 \
-----max_query_length 512 \
+--max_query_length 512 \
 --max_passage_length 512 \
 --batch_size 512 \
 --pooling_method cls \
@@ -27,7 +27,7 @@ python run_AIR-Bench.py \
 --reranker_link https://huggingface.co/BAAI/bge-reranker-v2-m3 \
 --search_top_k 1000 \
 --rerank_top_k 100 \
-----max_query_length 512 \
+--max_query_length 512 \
 --max_passage_length 512 \
 --batch_size 512 \
 --pooling_method cls \
@@ -47,7 +47,7 @@ python run_AIR-Bench.py \
 --reranker_link https://huggingface.co/BAAI/bge-reranker-v2-m3 \
 --search_top_k 1000 \
 --rerank_top_k 100 \
-----max_query_length 512 \
+--max_query_length 512 \
 --max_passage_length 512 \
 --batch_size 512 \
 --pooling_method cls \
@@ -66,7 +66,7 @@ python run_AIR-Bench.py \
 --reranker_link https://huggingface.co/BAAI/bge-reranker-v2-m3 \
 --search_top_k 1000 \
 --rerank_top_k 100 \
-----max_query_length 512 \
+--max_query_length 512 \
 --max_passage_length 512 \
 --batch_size 512 \
 --pooling_method cls \
@@ -87,7 +87,7 @@ python run_AIR-Bench.py \
 --reranker_link https://huggingface.co/BAAI/bge-reranker-v2-m3 \
 --search_top_k 1000 \
 --rerank_top_k 100 \
-----max_query_length 512 \
+--max_query_length 512 \
 --max_passage_length 512 \
 --batch_size 512 \
 --pooling_method cls \

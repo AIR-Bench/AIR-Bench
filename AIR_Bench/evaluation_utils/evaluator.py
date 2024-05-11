@@ -54,7 +54,7 @@ class Evaluator:
             
             self.check_data_info(data_info, str(model), 'NoReranker', domain, language, task_name)
         else:
-            corpus, queries, _ = self.data_loader.load_data(
+            corpus, queries = self.data_loader.load_data(
                 task_type=task_type,
                 domain=domain,
                 language=language,
@@ -99,7 +99,7 @@ class Evaluator:
             if os.path.exists(rerank_search_results_save_path) and not self.overwrite:
                 continue
             
-            corpus, queries, _ = self.data_loader.load_data(
+            corpus, queries = self.data_loader.load_data(
                 task_type=task_type,
                 domain=domain,
                 language=language,

@@ -12,8 +12,8 @@ class DataLoader:
 
     def load_data(self, task_type: str, domain: str, language: str, task_name: str):
         task_name = task_name.replace('-', '_')
-        corpus_data = datasets.load_dataset(f'AIR-Bench/corpus-{task_type}_{domain}_{language}', self.benchmark_version, split=f"corpus_{task_name}", cache_dir=self.cache_dir)
-        queries_data = datasets.load_dataset(f'AIR-Bench/queries-{task_type}_{domain}_{language}', self.benchmark_version, split=f"queries_{task_name}", cache_dir=self.cache_dir)
+        corpus_data = datasets.load_dataset(f'AIR-Bench/{task_type}_{domain}_{language}', self.benchmark_version, split=f"corpus_{task_name}", cache_dir=self.cache_dir)
+        queries_data = datasets.load_dataset(f'AIR-Bench/{task_type}_{domain}_{language}', self.benchmark_version, split=f"queries_{task_name}", cache_dir=self.cache_dir)
         
         corpus = {e['id']: {'text': e['text']} for e in corpus_data}
         queries = {e['id']: e['text'] for e in queries_data}

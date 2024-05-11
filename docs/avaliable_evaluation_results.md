@@ -29,12 +29,17 @@ Dense Embedding Models:
 - [bge-small-en-v1.5](https://huggingface.co/BAAI/bge-small-en-v1.5)
 - [bge-base-en-v1.5](https://huggingface.co/BAAI/bge-base-en-v1.5)
 - [bge-large-en-v1.5](https://huggingface.co/BAAI/bge-large-en-v1.5)
+- [contriever-msmarco](https://huggingface.co/facebook/contriever-msmarco)
 - [e5-mistral-7b-instruct](https://huggingface.co/intfloat/e5-mistral-7b-instruct)
+- [e5-small-v2](https://huggingface.co/intfloat/e5-small-v2)
+- [e5-base-v2](https://huggingface.co/intfloat/e5-base-v2)
+- [e5-large-v2](https://huggingface.co/intfloat/e5-large-v2)
 - [jina-embeddings-v2-base-en](https://huggingface.co/jinaai/jina-embeddings-v2-base-en)
 - [msmarco-roberta-base-ance-firstp](https://huggingface.co/sentence-transformers/msmarco-roberta-base-ance-firstp).
 - [multilingual-e5-small](https://huggingface.co/intfloat/multilingual-e5-small)
 - [multilingual-e5-base](https://huggingface.co/intfloat/multilingual-e5-base)
 - [multilingual-e5-large](https://huggingface.co/intfloat/multilingual-e5-large)
+- [repllama-v1-7b-lora-passage](https://huggingface.co/castorini/repllama-v1-7b-lora-passage)
 - [simlm-base-msmarco-finetuned](https://huggingface.co/intfloat/simlm-base-msmarco-finetuned)
 
 Rerankers:
@@ -49,87 +54,107 @@ Rerankers:
 
 nDCG@10 on the **original MS MARCO dev**:
 
-| Rank | Model                            | Reranker   |  average   |     en     |
-| ---- | :------------------------------- | :--------- | :--------: | :--------: |
-| 1    | multilingual-e5-large            | NoReranker | **45.119** | **45.119** |
-| 2    | multilingual-e5-base             | NoReranker |   44.130   |   44.130   |
-| 3    | bge-large-en-v1.5                | NoReranker |   44.122   |   44.122   |
-| 4    | e5-mistral-7b-instruct           | NoReranker |   43.787   |   43.787   |
-| 5    | bge-small-en-v1.5                | NoReranker |   42.553   |   42.553   |
-| 6    | bge-base-en-v1.5                 | NoReranker |   42.388   |   42.388   |
-| 7    | multilingual-e5-small            | NoReranker |   42.253   |   42.253   |
-| 8    | simlm-base-msmarco-finetuned     | NoReranker |   41.675   |   41.675   |
-| 9    | jina-embeddings-v2-base-en       | NoReranker |   39.887   |   39.887   |
-| 10   | bge-m3                           | NoReranker |   39.565   |   39.565   |
-| 11   | msmarco-roberta-base-ance-firstp | NoReranker |   33.637   |   33.637   |
-| 12   | BM25                             | NoReranker |   26.211   |   26.211   |
+| Rank | Model                            |     en     |
+| :--: | :------------------------------- | :--------: |
+|  1   | repllama-v1-7b-lora-passage      | **48.000** |
+|  2   | e5-large-v2                      |   45.232   |
+|  3   | multilingual-e5-large            |   45.119   |
+|  4   | multilingual-e5-base             |   44.130   |
+|  5   | bge-large-en-v1.5                |   44.122   |
+|  6   | e5-mistral-7b-instruct           |   43.787   |
+|  7   | e5-small-v2                      |   43.104   |
+|  8   | e5-base-v2                       |   43.056   |
+|  9   | bge-small-en-v1.5                |   42.553   |
+|  10  | bge-base-en-v1.5                 |   42.388   |
+|  11  | multilingual-e5-small            |   42.253   |
+|  12  | simlm-base-msmarco-finetuned     |   41.675   |
+|  13  | jina-embeddings-v2-base-en       |   39.887   |
+|  14  | bge-m3                           |   39.565   |
+|  15  | contriever-msmarco               |   36.570   |
+|  16  | msmarco-roberta-base-ance-firstp |   33.637   |
+|  17  | BM25                             |   26.211   |
 
 nDCG@10 on the **generated MS MARCO dev**:
 
-| Rank | Model                            | Reranker   |  average   |     en     |
-| ---- | :------------------------------- | :--------- | :--------: | :--------: |
-| 1    | e5-mistral-7b-instruct           | NoReranker | **59.015** | **59.015** |
-| 2    | bge-large-en-v1.5                | NoReranker |   55.513   |   55.513   |
-| 3    | multilingual-e5-large            | NoReranker |   54.431   |   54.431   |
-| 4    | bge-m3                           | NoReranker |   54.404   |   54.404   |
-| 5    | bge-base-en-v1.5                 | NoReranker |   54.292   |   54.292   |
-| 6    | multilingual-e5-base             | NoReranker |   52.581   |   52.581   |
-| 7    | bge-small-en-v1.5                | NoReranker |   51.528   |   51.528   |
-| 8    | jina-embeddings-v2-base-en       | NoReranker |   51.112   |   51.112   |
-| 9    | simlm-base-msmarco-finetuned     | NoReranker |   48.102   |   48.102   |
-| 10   | multilingual-e5-small            | NoReranker |   47.989   |   47.989   |
-| 11   | msmarco-roberta-base-ance-firstp | NoReranker |   42.107   |   42.107   |
-| 12   | BM25                             | NoReranker |   34.155   |   34.155   |
+| Rank | Model                            |     en      |
+| ---- | :------------------------------- | :---------: |
+| 1    | repllama-v1-7b-lora-passage      | **Testing** |
+| 2    | e5-mistral-7b-instruct           |   59.015    |
+| 3    | bge-large-en-v1.5                |   55.513    |
+| 4    | e5-large-v2                      |   55.260    |
+| 5    | multilingual-e5-large            |   54.431    |
+| 6    | bge-m3                           |   54.404    |
+| 7    | bge-base-en-v1.5                 |   54.292    |
+| 8    | multilingual-e5-base             |   52.581    |
+| 9    | bge-small-en-v1.5                |   51.528    |
+| 10   | e5-small-v2                      |   51.456    |
+| 11   | e5-base-v2                       |   51.438    |
+| 12   | jina-embeddings-v2-base-en       |   51.112    |
+| 13   | simlm-base-msmarco-finetuned     |   48.102    |
+| 14   | multilingual-e5-small            |   47.989    |
+| 15   | contriever-msmarco               |   47.127    |
+| 16   | msmarco-roberta-base-ance-firstp |   42.107    |
+| 17   | BM25                             |   34.155    |
 
-**Consistency Analysis**: `correlation = 0.7133` and `p_value (alpha=0.05) = 0.0092` indicate that the generated dataset maintains good consistency with the original dataset.
+**Consistency Analysis**: `correlation = 0.8211` and `p_value = 5e-5` indicate that the generated dataset maintains good consistency with the original dataset.
 
 ```python
 from scipy.stats import spearmanr
 
-original_msmarco_rankings  = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
-generated_msmarco_rankings = [3, 6, 2, 1, 7, 5, 10, 9, 8, 4, 11, 12]
+rank1 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17]
+rank2 = [1, 4, 5, 8, 3, 2, 10, 11, 9, 7, 14, 13, 12, 6, 15, 16, 17]
 
-correlation, p_value = spearmanr(original_msmarco_rankings, generated_msmarco_rankings)
+correlation, p_value = spearmanr(rank1, rank2)
 print(correlation, p_value)
-# correlation = 0.7132867132867133
-# p_value (alpha=0.05) = 0.009201779777634754
+# correlation = 0.8210784313725491
+# p_value (alpha=0.05) = 5.346351701144889e-05
 ```
 
 ## Influence of Hard Negatives
 
 nDCG@10 on the generated MS MARCO dev (**add** hard negatives):
 
-| Rank | Model                            | Reranker   |  average   |     en     |
-| ---- | :------------------------------- | :--------- | :--------: | :--------: |
-| 1    | e5-mistral-7b-instruct           | NoReranker | **59.015** | **59.015** |
-| 2    | bge-large-en-v1.5                | NoReranker |   55.513   |   55.513   |
-| 3    | multilingual-e5-large            | NoReranker |   54.431   |   54.431   |
-| 4    | bge-m3                           | NoReranker |   54.404   |   54.404   |
-| 5    | bge-base-en-v1.5                 | NoReranker |   54.292   |   54.292   |
-| 6    | multilingual-e5-base             | NoReranker |   52.581   |   52.581   |
-| 7    | bge-small-en-v1.5                | NoReranker |   51.528   |   51.528   |
-| 8    | jina-embeddings-v2-base-en       | NoReranker |   51.112   |   51.112   |
-| 9    | simlm-base-msmarco-finetuned     | NoReranker |   48.102   |   48.102   |
-| 10   | multilingual-e5-small            | NoReranker |   47.989   |   47.989   |
-| 11   | msmarco-roberta-base-ance-firstp | NoReranker |   42.107   |   42.107   |
-| 12   | BM25                             | NoReranker |   34.155   |   34.155   |
+| Rank | Model                            |     en      |
+| ---- | :------------------------------- | :---------: |
+| 1    | repllama-v1-7b-lora-passage      | **Testing** |
+| 2    | e5-mistral-7b-instruct           |   59.015    |
+| 3    | bge-large-en-v1.5                |   55.513    |
+| 4    | e5-large-v2                      |   55.260    |
+| 5    | multilingual-e5-large            |   54.431    |
+| 6    | bge-m3                           |   54.404    |
+| 7    | bge-base-en-v1.5                 |   54.292    |
+| 8    | multilingual-e5-base             |   52.581    |
+| 9    | bge-small-en-v1.5                |   51.528    |
+| 10   | e5-small-v2                      |   51.456    |
+| 11   | e5-base-v2                       |   51.438    |
+| 12   | jina-embeddings-v2-base-en       |   51.112    |
+| 13   | simlm-base-msmarco-finetuned     |   48.102    |
+| 14   | multilingual-e5-small            |   47.989    |
+| 15   | contriever-msmarco               |   47.127    |
+| 16   | msmarco-roberta-base-ance-firstp |   42.107    |
+| 17   | BM25                             |   34.155    |
 
 nDCG@10 on the generated MS MARCO dev (**remove** hard negatives):
 
-| Rank | Model                            | Reranker   |  average   |     en     |
-| ---- | :------------------------------- | :--------- | :--------: | :--------: |
-| 1    | e5-mistral-7b-instruct           | NoReranker | **59.391** | **59.391** |
-| 2    | bge-large-en-v1.5                | NoReranker |   56.975   |   56.975   |
-| 3    | multilingual-e5-large            | NoReranker |   56.554   |   56.554   |
-| 4    | bge-m3                           | NoReranker |   55.651   |   55.651   |
-| 5    | bge-base-en-v1.5                 | NoReranker |   55.613   |   55.613   |
-| 6    | multilingual-e5-base             | NoReranker |   54.597   |   54.597   |
-| 7    | bge-small-en-v1.5                | NoReranker |   52.773   |   52.773   |
-| 8    | jina-embeddings-v2-base-en       | NoReranker |   52.190   |   52.190   |
-| 9    | multilingual-e5-small            | NoReranker |   49.919   |   49.919   |
-| 10   | simlm-base-msmarco-finetuned     | NoReranker |   48.748   |   48.748   |
-| 11   | msmarco-roberta-base-ance-firstp | NoReranker |   43.067   |   43.067   |
-| 12   | BM25                             | NoReranker |   35.203   |   35.203   |
+| Rank | Model                            |     en     |
+| ---- | :------------------------------- | :--------: |
+| 1    | repllama-v1-7b-lora-passage      | **61.906** |
+| 2    | e5-mistral-7b-instruct           |   59.391   |
+| 3    | e5-large-v2                      |   57.078   |
+| 4    | bge-large-en-v1.5                |   56.975   |
+| 5    | multilingual-e5-large            |   56.554   |
+| 6    | bge-m3                           |   55.651   |
+| 7    | bge-base-en-v1.5                 |   55.613   |
+| 8    | multilingual-e5-base             |   54.597   |
+| 9    | e5-base-v2                       |   53.702   |
+| 10   | e5-small-v2                      |   52.922   |
+| 11   | bge-small-en-v1.5                |   52.773   |
+| 12   | jina-embeddings-v2-base-en       |   52.190   |
+| 13   | multilingual-e5-small            |   49.919   |
+| 14   | simlm-base-msmarco-finetuned     |   48.748   |
+| 15   | contriever-msmarco               |   47.868   |
+| 16   | msmarco-roberta-base-ance-firstp |   43.067   |
+| 17   | BM25                             |   35.203   |
 
 **Analysis**: The hard negatives will influence the difficulty of the benchmark.
 

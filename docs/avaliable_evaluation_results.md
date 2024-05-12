@@ -45,6 +45,7 @@ Dense Embedding Models:
 Rerankers:
 - [bce-reranker-base_v1](https://huggingface.co/maidalun1020/bce-reranker-base_v1)
 - [bge-reranker-large](https://huggingface.co/BAAI/bge-reranker-large)
+- [bge-reranker-v2-m3](https://huggingface.co/BAAI/bge-reranker-v2-m3)
 - [jina-reranker-v1-tiny-en](https://huggingface.co/jinaai/jina-reranker-v1-tiny-en)
 - [jina-reranker-v1-turbo-en](https://huggingface.co/jinaai/jina-reranker-v1-turbo-en)
 - [mmarco-mMiniLMv2-L12-H384-v1](https://huggingface.co/nreimers/mmarco-mMiniLMv2-L12-H384-v1)

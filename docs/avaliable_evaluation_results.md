@@ -78,7 +78,7 @@ nDCG@10 on the **generated MS MARCO dev**:
 
 | Rank | Model                            |     en      |
 | ---- | :------------------------------- | :---------: |
-| 1    | repllama-v1-7b-lora-passage      | **Testing** |
+| 1    | repllama-v1-7b-lora-passage      | **59.625**  |
 | 2    | e5-mistral-7b-instruct           |   59.015    |
 | 3    | bge-large-en-v1.5                |   55.513    |
 | 4    | e5-large-v2                      |   55.260    |
@@ -116,7 +116,7 @@ nDCG@10 on the generated MS MARCO dev (**add** hard negatives):
 
 | Rank | Model                            |     en      |
 | ---- | :------------------------------- | :---------: |
-| 1    | repllama-v1-7b-lora-passage      | **Testing** |
+| 1    | repllama-v1-7b-lora-passage      | **59.625**  |
 | 2    | e5-mistral-7b-instruct           |   59.015    |
 | 3    | bge-large-en-v1.5                |   55.513    |
 | 4    | e5-large-v2                      |   55.260    |

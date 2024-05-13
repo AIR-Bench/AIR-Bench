@@ -3,9 +3,7 @@
 python run_AIR-Bench.py \
 --output_dir ./search_results \
 --encoder BAAI/bge-m3 \
---encoder_link https://huggingface.co/BAAI/bge-m3 \
 --reranker BAAI/bge-reranker-v2-m3 \
---reranker_link https://huggingface.co/BAAI/bge-reranker-v2-m3 \
 --search_top_k 1000 \
 --rerank_top_k 100 \
 --max_query_length 512 \
@@ -22,9 +20,7 @@ python run_AIR-Bench.py \
 --task_types long-doc \
 --output_dir ./search_results \
 --encoder BAAI/bge-m3 \
---encoder_link https://huggingface.co/BAAI/bge-m3 \
 --reranker BAAI/bge-reranker-v2-m3 \
---reranker_link https://huggingface.co/BAAI/bge-reranker-v2-m3 \
 --search_top_k 1000 \
 --rerank_top_k 100 \
 --max_query_length 512 \
@@ -42,9 +38,7 @@ python run_AIR-Bench.py \
 --domains arxiv book \
 --output_dir ./search_results \
 --encoder BAAI/bge-m3 \
---encoder_link https://huggingface.co/BAAI/bge-m3 \
 --reranker BAAI/bge-reranker-v2-m3 \
---reranker_link https://huggingface.co/BAAI/bge-reranker-v2-m3 \
 --search_top_k 1000 \
 --rerank_top_k 100 \
 --max_query_length 512 \
@@ -61,9 +55,7 @@ python run_AIR-Bench.py \
 --languages en \
 --output_dir ./search_results \
 --encoder BAAI/bge-m3 \
---encoder_link https://huggingface.co/BAAI/bge-m3 \
 --reranker BAAI/bge-reranker-v2-m3 \
---reranker_link https://huggingface.co/BAAI/bge-reranker-v2-m3 \
 --search_top_k 1000 \
 --rerank_top_k 100 \
 --max_query_length 512 \
@@ -82,9 +74,7 @@ python run_AIR-Bench.py \
 --languages en \
 --output_dir ./search_results \
 --encoder BAAI/bge-m3 \
---encoder_link https://huggingface.co/BAAI/bge-m3 \
 --reranker BAAI/bge-reranker-v2-m3 \
---reranker_link https://huggingface.co/BAAI/bge-reranker-v2-m3 \
 --search_top_k 1000 \
 --rerank_top_k 100 \
 --max_query_length 512 \
@@ -111,7 +101,6 @@ def get_models(model_args: ModelArgs):
         return 'BM25', []
     encoder = FlagDRESModel(
         model_name_or_path=model_args.encoder,
-        model_link=model_args.encoder_link,
         pooling_method=model_args.pooling_method,
         normalize_embeddings=model_args.normalize_embeddings,
         use_fp16=model_args.use_fp16,
@@ -126,16 +115,11 @@ def get_models(model_args: ModelArgs):
     if model_args.reranker is not None:
         for i in range(len(model_args.reranker)):
             reranker = model_args.reranker[i]
-            try:
-                reranker_link = model_args.reranker_link[i]
-            except IndexError:
-                raise ValueError("The number of reranker links should be the same as the number of rerankers.")
         for reranker in model_args.reranker:
             if reranker is None or reranker.lower() == 'none' or reranker == "":
                 continue
             reranker_list.append(FlagDRESReranker(
                 model_name_or_path=reranker,
-                model_link=reranker_link,
                 use_fp16=model_args.use_fp16,
                 query_instruction_for_retrieval=model_args.query_instruction_for_retrieval if model_args.add_instruction else None,
                 passage_instruction_for_retrieval=model_args.passage_instruction_for_retrieval if model_args.add_instruction else None,

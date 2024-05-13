@@ -40,12 +40,11 @@ class FlagDRESModel:
     def __init__(
             self,
             model_name_or_path: str,
-            model_link: str,
             pooling_method: str = 'cls',
             normalize_embeddings: bool = True,
             use_fp16: bool = True,
-            query_instruction_for_retrieval: str = None,
-            passage_instruction_for_retrieval: str = None,
+            query_instruction_for_retrieval: str | None = None,
+            passage_instruction_for_retrieval: str | None = None,
             max_query_length: int = 512,
             max_passage_length: int = 8192,
             batch_size: int = 256,
@@ -53,7 +52,6 @@ class FlagDRESModel:
             **kwargs
     ) -> None:
         self.name = os.path.basename(model_name_or_path)
-        self.link = model_link
         
         self.tokenizer = AutoTokenizer.from_pretrained(model_name_or_path)
         if 'jina' in model_name_or_path:
@@ -185,15 +183,13 @@ class FlagDRESModel:
 class FlagDRESReranker:
     def __init__(self,
                  model_name_or_path: str,
-                 model_link: str,
                  use_fp16: bool = True,
-                 query_instruction_for_retrieval: str = None,
-                 passage_instruction_for_retrieval: str = None,
+                 query_instruction_for_retrieval: str | None = None,
+                 passage_instruction_for_retrieval: str | None = None,
                  max_length: int=512,
                  batch_size: int=256,
                  **kwargs):
         self.name = os.path.basename(model_name_or_path)
-        self.link = model_link
         
         self.tokenizer = AutoTokenizer.from_pretrained(model_name_or_path)
         

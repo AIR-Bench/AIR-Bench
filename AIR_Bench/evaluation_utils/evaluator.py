@@ -5,7 +5,6 @@ from typing import List, Dict
 
 from .searcher import Searcher
 from .data_loader import DataLoader
-from ..model_utils import FlagDRESModel, FlagDRESReranker
 
 
 logger = logging.getLogger(__name__)
@@ -85,9 +84,7 @@ class Evaluator:
                 domain=domain,
                 language=language,
                 task_name=task_name,
-                benchmark_version=self.benchmark_version,
-                model_link=model.link if isinstance(model, FlagDRESModel) else None,
-                reranker_link=None
+                benchmark_version=self.benchmark_version
             )
         
         for reranker in reranker_list:
@@ -123,73 +120,8 @@ class Evaluator:
                 domain=domain,
                 language=language,
                 task_name=task_name,
-                benchmark_version=self.benchmark_version,
-                model_link=model.link if isinstance(model, FlagDRESModel) else None,
-                reranker_link=reranker.link if isinstance(reranker, FlagDRESReranker) else None
+                benchmark_version=self.benchmark_version
             )
-
-    def evaluate_results(self, search_results_save_dir: str):
-        # {model: {reranker: {task_type: {domain: {language: {task_name: {metric: value}}}}}}}
-        eval_results_dict = {}
-        
-        json_files = []
-        for root, _, files in os.walk(search_results_save_dir):
-            for file in files:
-                if file.endswith('.json'):
-                    json_files.append(os.path.join(root, file))
-        
-        for json_file in json_files:
-            data_info, search_results = self.load_search_results(json_file)
-            
-            benchmark_version = data_info['benchmark_version']
-            if benchmark_version != self.benchmark_version:
-                raise ValueError(f'benchmark_version mismatch: {benchmark_version} vs {self.benchmark_version} in {json_file}')
-            
-            model_name = data_info['model_name']
-            reranker_name = data_info['reranker_name']
-            model_link = data_info['model_link']
-            reranker_link = data_info['reranker_link']
-            if model_link is not None:
-                model_name = f"[{model_name}]({model_link})"
-            if reranker_link is not None:
-                reranker_name = f"[{reranker_name}]({reranker_link})"
-            
-            if model_name not in eval_results_dict:
-                eval_results_dict[model_name] = {}
-            if reranker_name not in eval_results_dict[model_name]:
-                eval_results_dict[model_name][reranker_name] = {}
-            
-            task_type = data_info['task_type']
-            domain = data_info['domain']
-            language = data_info['language']
-            if task_type not in eval_results_dict[model_name][reranker_name]:
-                eval_results_dict[model_name][reranker_name][task_type] = {}
-            if domain not in eval_results_dict[model_name][reranker_name][task_type]:
-                eval_results_dict[model_name][reranker_name][task_type][domain] = {}
-            if language not in eval_results_dict[model_name][reranker_name][task_type][domain]:
-                eval_results_dict[model_name][reranker_name][task_type][domain][language] = {}
-            
-            task_name = data_info['task_name']
-            
-            qrels = self.data_loader.load_qrels(
-                task_type=task_type,
-                domain=domain,
-                language=language,
-                task_name=task_name
-            )
-            
-            eval_results = self.compute_metrics(
-                qrels=qrels,
-                search_results=search_results,
-                k_values=self.k_values
-            )
-            
-            if task_name is None:
-                eval_results_dict[model_name][reranker_name][task_type][domain][language] = eval_results
-            else:
-                eval_results_dict[model_name][reranker_name][task_type][domain][language][task_name] = eval_results
-        
-        return eval_results_dict
 
     @staticmethod
     def save_search_results(model_name: str,
@@ -200,14 +132,10 @@ class Evaluator:
                             domain: str,
                             language: str,
                             task_name: str,
-                            benchmark_version: str,
-                            model_link: str=None,
-                            reranker_link: str=None):
+                            benchmark_version: str):
         data = {
             'model_name': model_name,
             'reranker_name': reranker_name,
-            'model_link': model_link,
-            'reranker_link': reranker_link,
             'benchmark_version': benchmark_version,
             'task_type': task_type,
             'domain': domain,

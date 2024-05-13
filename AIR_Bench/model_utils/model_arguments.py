@@ -3,23 +3,13 @@ from dataclasses import dataclass, field
 
 @dataclass
 class ModelArgs:
+    encoder: str = field(
+        metadata={'help': 'Encoder name or path. For example, "BAAI/bge-m3" or "path/to/encoder".',
+                  'required': True}
+    )
     reranker: str = field(
         default=None,
-        metadata={'help': 'One or more reranker name or path.',
-                  "nargs": "+"}
-    )
-    reranker_link: str = field(
-        default=None,
-        metadata={'help': 'One or more corresponding reranker link.',
-                  "nargs": "+"}
-    )
-    encoder: str = field(
-        default="BAAI/bge-m3",
-        metadata={'help': 'Encoder name or path.'}
-    )
-    encoder_link: str = field(
-        default="https://huggingface.co/BAAI/bge-m3",
-        metadata={'help': 'corresponding encoder link.'}
+        metadata={'help': 'One or more reranker name or path. For example, "BAAI/bge-reranker-v2-m3" or "path/to/reranker".'}
     )
     pooling_method: str = field(
         default='cls',

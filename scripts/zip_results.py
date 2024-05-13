@@ -57,7 +57,7 @@ def main():
     args = get_args()
     
     print("=========================================")
-    success = zip_results(args.results_path, 
+    success = zip_results(args.results_dir, 
                           args.save_dir, 
                           args.model_name, 
                           reranker_name=args.reranker_name, 

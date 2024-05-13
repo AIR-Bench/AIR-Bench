@@ -15,6 +15,7 @@ python zip_results.py \
 import os
 import zipfile
 import argparse
+from AIR_Bench.tasks import check_task_types, check_domains
 
 
 def get_args():
@@ -27,11 +28,29 @@ def get_args():
     return parser.parse_args()
 
 
-def zip_results(results_path: str, 
+def check_results_path(results_path: str):
+    if not os.path.exists(results_path):
+        raise FileNotFoundError(f"Search results in {results_path} does not exist.")
+    for task_type in os.listdir(results_path):
+        check_task_types(task_type)
+        task_type_dir = os.path.join(results_path, task_type)
+        for domain in os.listdir(task_type_dir):
+            check_domains(domain)
+            domain_dir = os.path.join(task_type_dir, domain)
+
+
+def zip_results(results_dir: str, 
                 save_dir: str, 
                 model_name: str, 
                 reranker_name: str = 'NoReanker',
                 overwrite: bool = False):
+    results_path = os.path.join(results_dir, model_name, reranker_name)
+    try:
+        check_results_path(results_path)
+    except Exception as e:
+        print(f"Invalid file structure in {results_path}: {e}\n")
+        return False
+    
     os.makedirs(save_dir, exist_ok=True)
     zip_filename = os.path.join(save_dir, f'{model_name}_{reranker_name}.zip')
     if os.path.exists(zip_filename) and not overwrite:

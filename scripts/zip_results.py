@@ -32,11 +32,10 @@ def check_results_path(results_path: str):
     if not os.path.exists(results_path):
         raise FileNotFoundError(f"Search results in {results_path} does not exist.")
     for task_type in os.listdir(results_path):
-        check_task_types(task_type)
+        check_task_types([task_type])
         task_type_dir = os.path.join(results_path, task_type)
         for domain in os.listdir(task_type_dir):
-            check_domains(domain)
-            domain_dir = os.path.join(task_type_dir, domain)
+            check_domains([domain])
 
 
 def zip_results(results_dir: str, 

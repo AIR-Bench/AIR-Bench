@@ -1,16 +1,16 @@
 """
-# Zip "Embedding Model + NoReranker" search results in <search_results>/<model_name>/NoReranker to <save_path>/<model_name>_NoReranker.zip.
+# Zip "Embedding Model + NoReranker" search results in <search_results>/<model_name>/NoReranker to <save_dir>/<model_name>_NoReranker.zip.
 python zip_results.py \
 --results_dir search_results \
 --model_name bge-m3 \
---save_path search_results/zipped_results
+--save_dir search_results/zipped_results
 
-# Zip "Embedding Model + Reranker" search results in <search_results>/<model_name>/<reranker_name> to <save_path>/<model_name>_<reranker_name>.zip.
+# Zip "Embedding Model + Reranker" search results in <search_results>/<model_name>/<reranker_name> to <save_dir>/<model_name>_<reranker_name>.zip.
 python zip_results.py \
 --results_path search_results \
 --model_name bge-m3 \
 --reranker_name bge-reranker-v2-m3 \
---save_path search_results/zipped_results
+--save_dir search_results/zipped_results
 """
 import os
 import zipfile
@@ -22,18 +22,18 @@ def get_args():
     parser.add_argument('--results_dir', type=str, required=True, help="Path to the search results directory")
     parser.add_argument('--model_name', type=str, required=True, help="Model name used for the search")
     parser.add_argument('--reranker_name', type=str, default='NoReranker', help="Reranker name used for the search. Default: NoReranker")
-    parser.add_argument('--save_path', type=str, required=True, help="Path to the directory to save the zipped search results")
+    parser.add_argument('--save_dir', type=str, required=True, help="Path to the directory to save the zipped search results")
     parser.add_argument('--overwrite', action='store_true', help="Overwrite the existing zipped file if it exists")
     return parser.parse_args()
 
 
 def zip_results(results_path: str, 
-                save_path: str, 
+                save_dir: str, 
                 model_name: str, 
                 reranker_name: str = 'NoReanker',
                 overwrite: bool = False):
-    os.makedirs(save_path, exist_ok=True)
-    zip_filename = os.path.join(save_path, f'{model_name}_{reranker_name}.zip')
+    os.makedirs(save_dir, exist_ok=True)
+    zip_filename = os.path.join(save_dir, f'{model_name}_{reranker_name}.zip')
     if os.path.exists(zip_filename) and not overwrite:
         print(f"Zipped file {zip_filename} already exists.\n")
         return False
@@ -58,7 +58,7 @@ def main():
     
     print("=========================================")
     success = zip_results(args.results_path, 
-                          args.save_path, 
+                          args.save_dir, 
                           args.model_name, 
                           reranker_name=args.reranker_name, 
                           overwrite=args.overwrite)

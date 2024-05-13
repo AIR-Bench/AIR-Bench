@@ -9,7 +9,8 @@ class ModelArgs:
     )
     reranker: str = field(
         default=None,
-        metadata={'help': 'One or more reranker name or path. For example, "BAAI/bge-reranker-v2-m3" or "path/to/reranker".'}
+        metadata={'help': 'One or more reranker name or path. For example, "BAAI/bge-reranker-v2-m3" or "path/to/reranker".',
+                  'nargs': '+'}
     )
     pooling_method: str = field(
         default='cls',

@@ -151,7 +151,8 @@ def main():
         search_top_k=eval_args.search_top_k,
         reranker_list=reranker_list,
         rerank_top_k=eval_args.rerank_top_k,
-        overwrite=eval_args.overwrite
+        overwrite=eval_args.overwrite,
+        corpus_chunk_size=10000000  # 10M chunk size when encoding the corpus to avoid multiple tqdm bars
     )
 
 

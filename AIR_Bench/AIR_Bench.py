@@ -39,18 +39,12 @@ class AIR_Bench:
     
     @staticmethod
     def check_encoder(encoder):
-        for attr in ['name', 'link']:
-            if not hasattr(encoder, attr):
-                raise ValueError(f"Encoder should have `{attr}` attribute.")
         for method in ['__str__', 'encode_queries', 'encode_corpus']:
             if not hasattr(encoder, method) or not callable(getattr(encoder, method, None)):
                 raise ValueError(f"Encoder should have `{method}` method.")
     
     @staticmethod
     def check_reranker(reranker):
-        for attr in ['name', 'link']:
-            if not hasattr(reranker, attr):
-                raise ValueError(f"Reranker should have `{attr}` attribute.")
         for method in ['__str__', 'compute_score']:
             if not hasattr(reranker, method) or not callable(getattr(reranker, method, None)):
                 raise ValueError(f"Reranker should have `{method}` method.")

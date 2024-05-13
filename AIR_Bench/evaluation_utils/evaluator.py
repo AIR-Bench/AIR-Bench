@@ -41,8 +41,6 @@ class Evaluator:
                                 language: str,
                                 task_name: str,
                                 **kwargs):
-        search_results_save_dir = os.path.join(search_results_save_dir, str(model))
-        
         no_reranker_search_results_save_dir = os.path.join(search_results_save_dir, str(model), 'NoReranker', task_type)
         os.makedirs(no_reranker_search_results_save_dir, exist_ok=True)
         

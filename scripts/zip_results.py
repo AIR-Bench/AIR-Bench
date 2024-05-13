@@ -1,6 +1,15 @@
 """
+# Zip "Embedding Model + NoReranker" search results in <search_results>/<model_name>/NoReranker to <save_path>/<md5>.zip.
 python zip_results.py \
---results_path search_results/bge-m3 \
+--results_path search_results \
+--model_name bge-m3 \
+--save_path search_results/zipped_results
+
+# Zip "Embedding Model + Reranker" search results in <search_results>/<model_name>/<reranker_name> to <save_path>/<md5>.zip.
+python zip_results.py \
+--results_path search_results \
+--model_name bge-m3 \
+--reranker_name bge-reranker-v2-m3 \
 --save_path search_results/zipped_results
 """
 import os
@@ -12,6 +21,8 @@ import argparse
 def get_args():
     parser = argparse.ArgumentParser()
     parser.add_argument('--results_path', type=str, required=True, help="Path to the search results directory")
+    parser.add_argument('--model_name', type=str, required=True, help="Model name used for the search")
+    parser.add_argument('--reranker_name', type=str, default='NoReranker', help="Reranker name used for the search. Default: NoReranker")
     parser.add_argument('--save_path', type=str, required=True, help="Path to the directory to save the zipped search results")
     parser.add_argument('--overwrite', action='store_true', help="Overwrite the existing zipped file if it exists")
     return parser.parse_args()
@@ -62,7 +73,8 @@ def main():
     args = get_args()
     
     print("=========================================")
-    success = zip_results(args.results_path, args.save_path, overwrite=args.overwrite)
+    results_path = os.path.join(args.results_path, args.model_name, args.reranker_name)
+    success = zip_results(results_path, args.save_path, overwrite=args.overwrite)
     print("=========================================")
     if success:
         print("Success! Now you can upload the zipped search results to the 🤗  Hugging Face Leaderboard!")

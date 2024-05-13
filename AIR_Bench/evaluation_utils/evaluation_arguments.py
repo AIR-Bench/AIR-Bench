@@ -11,19 +11,19 @@ class EvalArgs:
         default='./search_results',
         metadata={'help': 'Path to save results.'}
     )
-    task_type: str = field(
+    task_types: str = field(
         default=None,
-        metadata={'help': 'Task type.',
+        metadata={'help': 'Task types.',
                   "nargs": "+"}
     )
-    domain: str = field(
+    domains: str = field(
         default=None,
-        metadata={'help': 'Domain to evaluate.', 
+        metadata={'help': 'Domains to evaluate.', 
                   "nargs": "+"}
     )
-    language: str = field(
+    languages: str = field(
         default=None,
-        metadata={'help': 'Language to evaluate.', 
+        metadata={'help': 'Languages to evaluate.', 
                   "nargs": "+"}
     )
     search_top_k: int = field(

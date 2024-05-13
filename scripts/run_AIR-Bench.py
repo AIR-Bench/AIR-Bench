@@ -19,7 +19,7 @@ python run_AIR-Bench.py \
 
 # Run the tasks in the specified task type
 python run_AIR-Bench.py \
---task_type long-doc \
+--task_types long-doc \
 --output_dir ./search_results \
 --encoder BAAI/bge-m3 \
 --encoder_link https://huggingface.co/BAAI/bge-m3 \
@@ -38,8 +38,8 @@ python run_AIR-Bench.py \
 
 # Run the tasks in the specified task type and domains
 python run_AIR-Bench.py \
---task_type long-doc \
---domain arxiv book \
+--task_types long-doc \
+--domains arxiv book \
 --output_dir ./search_results \
 --encoder BAAI/bge-m3 \
 --encoder_link https://huggingface.co/BAAI/bge-m3 \
@@ -58,7 +58,7 @@ python run_AIR-Bench.py \
 
 # Run the tasks in the specified languages
 python run_AIR-Bench.py \
---language en \
+--languages en \
 --output_dir ./search_results \
 --encoder BAAI/bge-m3 \
 --encoder_link https://huggingface.co/BAAI/bge-m3 \
@@ -77,7 +77,7 @@ python run_AIR-Bench.py \
 
 # Run the tasks in the specified task type, domains, and languages
 python run_AIR-Bench.py \
---task_type qa \
+--task_types qa \
 --domains wiki web \
 --languages en \
 --output_dir ./search_results \
@@ -155,9 +155,9 @@ def main():
     
     evaluation = AIR_Bench(
         benchmark_version=eval_args.benchmark_version,
-        task_types=eval_args.task_type,
-        domains=eval_args.domain,
-        languages=eval_args.language,
+        task_types=eval_args.task_types,
+        domains=eval_args.domains,
+        languages=eval_args.languages,
         cache_dir=eval_args.cache_dir
     )
     

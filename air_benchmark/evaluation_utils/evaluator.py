@@ -1,7 +1,7 @@
 import json
 import logging
 import os
-from typing import Dict, List
+from typing import Dict, List, Optional
 
 from air_benchmark.evaluation_utils.data_loader import DataLoader
 from air_benchmark.evaluation_utils.searcher import Searcher
@@ -13,7 +13,7 @@ class Evaluator:
     def __init__(
         self,
         data_loader: DataLoader,
-        searcher: Searcher | None = None,
+        searcher: Optional[Searcher] = None,
         rerank_top_k: int = 100,
         k_values: List[int] = [1, 3, 5, 10, 100, 1000],
         overwrite: bool = False,

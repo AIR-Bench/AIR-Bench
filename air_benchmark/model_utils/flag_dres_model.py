@@ -1,6 +1,6 @@
 import os
 from functools import partial
-from typing import Dict, List, Tuple, Union, cast
+from typing import Dict, List, Optional, Tuple, Union, cast
 
 import datasets
 import numpy as np
@@ -55,8 +55,8 @@ class FlagDRESModel:
         pooling_method: str = "cls",
         normalize_embeddings: bool = True,
         use_fp16: bool = True,
-        query_instruction_for_retrieval: str | None = None,
-        passage_instruction_for_retrieval: str | None = None,
+        query_instruction_for_retrieval: Optional[str] = None,
+        passage_instruction_for_retrieval: Optional[str] = None,
         max_query_length: int = 512,
         max_passage_length: int = 8192,
         batch_size: int = 256,
@@ -251,8 +251,8 @@ class FlagDRESReranker:
         self,
         model_name_or_path: str,
         use_fp16: bool = True,
-        query_instruction_for_retrieval: str | None = None,
-        passage_instruction_for_retrieval: str | None = None,
+        query_instruction_for_retrieval: Optional[str] = None,
+        passage_instruction_for_retrieval: Optional[str] = None,
         max_length: int = 512,
         batch_size: int = 256,
         **kwargs,

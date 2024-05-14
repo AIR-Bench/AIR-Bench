@@ -47,16 +47,9 @@ clean:
 
 # --------------------------------------------------------- Environment related targets
 
-## Create a virtual environment
-env:
-	python3.9 -m venv .venv
-	source .venv/bin/activate
-	pip install -U pip
-
 ## Install requirement package, see deps for available packages
 install:
-	python requirements.py $(package) > requirements.$(package).txt
-	pip install --no-cache-dir -r requirements.$(package).txt
+	pip install .
 
 ## Install pre-commit hooks
 pre-commit:

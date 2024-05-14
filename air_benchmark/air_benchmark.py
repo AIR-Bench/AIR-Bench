@@ -1,5 +1,5 @@
 import logging
-from typing import List
+from typing import List, Optional
 
 from air_benchmark.console import console, style_head, style_row
 from air_benchmark.evaluation_utils.data_loader import DataLoader
@@ -17,11 +17,11 @@ logger = logging.getLogger(__name__)
 class AIRBench:
     def __init__(
         self,
-        benchmark_version: str | None = None,
-        task_types: List[str] | None = None,
-        domains: List[str] | None = None,
-        languages: List[str] | None = None,
-        cache_dir: str | None = None,
+        benchmark_version: Optional[str] = None,
+        task_types: Optional[List[str]] = None,
+        domains: Optional[List[str]] = None,
+        languages: Optional[List[str]] = None,
+        cache_dir: Optional[str] = None,
     ):
         self.benchmark_version = check_benchmark_version(benchmark_version)
         self.task_types = check_task_types(task_types)
@@ -80,7 +80,7 @@ class AIRBench:
         encoder: FlagDRESModel,
         output_dir: str = "search_results",
         search_top_k: int = 1000,
-        reranker_list: List[FlagDRESReranker] | None = None,
+        reranker_list: Optional[List[FlagDRESReranker]] = None,
         rerank_top_k: int = 100,
         overwrite: bool = False,
         **kwargs,

@@ -1,40 +1,45 @@
 from typing import List, Tuple
 
-from .qa_tasks import *
-from .long_doc_tasks import *
+from air_benchmark.tasks.long_doc_tasks import (LongDocArxivTask,
+                                                LongDocBookTask,
+                                                LongDocHealthcareTask,
+                                                LongDocLawTask)
+from air_benchmark.tasks.qa_tasks import (QAArxivTask, QAFinanceTask,
+                                          QAHealthcareTask, QALawTask,
+                                          QAMSMARCOTask, QANewsTask, QAWebTask,
+                                          QAWikiTask)
 
-
-LATEST_BENCHMARK_VERSION = 'AIR-Bench_24.04'
+LATEST_BENCHMARK_VERSION = "AIR-Bench_24.04"
 
 
 QATaskTable = {
-    'wiki': QAWikiTask,
-    'web': QAWebTask,
-    'healthcare': QAHealthcareTask,
-    'law': QALawTask,
-    'arxiv': QAArxivTask,
-    'news': QANewsTask,
-    'finance': QAFinanceTask,
-    'msmarco': QAMSMARCOTask,
+    "wiki": QAWikiTask,
+    "web": QAWebTask,
+    "healthcare": QAHealthcareTask,
+    "law": QALawTask,
+    "arxiv": QAArxivTask,
+    "news": QANewsTask,
+    "finance": QAFinanceTask,
+    "msmarco": QAMSMARCOTask,
 }
 
 
 LongDocTaskTable = {
-    'healthcare': LongDocHealthcareTask,
-    'arxiv': LongDocArxivTask,
-    'law': LongDocLawTask,
-    'book': LongDocBookTask,
+    "healthcare": LongDocHealthcareTask,
+    "arxiv": LongDocArxivTask,
+    "law": LongDocLawTask,
+    "book": LongDocBookTask,
 }
 
 
 TaskTable = {
-    'qa': QATaskTable,
-    'long-doc': LongDocTaskTable,
+    "qa": QATaskTable,
+    "long-doc": LongDocTaskTable,
 }
 
 
 BenchmarkTable = {
-    'AIR-Bench_24.04': TaskTable,
+    "AIR-Bench_24.04": TaskTable,
 }
 
 
@@ -58,7 +63,7 @@ def get_avaliable_languages() -> List[str]:
     for task in LongDocTaskTable.values():
         for lang in task.keys():
             languages.add(lang)
-    
+
     return sorted(list(languages))
 
 
@@ -67,10 +72,12 @@ def check_benchmark_version(benchmark_version: str | None) -> str:
         benchmark_version = LATEST_BENCHMARK_VERSION
     else:
         avaliable_benchmark_versions = get_avaliable_benchmark_versions()
-        
+
         if benchmark_version not in avaliable_benchmark_versions:
-            raise ValueError(f"Invalid benchmark version: {benchmark_version}. Avaliable versions: {', '.join(avaliable_benchmark_versions)}")
-    
+            raise ValueError(
+                f"Invalid benchmark version: {benchmark_version}. Avaliable versions: {', '.join(avaliable_benchmark_versions)}"
+            )
+
     return benchmark_version
 
 
@@ -83,7 +90,9 @@ def check_task_types(task_types: List[str] | None) -> List[str]:
         task_types = [task_type.lower() for task_type in task_types]
         for task_type in task_types:
             if task_type not in avaliable_task_types:
-                raise ValueError(f"Invalid task type: {task_type}. Avaliable task types: {', '.join(avaliable_task_types)}")
+                raise ValueError(
+                    f"Invalid task type: {task_type}. Avaliable task types: {', '.join(avaliable_task_types)}"
+                )
     return task_types
 
 
@@ -96,7 +105,9 @@ def check_domains(domains: List[str] | None) -> List[str]:
         domains = [domain.lower() for domain in domains]
         for domain in domains:
             if domain not in avaliable_domains:
-                raise ValueError(f"Invalid domain: {domain}. Avaliable domains: {', '.join(avaliable_domains)}")
+                raise ValueError(
+                    f"Invalid domain: {domain}. Avaliable domains: {', '.join(avaliable_domains)}"
+                )
     return domains
 
 
@@ -109,11 +120,15 @@ def check_languages(languages: List[str] | None) -> List[str]:
         languages = [language.lower() for language in languages]
         for language in languages:
             if language not in avaliable_languages:
-                raise ValueError(f"Invalid language: {language}. Avaliable languages: {', '.join(avaliable_languages)}")
+                raise ValueError(
+                    f"Invalid language: {language}. Avaliable languages: {', '.join(avaliable_languages)}"
+                )
     return languages
 
 
-def get_task_name_list(benchmark_version: str, task_type: str, domain: str, language: str) -> Tuple[bool, str]:
+def get_task_name_list(
+    benchmark_version: str, task_type: str, domain: str, language: str
+) -> Tuple[bool, str]:
     if benchmark_version not in BenchmarkTable:
         return False, None
     task_table = BenchmarkTable[benchmark_version]

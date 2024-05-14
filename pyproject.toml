@@ -1,0 +1,42 @@
+[build-system]
+requires      = ["setuptools>=61.0.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "air-benchmark"
+version = "0.0.2"
+description = "AIR-Bench: Automated Heterogeneous Information Retrieval Benchmark"
+readme = "README.md"
+authors = [{ name = "BAAI", email = "zhengliu1026@gmail.com" }, { name = "Jina AI", email = "research@jina.ai" }]
+license = { file = "LICENSE" }
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Environment :: Console",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Information Technology",
+    "License :: OSI Approved :: MIT",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python",
+]
+keywords = ["embedding", "benchmark", "air-bench", "reranker", "information retrieval"]
+dependencies = [
+    "datasets>=2.18.0",
+    "mteb>=1.7.17",
+    "torch>=1.6.0",
+    "transformers>=4.33.0",
+    "rich>=13.7.1",
+]
+
+[project.optional-dependencies]
+dev = ["black", "isort", "pytest"]
+
+[project.urls]
+homepage = "https://github.com/AIR-Bench/AIR-Bench/tree/main"
+"Huggingface Organization" = "https://huggingface.co/AIR-Bench"
+"Leaderboard" = "https://huggingface.co/spaces/AIR-Bench/leaderboard"
+
+[tool.setuptools.packages.find]
+exclude = ["tests", "results"]
+
+[project.scripts]
+realpython = "reader.__main__:main"

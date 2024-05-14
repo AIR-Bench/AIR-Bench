@@ -1,10 +1,10 @@
 import logging
 from typing import List
 
-from air_bench.console import console, style_head, style_row
-from air_bench.evaluation_utils import DataLoader, Evaluator, Searcher
-from air_bench.model_utils import FlagDRESModel, FlagDRESReranker
-from air_bench.tasks.tasks import (BenchmarkTable, check_benchmark_version,
+from air_benchmark.console import console, style_head, style_row
+from air_benchmark.evaluation_utils import DataLoader, Evaluator, Searcher
+from air_benchmark.model_utils import FlagDRESModel, FlagDRESReranker
+from air_benchmark.tasks.tasks import (BenchmarkTable, check_benchmark_version,
                                    check_domains, check_languages,
                                    check_task_types, get_task_name_list)
 

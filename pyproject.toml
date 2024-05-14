@@ -31,8 +31,6 @@ dependencies = [
 [project.optional-dependencies]
 dev = ["black", "isort", "pytest"]
 
-requires-python = ">=3.10"
-
 [project.urls]
 homepage = "https://github.com/AIR-Bench/AIR-Bench/tree/main"
 "Huggingface Organization" = "https://huggingface.co/AIR-Bench"

@@ -17,7 +17,7 @@ import argparse
 import os
 import zipfile
 
-from AIR_Bench.tasks import check_domains, check_task_types
+from air_benchmark.tasks.tasks import check_domains, check_task_types
 
 
 def get_args():

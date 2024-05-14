@@ -1,6 +1,6 @@
 """
 # Run all tasks
-python run_air_bench.py \
+python run_air_benchmark.py \
 --output_dir ./search_results \
 --encoder BAAI/bge-m3 \
 --reranker BAAI/bge-reranker-v2-m3 \
@@ -16,7 +16,7 @@ python run_air_bench.py \
 --overwrite False
 
 # Run the tasks in the specified task type
-python run_air_bench.py \
+python run_air_benchmark.py \
 --task_types long-doc \
 --output_dir ./search_results \
 --encoder BAAI/bge-m3 \
@@ -33,7 +33,7 @@ python run_air_bench.py \
 --overwrite False
 
 # Run the tasks in the specified task type and domains
-python run_air_bench.py \
+python run_air_benchmark.py \
 --task_types long-doc \
 --domains arxiv book \
 --output_dir ./search_results \
@@ -51,7 +51,7 @@ python run_air_bench.py \
 --overwrite False
 
 # Run the tasks in the specified languages
-python run_air_bench.py \
+python run_air_benchmark.py \
 --languages en \
 --output_dir ./search_results \
 --encoder BAAI/bge-m3 \
@@ -68,7 +68,7 @@ python run_air_bench.py \
 --overwrite False
 
 # Run the tasks in the specified task type, domains, and languages
-python run_air_bench.py \
+python run_air_benchmark.py \
 --task_types qa \
 --domains wiki web \
 --languages en \

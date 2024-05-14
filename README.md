@@ -10,7 +10,7 @@
 </h4>
 
 <h3 align="center">
-    <a href="https://huggingface.co/spaces/AIR-Bench/leaderboard"><img style="float: middle; padding: 10px 10px 10px 10px;" width="60" height="55" src="./docs/images/hf_logo.png" /></a>
+    <a href="https://huggingface.co/spaces/AIR-Bench/leaderboard"><img style="float: middle; padding: 10px 10px 10px 10px;" width="60" height="55" src="https://github.com/AIR-Bench/AIR-Bench/blob/main/docs/images/hf_logo.png" /></a>
 </h3>
 
 ## Introduction
@@ -32,17 +32,17 @@ The new benchmark is highlighted for the following new features.
 
 ## Documentation
 
-| Documentation                                                |                                                              |
-| ------------------------------------------------------------ | ------------------------------------------------------------ |
-| 🏭 [Pipeline](./docs/data_generation.md)                                               | The data generation pipeline of AIR-Bench                    |
-| 📋 [Tasks](./docs/avaliable_tasks.md)                         | Overview of available tasks in AIR-Bench                     |
-| 📈 [Leaderboard](https://huggingface.co/spaces/AIR-Bench/leaderboard) | The interactive leaderboard of AIR-Bench                     |
-| 🚀 [Submit](./docs/submit_to_leaderboard.md)                  | Information related to how to submit a model to AIR-Bench |
-| 🤝 [Contributing](./docs/community_contribution.md)           | How to contribute to AIR-Bench                               |
+| Documentation                                                |                                                           |
+| ------------------------------------------------------------ | --------------------------------------------------------- |
+| 🏭 [Pipeline](https://github.com/AIR-Bench/AIR-Bench/blob/main/docs/data_generation.md) | The data generation pipeline of AIR-Bench                 |
+| 📋 [Tasks](https://github.com/AIR-Bench/AIR-Bench/blob/main/docs/avaliable_tasks.md) | Overview of available tasks in AIR-Bench                  |
+| 📈 [Leaderboard](https://huggingface.co/spaces/AIR-Bench/leaderboard) | The interactive leaderboard of AIR-Bench                  |
+| 🚀 [Submit](https://github.com/AIR-Bench/AIR-Bench/blob/main/docs/submit_to_leaderboard.md) | Information related to how to submit a model to AIR-Bench |
+| 🤝 [Contributing](https://github.com/AIR-Bench/AIR-Bench/blob/main/docs/community_contribution.md) | How to contribute to AIR-Bench                            |
 
 ## Avaliable Evaluation Results
 
-Detailed avaliable results are avaliable [here](./docs/avaliable_evaluation_results.md).
+Detailed avaliable results are avaliable [here](https://github.com/AIR-Bench/AIR-Bench/blob/main/docs/avaliable_evaluation_results.md).
 
 Analysis about the results:
 

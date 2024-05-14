@@ -1,23 +1,24 @@
 ## Data Generation
 
 - [Data Generation](#data-generation)
-  - [Task Type & Domain & Language](#task-type--domain--language)
+  - [Task Type](#task-type)
+  - [Domain & Language](#domain--language)
   - [Pipeline](#pipeline)
     - [Corpus Preparation](#corpus-preparation)
     - [Candidate Generation](#candidate-generation)
     - [Quality Control](#quality-control)
 
-### Task Type & Domain & Language
+### Task Type
 
-Task Types: QA, Long-Doc
+As AIR-Bench focuses on the retrieval and RAG benchmarks, we include two tasks. 
+- Question-Answering (QA) is the classic task of finding answers for a given question.
+- Inner-Document retrieval (Inner-Doc) is the task we proposed to evaluate the models' performance in the RAG scenario. The task is to find the related document chunk (which are usually long-text) from the whole corpus given a question.
 
-Domains: Wiki, Web, Healthcare, Law, Arxiv, News, Finance, Book
+### Domain & Language
+AIR-Bench is targeting at automatically generating testing data without human intervention. Therefore, it is able to instantly support the evaluation of new domains at a very small cost with the help of LLMs.
 
-Languages: 
+As for the initial version `AIR-Bench_24.04`, we've covered 8 domains (including Wiki, Web, Healthcare, Law, Arxiv, News, Finance, Book) and 2 languages (including English and Chinese). 
 
-- Current: English, Chinese
-
-- Future: Other languages
 
 ### Pipeline
 

@@ -92,9 +92,10 @@ import logging
 from transformers import HfArgumentParser
 
 from air_benchmark.air_benchmark import AIRBench
-from air_benchmark.evaluation_utils import EvalArgs
-from air_benchmark.model_utils import (FlagDRESModel, FlagDRESReranker,
-                                       ModelArgs)
+from air_benchmark.evaluation_utils.evaluation_arguments import EvalArgs
+from air_benchmark.model_utils.flag_dres_model import (FlagDRESModel,
+                                                       FlagDRESReranker)
+from air_benchmark.model_utils.model_arguments import ModelArgs
 
 logger = logging.getLogger(__name__)
 

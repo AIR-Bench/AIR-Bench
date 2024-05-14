@@ -12,19 +12,42 @@ python zip_results.py \
 --reranker_name bge-reranker-v2-m3 \
 --save_dir search_results/zipped_results
 """
+
+import argparse
 import os
 import zipfile
-import argparse
-from AIR_Bench.tasks import check_task_types, check_domains
+
+from AIR_Bench.tasks import check_domains, check_task_types
 
 
 def get_args():
     parser = argparse.ArgumentParser()
-    parser.add_argument('--results_dir', type=str, required=True, help="Path to the search results directory")
-    parser.add_argument('--model_name', type=str, required=True, help="Model name used for the search")
-    parser.add_argument('--reranker_name', type=str, default='NoReranker', help="Reranker name used for the search. Default: NoReranker")
-    parser.add_argument('--save_dir', type=str, required=True, help="Path to the directory to save the zipped search results")
-    parser.add_argument('--overwrite', action='store_true', help="Overwrite the existing zipped file if it exists")
+    parser.add_argument(
+        "--results_dir",
+        type=str,
+        required=True,
+        help="Path to the search results directory",
+    )
+    parser.add_argument(
+        "--model_name", type=str, required=True, help="Model name used for the search"
+    )
+    parser.add_argument(
+        "--reranker_name",
+        type=str,
+        default="NoReranker",
+        help="Reranker name used for the search. Default: NoReranker",
+    )
+    parser.add_argument(
+        "--save_dir",
+        type=str,
+        required=True,
+        help="Path to the directory to save the zipped search results",
+    )
+    parser.add_argument(
+        "--overwrite",
+        action="store_true",
+        help="Overwrite the existing zipped file if it exists",
+    )
     return parser.parse_args()
 
 
@@ -38,27 +61,29 @@ def check_results_path(results_path: str):
             check_domains([domain])
 
 
-def zip_results(results_dir: str, 
-                save_dir: str, 
-                model_name: str, 
-                reranker_name: str = 'NoReanker',
-                overwrite: bool = False):
+def zip_results(
+    results_dir: str,
+    save_dir: str,
+    model_name: str,
+    reranker_name: str = "NoReanker",
+    overwrite: bool = False,
+):
     results_path = os.path.join(results_dir, model_name, reranker_name)
     try:
         check_results_path(results_path)
     except Exception as e:
         print(f"Invalid file structure in {results_path}: {e}\n")
         return False
-    
+
     os.makedirs(save_dir, exist_ok=True)
-    zip_filename = os.path.join(save_dir, f'{model_name}_{reranker_name}.zip')
+    zip_filename = os.path.join(save_dir, f"{model_name}_{reranker_name}.zip")
     if os.path.exists(zip_filename) and not overwrite:
         print(f"Zipped file {zip_filename} already exists.\n")
         return False
-    
+
     try:
         print("Zipping search results...")
-        with zipfile.ZipFile(zip_filename, 'w', zipfile.ZIP_DEFLATED) as zipf:
+        with zipfile.ZipFile(zip_filename, "w", zipfile.ZIP_DEFLATED) as zipf:
             for root, _, files in os.walk(results_path):
                 for file in files:
                     file_path = os.path.join(root, file)
@@ -66,26 +91,30 @@ def zip_results(results_dir: str,
     except Exception as e:
         print(f"Failed to zip search results in {results_path}: {e}\n")
         return False
-    
+
     print(f"Zip search results in {results_path} to {zip_filename}.\n")
     return True
 
 
 def main():
     args = get_args()
-    
+
     print("=========================================")
-    success = zip_results(args.results_dir, 
-                          args.save_dir, 
-                          args.model_name, 
-                          reranker_name=args.reranker_name, 
-                          overwrite=args.overwrite)
+    success = zip_results(
+        args.results_dir,
+        args.save_dir,
+        args.model_name,
+        reranker_name=args.reranker_name,
+        overwrite=args.overwrite,
+    )
     print("=========================================")
     if success:
-        print("Success! Now you can upload the zipped search results to the 🤗  Hugging Face Leaderboard!")
+        print(
+            "Success! Now you can upload the zipped search results to the 🤗  Hugging Face Leaderboard!"
+        )
     else:
         print("Failed! Please check the error message and try again!")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

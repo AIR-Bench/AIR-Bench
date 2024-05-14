@@ -4,8 +4,7 @@
   - [Task Type & Domain & Language](#task-type--domain--language)
   - [Pipeline](#pipeline)
     - [Corpus Preparation](#corpus-preparation)
-    - [Query Generation](#query-generation)
-    - [Hard Negative Generation](#hard-negative-generation)
+    - [Candidate Generation](#candidate-generation)
     - [Quality Control](#quality-control)
 
 ### Task Type & Domain & Language
@@ -22,40 +21,8 @@ Languages:
 
 ### Pipeline
 
-In the whole pipeline, we use `gpt-4-1106-preview` as the LLM.
+Note that we use `gpt-4-1106-preview` as the LLM through the generation pipeline.
 
-```python
-def generate_dataset(corpus, num_queries, task_type):
-    # Generate Triplets
-    triplets = []
-    documents = sample(corpus, n=num_queries)
-    for d in documents:
-        # Generate Query
-        q = generate_query(d)
-        # Generate Hard Negative
-        if task_type == 'QA':
-            hn = generate_hard_negative(q, d)
-        else:
-            hn = None
-        # Add New Triplet
-        triplets.append((q, d, hn))
-
-    # Build Dataset
-    dataset = build_dataset(corpus, triplets)
-
-    # Quality Control
-    new_dataset = quality_control(dataset)
-    return new_dataset
-
-def generate_query(document):
-    pass
-
-def generate_hard_negative(query, document):
-    pass
-
-def quality_control(dataset):
-    pass
-```
 
 #### Corpus Preparation
 
@@ -63,25 +30,109 @@ For QA task, we use the real-world datasets as the corpus, such as Wikipedia, mC
 
 For Long-Doc task, we firstly select the long documents, such as ArXiv papers, books, etc. Then we use the `SimpleNodeParser` from the [LlamaIndex](https://github.com/run-llama/llama_index/tree/main) to split the long document to fixed-size chunks (`chunk_size=200`, `chunk_overlap=50`) as the corpus.
 
-#### Query Generation
+#### Candidate Generation 
 
-Given a document, the pipeline generates a query as follows:
+We use LLMs to generate query and documents following the procedure below.
 
-1. Let the LLM generate the characters who will find the document useful.
-2. Let the LLM generate the scenarios in which the character may find the document useful.
-3. Let the LLM generate the query based on the specific character and scenario.
-4. Let the LLM rewrite the query 1~3 times to generate the final query.
+![Generate Query Pipeline](images/generate_query.png)
 
-#### Hard Negative Generation
-
-Given a query and the positive document, the pipeline generates the hard negatives as follows:
-
-1. Let the LLM generate 3~7 hard negatives for the given query and positive document.
+1. Select one document from the raw corpus
+2. Generate the characters who will find the document useful.
+3. Generate the scenarios in which the character may find the document useful.
+4. Generate the query based on the specific character and scenario.
+5. Rewrite the query for multiple times to avoid the duplicated texts as in the raw corpus.
+6. Generate hard negative documents based on the given query and the positive document.
+7. Repeat Step 1-6
 
 #### Quality Control
 
-Given a dataset, the pipeline will control the quality as follows:
+![Quality Control Pipeline](images/quality_control.png)
+
+Given a candidate data, we run the following steps to control the quality:
 
 1. Use the embedding model to search top-1000 relevant documents from the corpus for each query.
-2. Use multiple rerankers to rerank the top-1000 relevant documents for each query. Then set the rank threshold to filter possible false negatives for each query.
-3. Use the LLM as labeler to label the positive and possible false negatives for each query. Filter the queries with false positives, discard false hard negatives. and label the other false negatives as positives. Then the final new dataset comes out.
+2. Use multiple rerankers to rerank the top-1000 relevant documents. Based on the raw label from the previous candidate generation process and the prediction results from the reranker. We categorize the documents into three groups. 
+    - Type 0 are the documents that are labeled as relevant to the query. We don't filter these documents by either embedding or reranking model.
+    - Type 1 are the documents that are labeled as relevant but are generated as hard negative documents. 
+    - Type 2 are the documents that are generated as positive documents for other queries but labeled by the models as relevant.
+    - For the other documents, we skip them and don't take any action because the models' predictions are consistent with our expectation.
+
+    |                | `relevance` = 1 | `relevance` = 0 | `relevance` = `N/A` |
+    | -------------- |-----------------|---------------|-------------------|
+    | pred = `pos`   | Type 0          | Type 1        | Type 2            |
+    | pred = `neg`   | Type 0          | Skip          | Skip              |
+3. Use the LLM as labeler to label the documents of the three types.
+    - Type 0: when the LLM prediction is negative, it means the generated query does not match the relevant document candidate well and therefore we drop the generated query. When the prediction is positive, which is the same as our expectation, we don't need to take any action. 
+    - Type 1: when the LLM prediction is positive, it means the generated hard negative sample is relevant to the query and therefore we remove the document from the corpus. When the prediction is negative, which is the same as the expectation, we keep it as it is.
+    - Type 2: when the LLM prediction is positive, it means there are the document is relevant to the query although it is used to generate the another query. In this case, we change the golden truth to `relevance`=1. If the prediction is negative, it meets our expectation and we keep it as it is. 
+
+    |                | Type 0        | Type 1           | Type 2                    |
+    | -------------- |---------------|------------------|---------------------------|
+    | pred = `pos`   | Skip          | discard document | Change to `relevance` = 1 |
+    | pred = `neg`   | discard query | Skip             | Skip                      |
+4. Repeat step 1-3 for each query.
+
+[//]: # (### Codes)
+
+[//]: # ()
+[//]: # (Here is the sample code snippet for generating the datasets)
+
+[//]: # ()
+[//]: # (```python)
+
+[//]: # (def generate_dataset&#40;corpus, num_queries, task_type&#41;:)
+
+[//]: # (    # Generate Triplets)
+
+[//]: # (    triplets = [])
+
+[//]: # (    documents = sample&#40;corpus, n=num_queries&#41;)
+
+[//]: # (    for d in documents:)
+
+[//]: # (        # Generate Query)
+
+[//]: # (        q = generate_query&#40;d&#41;)
+
+[//]: # (        # Generate Hard Negative)
+
+[//]: # (        if task_type == 'QA':)
+
+[//]: # (            hn = generate_hard_negative&#40;q, d&#41;)
+
+[//]: # (        else:)
+
+[//]: # (            hn = None)
+
+[//]: # (        # Add New Triplet)
+
+[//]: # (        triplets.append&#40;&#40;q, d, hn&#41;&#41;)
+
+[//]: # ()
+[//]: # (    # Build Dataset)
+
+[//]: # (    dataset = build_dataset&#40;corpus, triplets&#41;)
+
+[//]: # ()
+[//]: # (    # Quality Control)
+
+[//]: # (    new_dataset = quality_control&#40;dataset&#41;)
+
+[//]: # (    return new_dataset)
+
+[//]: # ()
+[//]: # (def generate_query&#40;document&#41;:)
+
+[//]: # (    pass)
+
+[//]: # ()
+[//]: # (def generate_hard_negative&#40;query, document&#41;:)
+
+[//]: # (    pass)
+
+[//]: # ()
+[//]: # (def quality_control&#40;dataset&#41;:)
+
+[//]: # (    pass)
+
+[//]: # (```)

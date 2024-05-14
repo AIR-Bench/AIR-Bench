@@ -1,4 +1,4 @@
-from typing import List, Tuple
+from typing import List, Optional, Tuple
 
 from air_benchmark.tasks.long_doc_tasks import (LongDocArxivTask,
                                                 LongDocBookTask,
@@ -52,7 +52,7 @@ def get_avaliable_task_types() -> List[str]:
 
 
 def get_available_domains() -> List[str]:
-    return sorted(list(QATaskTable.keys() | LongDocTaskTable.keys()))
+    return sorted(list(QATaskTable.keys() or LongDocTaskTable.keys()))
 
 
 def get_avaliable_languages() -> List[str]:
@@ -67,7 +67,7 @@ def get_avaliable_languages() -> List[str]:
     return sorted(list(languages))
 
 
-def check_benchmark_version(benchmark_version: str | None) -> str:
+def check_benchmark_version(benchmark_version: Optional[str]) -> str:
     if benchmark_version is None:
         benchmark_version = LATEST_BENCHMARK_VERSION
     else:
@@ -81,7 +81,7 @@ def check_benchmark_version(benchmark_version: str | None) -> str:
     return benchmark_version
 
 
-def check_task_types(task_types: List[str] | None) -> List[str]:
+def check_task_types(task_types: Optional[List[str]]) -> List[str]:
     avaliable_task_types = get_avaliable_task_types()
     if task_types is None:
         task_types = avaliable_task_types
@@ -96,7 +96,7 @@ def check_task_types(task_types: List[str] | None) -> List[str]:
     return task_types
 
 
-def check_domains(domains: List[str] | None) -> List[str]:
+def check_domains(domains: Optional[List[str]]) -> List[str]:
     avaliable_domains = get_available_domains()
     if domains is None:
         domains = avaliable_domains
@@ -111,7 +111,7 @@ def check_domains(domains: List[str] | None) -> List[str]:
     return domains
 
 
-def check_languages(languages: List[str] | None) -> List[str]:
+def check_languages(languages: Optional[List[str]]) -> List[str]:
     avaliable_languages = get_avaliable_languages()
     if languages is None:
         languages = avaliable_languages

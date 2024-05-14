@@ -65,7 +65,7 @@ pre-commit:
 
 # ---------------------------------------------------------- Code style related targets
 
-SRC_CODE = air_bench/ scripts/
+SRC_CODE = air_benchmark/ scripts/
 
 ## Run the flake linter
 flake:

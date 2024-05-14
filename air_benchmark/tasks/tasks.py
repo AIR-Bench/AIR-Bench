@@ -1,12 +1,13 @@
 from typing import List, Tuple
 
-from air_benchmark.tasks.long_doc_tasks import (LongDocArxivTask, LongDocBookTask,
-                                            LongDocHealthcareTask,
-                                            LongDocLawTask)
+from air_benchmark.tasks.long_doc_tasks import (LongDocArxivTask,
+                                                LongDocBookTask,
+                                                LongDocHealthcareTask,
+                                                LongDocLawTask)
 from air_benchmark.tasks.qa_tasks import (QAArxivTask, QAFinanceTask,
-                                      QAHealthcareTask, QALawTask,
-                                      QAMSMARCOTask, QANewsTask, QAWebTask,
-                                      QAWikiTask)
+                                          QAHealthcareTask, QALawTask,
+                                          QAMSMARCOTask, QANewsTask, QAWebTask,
+                                          QAWikiTask)
 
 LATEST_BENCHMARK_VERSION = "AIR-Bench_24.04"
 

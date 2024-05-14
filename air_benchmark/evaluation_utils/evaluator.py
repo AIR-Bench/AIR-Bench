@@ -3,8 +3,8 @@ import logging
 import os
 from typing import Dict, List
 
-from air_bench.evaluation_utils.data_loader import DataLoader
-from air_bench.evaluation_utils.searcher import Searcher
+from air_benchmark.evaluation_utils.data_loader import DataLoader
+from air_benchmark.evaluation_utils.searcher import Searcher
 
 logger = logging.getLogger(__name__)
 

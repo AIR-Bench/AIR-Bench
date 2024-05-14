@@ -5,7 +5,7 @@ from typing import Any, Dict
 
 from mteb.evaluation.evaluators import RetrievalEvaluator
 
-from air_bench.model_utils import FlagDRESModel, FlagDRESReranker
+from air_benchmark.model_utils import FlagDRESModel, FlagDRESReranker
 
 logger = logging.getLogger(__name__)
 

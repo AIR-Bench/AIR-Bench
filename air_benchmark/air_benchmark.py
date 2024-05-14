@@ -2,11 +2,14 @@ import logging
 from typing import List
 
 from air_benchmark.console import console, style_head, style_row
-from air_benchmark.evaluation_utils import DataLoader, Evaluator, Searcher
-from air_benchmark.model_utils import FlagDRESModel, FlagDRESReranker
+from air_benchmark.evaluation_utils.data_loader import DataLoader
+from air_benchmark.evaluation_utils.evaluator import Evaluator
+from air_benchmark.evaluation_utils.searcher import Searcher
+from air_benchmark.model_utils.flag_dres_model import (FlagDRESModel,
+                                                       FlagDRESReranker)
 from air_benchmark.tasks.tasks import (BenchmarkTable, check_benchmark_version,
-                                   check_domains, check_languages,
-                                   check_task_types, get_task_name_list)
+                                       check_domains, check_languages,
+                                       check_task_types, get_task_name_list)
 
 logger = logging.getLogger(__name__)
 

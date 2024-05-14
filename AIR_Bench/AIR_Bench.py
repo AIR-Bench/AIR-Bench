@@ -4,6 +4,7 @@ from typing import List
 from .tasks import *
 from .model_utils import FlagDRESModel, FlagDRESReranker
 from .evaluation_utils import DataLoader, Searcher, Evaluator
+from .console import console, style_head, style_row
 
 logger = logging.getLogger(__name__)
 
@@ -72,9 +73,9 @@ class AIR_Bench:
         )
         
         for task_type in self.task_types:
-            logger.info(f"==================== Task Type: {task_type} ====================")
+            console.print(f"Task Type: {task_type}", style=style_head, justify="center")
             for domain in self.domains:
-                logger.info(f"++++++++++++++++++++ Domain: {domain} ++++++++++++++++++++")
+                console.print(f"Domain: {domain}", style=style_head, justify="center")
                 for language in self.languages:
                     success, task_name_list = get_task_name_list(self.benchmark_version, task_type, domain, language)
                     
@@ -82,10 +83,10 @@ class AIR_Bench:
                         logger.info(f"No task found for {task_type} in {domain} domain with {language} language, Benchmark version: {self.benchmark_version}. Skipping...")
                         continue
                     
-                    logger.info(f"------------------- Language: {language} -------------------")
+                    console.print(f"Language: {language}", style=style_head, justify="center")
                     
                     for task_name in task_name_list:
-                        logger.info(f"Task Name: {task_name}")
+                        console.print(f"Task Name: {task_name}", style=style_head, justify="center")
                         
                         evaluator.generate_search_results(
                             model=encoder,
@@ -97,9 +98,10 @@ class AIR_Bench:
                             task_name=task_name,
                             **kwargs
                         )
-        logger.info("==================== Evaluation Finished ====================")
-        logger.info(f"Encoder: {encoder}")
-        logger.info(f"Rerankers: {reranker_list}")
-        logger.info(f"Output directory: {output_dir}")
-        logger.info(f"Search top k: {search_top_k}")
-        logger.info(f"Rerank top k: {rerank_top_k}")
+        console.rule("[bold red]Evaluation Summary")
+        console.print(f"Encoder: {encoder}", style=style_row, justify="center")
+        reranker_names = [item.name for item in reranker_list]
+        console.print(f"Rerankers: {*reranker_names,}", style=style_row, justify="center")
+        console.print(f"Output directory: {output_dir}", style=style_row, justify="center")
+        console.print(f"Search Top K: {search_top_k}", style=style_row, justify="center")
+        console.print(f"Rerank Top K: {rerank_top_k}", style=style_row, justify="center")

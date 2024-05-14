@@ -17,5 +17,6 @@ setup(
         'mteb>=1.7.17',
         'torch>=1.6.0',
         'transformers>=4.33.0',
+        'rich>=13.7.1',
     ]
 )

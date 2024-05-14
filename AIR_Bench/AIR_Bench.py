@@ -100,7 +100,8 @@ class AIR_Bench:
                         )
         console.rule("[bold red]Evaluation Summary")
         console.print(f"Encoder: {encoder}", style=style_row, justify="center")
-        console.print(f"Rerankers: {*reranker_list,}", style=style_row, justify="center")
+        reranker_names = [item.name for item in reranker_list]
+        console.print(f"Rerankers: {*reranker_names,}", style=style_row, justify="center")
         console.print(f"Output directory: {output_dir}", style=style_row, justify="center")
         console.print(f"Search Top K: {search_top_k}", style=style_row, justify="center")
         console.print(f"Rerank Top K: {rerank_top_k}", style=style_row, justify="center")

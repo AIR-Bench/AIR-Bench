@@ -7,7 +7,7 @@ python zip_results.py \
 
 # Zip "Embedding Model + Reranker" search results in <search_results>/<model_name>/<reranker_name> to <save_dir>/<model_name>_<reranker_name>.zip.
 python zip_results.py \
---results_path search_results \
+--results_dir search_results \
 --model_name bge-m3 \
 --reranker_name bge-reranker-v2-m3 \
 --save_dir search_results/zipped_results

@@ -7,10 +7,15 @@ import numpy as np
 import torch
 from torch.utils.data import DataLoader
 from tqdm import tqdm
-from transformers import (AutoModel, AutoModelForSequenceClassification,
-                          AutoTokenizer, BatchEncoding,
-                          DataCollatorWithPadding, PreTrainedTokenizerFast,
-                          is_torch_npu_available)
+from transformers import (
+    AutoModel,
+    AutoModelForSequenceClassification,
+    AutoTokenizer,
+    BatchEncoding,
+    DataCollatorWithPadding,
+    PreTrainedTokenizerFast,
+    is_torch_npu_available,
+)
 
 
 def _transform_func(

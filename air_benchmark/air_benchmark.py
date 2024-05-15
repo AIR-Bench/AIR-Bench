@@ -5,11 +5,15 @@ from air_benchmark.console import console, style_head, style_row
 from air_benchmark.evaluation_utils.data_loader import DataLoader
 from air_benchmark.evaluation_utils.evaluator import Evaluator
 from air_benchmark.evaluation_utils.searcher import Searcher
-from air_benchmark.model_utils.flag_dres_model import (FlagDRESModel,
-                                                       FlagDRESReranker)
-from air_benchmark.tasks.tasks import (BenchmarkTable, check_benchmark_version,
-                                       check_domains, check_languages,
-                                       check_task_types, get_task_name_list)
+from air_benchmark.model_utils.flag_dres_model import FlagDRESModel, FlagDRESReranker
+from air_benchmark.tasks.tasks import (
+    BenchmarkTable,
+    check_benchmark_version,
+    check_domains,
+    check_languages,
+    check_task_types,
+    get_task_name_list,
+)
 
 logger = logging.getLogger(__name__)
 
@@ -34,29 +38,39 @@ class AIRBench:
     @staticmethod
     def print_benchmark_table():
         for benchmark_version in BenchmarkTable:
-            print(
-                f"==================== Benchmark Version: {benchmark_version} ===================="
+
+            console.print(
+                f"Benchmark Dataset Version: {benchmark_version}",
+                style=style_head,
+                justify="center",
             )
+
             for task_type in BenchmarkTable[benchmark_version]:
-                print(
-                    f"  ******************* Task Type: {task_type} *******************"
+                console.print(
+                    f"Task Type: {task_type}", style=style_head, justify="center"
                 )
                 for domain in BenchmarkTable[benchmark_version][task_type]:
-                    print(
-                        f"    +++++++++++++++++++ Domain: {domain} +++++++++++++++++++"
+                    console.print(
+                        f"Domain: {domain}", style=style_head, justify="center"
                     )
                     for language in BenchmarkTable[benchmark_version][task_type][
                         domain
                     ]:
-                        print(
-                            f"      ------------------- Language: {language} -------------------"
+                        console.print(
+                            f"Language: {language}", style=style_head, justify="center"
                         )
                         for task_name in BenchmarkTable[benchmark_version][task_type][
                             domain
                         ][language]:
-                            print(f"        Task Name: {task_name}")
-                            print(
-                                f"        Source: {BenchmarkTable[benchmark_version][task_type][domain][language][task_name]['source']}"
+                            console.print(
+                                f"Task Name: {task_name}",
+                                style=style_row,
+                                justify="center",
+                            )
+                            console.print(
+                                f"Source: {BenchmarkTable[benchmark_version][task_type][domain][language][task_name]['source']}",
+                                style=style_row,
+                                justify="center",
                             )
 
     @staticmethod

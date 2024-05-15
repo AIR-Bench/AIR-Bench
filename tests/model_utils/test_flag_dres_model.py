@@ -15,8 +15,9 @@ def queries():
         "AIR-Bench is awesome."
     ]
 
-
-def test_encode(model, queries):
+@pytest.mark.parametrize("pooling_mtd", ["cls", "mean"])
+def test_encode(model, queries, pooling_mtd):
+    model.pooling_method = pooling_mtd
     results = model.encode(queries)
     assert results.shape == (2, 384)
 

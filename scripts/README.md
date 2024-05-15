@@ -1,7 +1,7 @@
 # Usage of scripts
 
 ## [run_air_benchmark.py](https://github.com/AIR-Bench/AIR-Bench/blob/main/scripts/run_air_benchmark.py)
-You can use this script to generate search results on AIR bench for your model.
+You can use this script to generate search results on AIR-Bench for your model.
 
 - Run all tasks
 
@@ -53,7 +53,7 @@ python run_air_benchmark.py \
 
 
 ## [zip_results.py](https://github.com/AIR-Bench/AIR-Bench/blob/main/scripts/zip_results.py)
-This script can compress your search results into zipfile, which can be submitted to AIR leaderboard.
+This script can compress your search results into zipfile, which can be submitted to AIR-Bench leaderboard.
 
 - Embedding Model + NoReranker
 ```

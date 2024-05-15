@@ -40,9 +40,9 @@ The new benchmark is highlighted for the following new features.
 | 🚀 [Submit](https://github.com/AIR-Bench/AIR-Bench/blob/main/docs/submit_to_leaderboard.md) | Information related to how to submit a model to AIR-Bench |
 | 🤝 [Contributing](https://github.com/AIR-Bench/AIR-Bench/blob/main/docs/community_contribution.md) | How to contribute to AIR-Bench                            |
 
-## Avaliable Evaluation Results
+## Available Evaluation Results
 
-Detailed avaliable results are avaliable [here](https://github.com/AIR-Bench/AIR-Bench/blob/main/docs/avaliable_evaluation_results.md).
+Detailed results are available [here](https://github.com/AIR-Bench/AIR-Bench/blob/main/docs/avaliable_evaluation_results.md).
 
 Analysis about the results:
 

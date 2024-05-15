@@ -37,6 +37,8 @@ def _transform_func_for_last_pooling(
     max_length: int = 8192,
 ) -> BatchEncoding:
 
+    if tokenizer.eos_token_id is None:
+        raise ValueError(f"tokenizer.eos_token_id should not be `None`. tokenizer.eos_token_id={tokenizer.eos_token_id}")
     inputs = tokenizer(
         examples["text"],
         max_length=max_length - 1,
@@ -105,7 +107,7 @@ class FlagDRESModel:
     def __str__(self) -> str:
         return self.name
 
-    def encode_queries(self, queries: List[str], **kwargs) -> np.ndarray:
+    def encode_queries(self, queries: List[Union[Dict[str, str], str]], **kwargs) -> np.ndarray:
         """
         This function will be used for retrieval task
         if there is a instruction for queries, we will add it to the query text
@@ -182,6 +184,7 @@ class FlagDRESModel:
 
         dataset = datasets.Dataset.from_dict({"text": sentences})
         if self.pooling_method == "last":
+            assert self.tokenizer.eos_token_id != None, "Setting `pooling_method='last'` require tokenizer.eos_token_id != None"
             dataset.set_transform(
                 partial(
                     _transform_func_for_last_pooling,

@@ -1,6 +1,6 @@
-# Avaliable Evaluation Results on AIR-Bench
+# Available Evaluation Results on AIR-Bench
 
-- [Avaliable Evaluation Results on AIR-Bench](#avaliable-evaluation-results-on-air-bench)
+- [Available Evaluation Results on AIR-Bench](#available-evaluation-results-on-air-bench)
   - [Models List](#models-list)
   - [Consistency with MS MARCO](#consistency-with-ms-marco)
   - [Influence of Hard Negatives](#influence-of-hard-negatives)

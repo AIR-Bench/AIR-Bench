@@ -18,7 +18,7 @@ class ModelArgs:
     )
     pooling_method: str = field(
         default="cls",
-        metadata={"help": "Pooling method. Avaliable methods: 'cls', 'mean', 'last'"},
+        metadata={"help": "Pooling method. Available methods: 'cls', 'mean', 'last'"},
     )
     normalize_embeddings: bool = field(
         default=True, metadata={"help": "Normalize embeddings or not"}

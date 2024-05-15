@@ -43,11 +43,11 @@ BenchmarkTable = {
 }
 
 
-def get_avaliable_benchmark_versions() -> List[str]:
+def get_available_benchmark_versions() -> List[str]:
     return sorted(list(BenchmarkTable.keys()))
 
 
-def get_avaliable_task_types() -> List[str]:
+def get_available_task_types() -> List[str]:
     return sorted(list(TaskTable.keys()))
 
 
@@ -55,7 +55,7 @@ def get_available_domains() -> List[str]:
     return sorted(list(QATaskTable.keys() or LongDocTaskTable.keys()))
 
 
-def get_avaliable_languages() -> List[str]:
+def get_available_languages() -> List[str]:
     languages = set()
     for task in QATaskTable.values():
         for lang in task.keys():
@@ -71,57 +71,57 @@ def check_benchmark_version(benchmark_version: Optional[str]) -> str:
     if benchmark_version is None:
         benchmark_version = LATEST_BENCHMARK_VERSION
     else:
-        avaliable_benchmark_versions = get_avaliable_benchmark_versions()
+        available_benchmark_versions = get_available_benchmark_versions()
 
-        if benchmark_version not in avaliable_benchmark_versions:
+        if benchmark_version not in available_benchmark_versions:
             raise ValueError(
-                f"Invalid benchmark version: {benchmark_version}. Avaliable versions: {', '.join(avaliable_benchmark_versions)}"
+                f"Invalid benchmark version: {benchmark_version}. Available versions: {', '.join(available_benchmark_versions)}"
             )
 
     return benchmark_version
 
 
 def check_task_types(task_types: Optional[List[str]]) -> List[str]:
-    avaliable_task_types = get_avaliable_task_types()
+    available_task_types = get_available_task_types()
     if task_types is None:
-        task_types = avaliable_task_types
+        task_types = available_task_types
     else:
         task_types = list(set(task_types))
         task_types = [task_type.lower() for task_type in task_types]
         for task_type in task_types:
-            if task_type not in avaliable_task_types:
+            if task_type not in available_task_types:
                 raise ValueError(
-                    f"Invalid task type: {task_type}. Avaliable task types: {', '.join(avaliable_task_types)}"
+                    f"Invalid task type: {task_type}. Available task types: {', '.join(available_task_types)}"
                 )
     return task_types
 
 
 def check_domains(domains: Optional[List[str]]) -> List[str]:
-    avaliable_domains = get_available_domains()
+    available_domains = get_available_domains()
     if domains is None:
-        domains = avaliable_domains
+        domains = available_domains
     else:
         domains = list(set(domains))
         domains = [domain.lower() for domain in domains]
         for domain in domains:
-            if domain not in avaliable_domains:
+            if domain not in available_domains:
                 raise ValueError(
-                    f"Invalid domain: {domain}. Avaliable domains: {', '.join(avaliable_domains)}"
+                    f"Invalid domain: {domain}. Available domains: {', '.join(available_domains)}"
                 )
     return domains
 
 
 def check_languages(languages: Optional[List[str]]) -> List[str]:
-    avaliable_languages = get_avaliable_languages()
+    available_languages = get_available_languages()
     if languages is None:
-        languages = avaliable_languages
+        languages = available_languages
     else:
         languages = list(set(languages))
         languages = [language.lower() for language in languages]
         for language in languages:
-            if language not in avaliable_languages:
+            if language not in available_languages:
                 raise ValueError(
-                    f"Invalid language: {language}. Avaliable languages: {', '.join(avaliable_languages)}"
+                    f"Invalid language: {language}. Available languages: {', '.join(available_languages)}"
                 )
     return languages
 

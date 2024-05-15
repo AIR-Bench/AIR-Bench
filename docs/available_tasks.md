@@ -1,6 +1,6 @@
-## Avaliable Tasks
+## Available Tasks
 
-- [Avaliable Tasks](#avaliable-tasks)
+- [Available Tasks](#available-tasks)
   - [AIR-Bench_24.04](#air-bench_2404)
 
 The AIR-Bench is **dynamic**, which means it will be updated with new tasks in the future.

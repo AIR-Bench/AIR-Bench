@@ -35,14 +35,14 @@ The new benchmark is highlighted for the following new features.
 | Documentation                                                |                                                           |
 | ------------------------------------------------------------ | --------------------------------------------------------- |
 | 🏭 [Pipeline](https://github.com/AIR-Bench/AIR-Bench/blob/main/docs/data_generation.md) | The data generation pipeline of AIR-Bench                 |
-| 📋 [Tasks](https://github.com/AIR-Bench/AIR-Bench/blob/main/docs/avaliable_tasks.md) | Overview of available tasks in AIR-Bench                  |
+| 📋 [Tasks](https://github.com/AIR-Bench/AIR-Bench/blob/main/docs/available_tasks.md) | Overview of available tasks in AIR-Bench                  |
 | 📈 [Leaderboard](https://huggingface.co/spaces/AIR-Bench/leaderboard) | The interactive leaderboard of AIR-Bench                  |
 | 🚀 [Submit](https://github.com/AIR-Bench/AIR-Bench/blob/main/docs/submit_to_leaderboard.md) | Information related to how to submit a model to AIR-Bench |
 | 🤝 [Contributing](https://github.com/AIR-Bench/AIR-Bench/blob/main/docs/community_contribution.md) | How to contribute to AIR-Bench                            |
 
 ## Available Evaluation Results
 
-Detailed results are available [here](https://github.com/AIR-Bench/AIR-Bench/blob/main/docs/avaliable_evaluation_results.md).
+Detailed results are available [here](https://github.com/AIR-Bench/AIR-Bench/blob/main/docs/available_evaluation_results.md).
 
 Analysis about the results:
 

@@ -1,3 +1,4 @@
+from itertools import chain
 from typing import List, Optional, Tuple
 
 from air_benchmark.tasks.long_doc_tasks import (
@@ -60,7 +61,7 @@ def get_available_task_types() -> List[str]:
 
 
 def get_available_domains() -> List[str]:
-    return sorted(list(QATaskTable.keys() or LongDocTaskTable.keys()))
+    return sorted(frozenset(chain(QATaskTable, LongDocTaskTable)))
 
 
 def get_available_languages() -> List[str]:

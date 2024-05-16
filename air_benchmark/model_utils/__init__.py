@@ -1,1 +1,1 @@
-from air_benchmark.model_utils.models import Encoder, Reranker
+from air_benchmark.model_utils.models import DRESModel, Reranker

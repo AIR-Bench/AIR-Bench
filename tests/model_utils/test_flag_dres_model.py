@@ -1,12 +1,12 @@
 import pytest
 from transformers import AutoTokenizer
 
-from air_benchmark.model_utils.models import Encoder, _transform_func_for_last_pooling
+from air_benchmark.model_utils.models import DRESModel, _transform_func_for_last_pooling
 
 
 @pytest.fixture()
 def model():
-    return Encoder("sentence-transformers/all-MiniLM-L6-v2", use_fp16=False)
+    return DRESModel("sentence-transformers/all-MiniLM-L6-v2", use_fp16=False)
 
 
 @pytest.fixture()

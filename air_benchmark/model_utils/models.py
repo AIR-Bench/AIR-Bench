@@ -57,7 +57,7 @@ def _transform_func_for_last_pooling(
     return inputs
 
 
-class Encoder:
+class DRESModel:
     def __init__(
         self,
         model_name_or_path: str,

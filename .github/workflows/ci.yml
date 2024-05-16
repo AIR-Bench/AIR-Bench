@@ -17,6 +17,7 @@ jobs:
           python -m pip install --upgrade pip
           python -m pip install pytest
           make install
+
   core-test:
     needs: prepare-testbdd
     runs-on: ubuntu-latest
@@ -25,7 +26,6 @@ jobs:
       - name: Test
         run: |
           make test
-      
 
   success-all-test:
     needs: core-test
@@ -39,4 +39,3 @@ jobs:
       - name: Success
         if: ${{ success() }}
         run: echo "All Done"
-

@@ -85,3 +85,8 @@ format: black isort
 
 ## Check code style
 style: flake black-check isort-check # mypy
+
+## Run tests
+test:
+	pip install pytest
+	python -m pytest tests/

@@ -5,7 +5,7 @@ from air_benchmark.console import console, style_head, style_row
 from air_benchmark.evaluation_utils.data_loader import DataLoader
 from air_benchmark.evaluation_utils.evaluator import Evaluator
 from air_benchmark.evaluation_utils.searcher import Searcher
-from air_benchmark.model_utils.flag_dres_model import FlagDRESModel, FlagDRESReranker
+from air_benchmark.model_utils.models import Encoder, Reranker
 from air_benchmark.tasks.tasks import (
     BenchmarkTable,
     check_benchmark_version,
@@ -91,10 +91,10 @@ class AIRBench:
 
     def run(
         self,
-        encoder: FlagDRESModel,
+        encoder: Encoder,
         output_dir: str = "search_results",
         search_top_k: int = 1000,
-        reranker_list: Optional[List[FlagDRESReranker]] = None,
+        reranker_list: Optional[List[Reranker]] = None,
         rerank_top_k: int = 100,
         overwrite: bool = False,
         **kwargs,

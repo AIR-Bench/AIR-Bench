@@ -5,7 +5,7 @@ from typing import Any, Dict
 
 from mteb.evaluation.evaluators import RetrievalEvaluator
 
-from air_benchmark.model_utils import DRESModel, Reranker
+from air_benchmark.model_utils import DRESModel, DRESReranker
 
 logger = logging.getLogger(__name__)
 
@@ -33,7 +33,7 @@ class Searcher:
 
     def rerank(
         self,
-        reranker: Reranker,
+        reranker: DRESReranker,
         search_results: Dict[str, Dict[str, float]],
         corpus: Dict[str, Dict[str, Any]],
         queries: Dict[str, str],

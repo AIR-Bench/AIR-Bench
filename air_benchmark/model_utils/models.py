@@ -58,6 +58,10 @@ def _transform_func_for_last_pooling(
 
 
 class DRESModel:
+    """
+    Dense Retrieval Exact Search Models
+    """
+
     def __init__(
         self,
         model_name_or_path: str,
@@ -260,7 +264,11 @@ class DRESModel:
                 ]
 
 
-class Reranker:
+class DRESReranker:
+    """
+    Dense Retrieval Exact Search Reranker
+    """
+
     def __init__(
         self,
         model_name_or_path: str,

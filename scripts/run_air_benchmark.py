@@ -93,8 +93,8 @@ from transformers import HfArgumentParser
 
 from air_benchmark.air_benchmark import AIRBench
 from air_benchmark.evaluation_utils.evaluation_arguments import EvalArgs
-from air_benchmark.model_utils.flag_dres_model import FlagDRESModel, FlagDRESReranker
 from air_benchmark.model_utils.model_arguments import ModelArgs
+from air_benchmark.model_utils.models import DRESModel, DRESReranker
 
 logger = logging.getLogger(__name__)
 
@@ -102,7 +102,7 @@ logger = logging.getLogger(__name__)
 def get_models(model_args: ModelArgs):
     if model_args.encoder.lower() == "bm25":
         return "BM25", []
-    encoder = FlagDRESModel(
+    encoder = DRESModel(
         model_name_or_path=model_args.encoder,
         pooling_method=model_args.pooling_method,
         normalize_embeddings=model_args.normalize_embeddings,
@@ -130,7 +130,7 @@ def get_models(model_args: ModelArgs):
             if reranker is None or reranker.lower() == "none" or reranker == "":
                 continue
             reranker_list.append(
-                FlagDRESReranker(
+                DRESReranker(
                     model_name_or_path=reranker,
                     use_fp16=model_args.use_fp16,
                     query_instruction_for_retrieval=(

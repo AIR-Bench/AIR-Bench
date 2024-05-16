@@ -5,7 +5,7 @@ from typing import Any, Dict
 
 from mteb.evaluation.evaluators import RetrievalEvaluator
 
-from air_benchmark.model_utils import FlagDRESModel, FlagDRESReranker
+from air_benchmark.model_utils import DRESModel, DRESReranker
 
 logger = logging.getLogger(__name__)
 
@@ -16,7 +16,7 @@ class Searcher:
 
     def dense_search(
         self,
-        model: FlagDRESModel,
+        model: DRESModel,
         corpus: Dict[str, Dict[str, Any]],
         queries: Dict[str, str],
         score_function: str = "cos_sim",
@@ -33,7 +33,7 @@ class Searcher:
 
     def rerank(
         self,
-        reranker: FlagDRESReranker,
+        reranker: DRESReranker,
         search_results: Dict[str, Dict[str, float]],
         corpus: Dict[str, Dict[str, Any]],
         queries: Dict[str, str],

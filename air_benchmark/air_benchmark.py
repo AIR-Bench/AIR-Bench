@@ -5,7 +5,7 @@ from air_benchmark.console import console, style_head, style_row
 from air_benchmark.evaluation_utils.data_loader import DataLoader
 from air_benchmark.evaluation_utils.evaluator import Evaluator
 from air_benchmark.evaluation_utils.searcher import Searcher
-from air_benchmark.model_utils.models import DRESReranker, Encoder
+from air_benchmark.model_utils.models import DRESModel, DRESReranker
 from air_benchmark.tasks.tasks import (
     BenchmarkTable,
     check_benchmark_version,
@@ -91,7 +91,7 @@ class AIRBench:
 
     def run(
         self,
-        encoder: Encoder,
+        encoder: DRESModel,
         output_dir: str = "search_results",
         search_top_k: int = 1000,
         reranker_list: Optional[List[DRESReranker]] = None,

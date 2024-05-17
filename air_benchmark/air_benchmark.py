@@ -68,7 +68,8 @@ class AIRBench:
                                 justify="center",
                             )
                             console.print(
-                                f"Source: {BenchmarkTable[benchmark_version][task_type][domain][language][task_name]['source']}",
+                                f"Source: \
+                                {BenchmarkTable[benchmark_version][task_type][domain][language][task_name]['source']}",
                                 style=style_row,
                                 justify="center",
                             )

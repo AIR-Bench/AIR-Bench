@@ -68,13 +68,16 @@ class AIRBench:
                                 justify="center",
                             )
                             console.print(
-                                f"Source: {BenchmarkTable[benchmark_version][task_type][domain][language][task_name]['source']}",
+                                f"Source: \
+                                {BenchmarkTable[benchmark_version][task_type][domain][language][task_name]['source']}",
                                 style=style_row,
                                 justify="center",
                             )
 
     @staticmethod
     def check_encoder(encoder):
+        if encoder == "BM25":
+            return
         for method in ["__str__", "encode_queries", "encode_corpus"]:
             if not hasattr(encoder, method) or not callable(
                 getattr(encoder, method, None)

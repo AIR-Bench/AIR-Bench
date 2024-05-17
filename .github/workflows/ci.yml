@@ -4,7 +4,7 @@ on:
   pull_request:
 
 jobs:
-  prepare-testbed:
+  core-test:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2.5.0

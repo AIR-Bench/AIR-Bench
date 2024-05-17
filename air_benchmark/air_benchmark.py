@@ -100,9 +100,10 @@ class AIRBench:
         **kwargs,
     ):
         self.check_encoder(encoder)
-        if reranker_list is not None:
-            for reranker in reranker_list:
-                self.check_reranker(reranker)
+        if reranker_list is None:
+            reranker_list = []
+        for reranker in reranker_list:
+            self.check_reranker(reranker)
 
         searcher = Searcher(search_top_k)
         evaluator = Evaluator(

@@ -282,10 +282,9 @@ class DRESReranker:
             self.model = AutoModelForSequenceClassification.from_pretrained(
                 model_name_or_path, num_labels=1, trust_remote_code=True
             )
-        else:
-            self.model = AutoModelForSequenceClassification.from_pretrained(
-                model_name_or_path
-            )
+        self.model = AutoModelForSequenceClassification.from_pretrained(
+            model_name_or_path
+        )
 
         self.query_instruction_for_retrieval = query_instruction_for_retrieval
         self.passage_instruction_for_retrieval = passage_instruction_for_retrieval

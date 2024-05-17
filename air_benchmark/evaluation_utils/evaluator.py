@@ -57,7 +57,7 @@ class Evaluator:
     def generate_search_results(
         self,
         model,
-        reranker_list,
+        reranker_list: List,
         search_results_save_dir: str,
         task_type: str,
         domain: str,

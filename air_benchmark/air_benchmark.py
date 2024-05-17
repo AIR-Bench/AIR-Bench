@@ -76,6 +76,8 @@ class AIRBench:
 
     @staticmethod
     def check_encoder(encoder):
+        if encoder == "BM25":
+            return
         for method in ["__str__", "encode_queries", "encode_corpus"]:
             if not hasattr(encoder, method) or not callable(
                 getattr(encoder, method, None)

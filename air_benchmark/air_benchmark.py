@@ -91,18 +91,19 @@ class AIRBench:
 
     def run(
         self,
-        encoder: DRESModel,
+        encoder,
         output_dir: str = "search_results",
         search_top_k: int = 1000,
-        reranker_list: Optional[List[DRESReranker]] = None,
+        reranker_list: Optional[List] = None,
         rerank_top_k: int = 100,
         overwrite: bool = False,
         **kwargs,
     ):
         self.check_encoder(encoder)
-        if reranker_list is not None:
-            for reranker in reranker_list:
-                self.check_reranker(reranker)
+        if reranker_list is None:
+            reranker_list = []
+        for reranker in reranker_list:
+            self.check_reranker(reranker)
 
         searcher = Searcher(search_top_k)
         evaluator = Evaluator(

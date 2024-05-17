@@ -124,8 +124,6 @@ def get_models(model_args: ModelArgs):
     )
     reranker_list = []
     if model_args.reranker is not None:
-        for i in range(len(model_args.reranker)):
-            reranker = model_args.reranker[i]
         for reranker in model_args.reranker:
             if reranker is None or reranker.lower() == "none" or reranker == "":
                 continue

@@ -16,7 +16,7 @@ class Searcher:
 
     def dense_search(
         self,
-        model: DRESModel,
+        model,
         corpus: Dict[str, Dict[str, Any]],
         queries: Dict[str, str],
         score_function: str = "cos_sim",
@@ -33,7 +33,7 @@ class Searcher:
 
     def rerank(
         self,
-        reranker: DRESReranker,
+        reranker,
         search_results: Dict[str, Dict[str, float]],
         corpus: Dict[str, Dict[str, Any]],
         queries: Dict[str, str],
@@ -60,7 +60,7 @@ class Searcher:
                 )
         pairs = [(e["query"], e["doc"]) for e in sentence_pairs]
         # compute scores
-        scores = reranker.compute_score(sentence_pairs=pairs)
+        scores = reranker.compute_score(pairs)
         for i, score in enumerate(scores):
             sentence_pairs[i]["score"] = float(score)
         # rerank

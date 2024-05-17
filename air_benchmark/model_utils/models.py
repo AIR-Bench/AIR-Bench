@@ -79,12 +79,7 @@ class DRESModel:
         self.name = os.path.basename(model_name_or_path)
 
         self.tokenizer = AutoTokenizer.from_pretrained(model_name_or_path)
-        if "jina" in model_name_or_path:
-            self.model = AutoModel.from_pretrained(
-                model_name_or_path, trust_remote_code=True
-            )
-        else:
-            self.model = AutoModel.from_pretrained(model_name_or_path)
+        self.model = AutoModel.from_pretrained(model_name_or_path)
         self.query_instruction_for_retrieval = query_instruction_for_retrieval
         self.passage_instruction_for_retrieval = passage_instruction_for_retrieval
         self.normalize_embeddings = normalize_embeddings
@@ -287,10 +282,9 @@ class DRESReranker:
             self.model = AutoModelForSequenceClassification.from_pretrained(
                 model_name_or_path, num_labels=1, trust_remote_code=True
             )
-        else:
-            self.model = AutoModelForSequenceClassification.from_pretrained(
-                model_name_or_path
-            )
+        self.model = AutoModelForSequenceClassification.from_pretrained(
+            model_name_or_path
+        )
 
         self.query_instruction_for_retrieval = query_instruction_for_retrieval
         self.passage_instruction_for_retrieval = passage_instruction_for_retrieval

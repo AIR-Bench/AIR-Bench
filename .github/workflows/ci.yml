@@ -17,12 +17,6 @@ jobs:
           python -m pip install --upgrade pip
           python -m pip install pytest
           make install
-
-  core-test:
-    needs: prepare-testbed
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2.5.0
       - name: Test
         run: |
           make test

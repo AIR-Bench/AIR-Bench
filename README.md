@@ -30,7 +30,13 @@ The new benchmark is highlighted for the following new features.
 - **Heterogeneous** **and Dynamic**: The testing data is generated w.r.t. diverse and constantly augmented domains and languages (i.e. Multi-domain, Multi-lingual). As a result, it is able to provide an increasingly comprehensive evaluation benchmark for the community developers.  
 - **Retrieval and RAG-oriented**. The new benchmark is dedicated to the evaluation of retrieval performance. In addition to the typical evaluation scenarios, like open-domain question answering or paraphrase retrieval, the new benchmark also incorporates a new setting called inner-document retrieval which is closely related with today's LLM and RAG applications. In this new setting, the model is expected to retrieve the relevant chunks of a very long documents, which contain the critical information to answer the input question. 
 
+## Results
+
+We plan to release new test dataset on regular basis. The latest version of is `24.04`. You could check out the results at
+[AIR-Bench Leaderboard](https://huggingface.co/spaces/AIR-Bench/leaderboard).
+
 ## Installation
+This repo is used to maintain the codebases for running AIR-Bench evaluation. To run the evaluation, please install `air-benchmark`.
 
 ```bash
 pip install air-benchmark
@@ -40,6 +46,8 @@ pip install air-benchmark
 1. Run evaluations
     - As for models that are compatible with standard architectures in HuggingFace Transformers and do not require `trust_remote_model=True`, use the python script at [scripts/run_air_benchmark.py](https://github.com/AIR-Bench/AIR-Bench/blob/main/scripts/run_air_benchmark.py)
 
+   <details><summary>click to see details</summary>
+   
     ```bash
     # Run a selected evaluation. Running all tasks will take about hours on a GPU machines.
     python run_air_benchmark.py \
@@ -60,6 +68,8 @@ pip install air-benchmark
     --add_instruction False \
     --overwrite False
     ```
+   
+   </details>
 
     - As for models that are compatible with [SentenceTransformers](https://sbert.net/), please refer to the example at [examples/evaluate_sentence_transformers_reranker.py](https://github.com/AIR-Bench/AIR-Bench/blob/main/examples/evaluate_sentence_transformers_embeddings.py)
 
@@ -102,10 +112,6 @@ pip install air-benchmark
 
 Detailed results are available [here](https://github.com/AIR-Bench/AIR-Bench/blob/main/docs/available_evaluation_results.md).
 
-
-## Future Work
-
-- More datasets will be generated to cover more domains and languages in the future.
 
 ## Acknowledgement
 This work is inspired by [MTEB](https://github.com/embeddings-benchmark/mteb) and [BEIR](https://github.com/beir-cellar/beir/). Many thanks for the early feedbacks from [@tomaarsen](https://github.com/tomaarsen), [@Muennighoff](https://github.com/Muennighoff), [@takatost](https://github.com/takatost), [@chtlp](https://github.com/chtlp).

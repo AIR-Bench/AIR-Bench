@@ -17,7 +17,7 @@
 
 ### Background & Motivation
 
-Evaluation is crucial for the development of information retrieval models. In recent years, a series of milestone works have been introduced to the community, such as MSMARCO, Natural Question, (open-domain QA), MIRACL (Milti-lingual retrieval), BEIR and MTEB (general-domain zero-shot retrieval). However, the existing benchmarks are severely limited in the following perspectives.
+Evaluation is crucial for the development of information retrieval models. In recent years, a series of milestone works have been introduced to the community, such as [MSMARCO](https://microsoft.github.io/msmarco/), [Natural Question](https://ai.google.com/research/NaturalQuestions), (open-domain QA), [MIRACL](https://github.com/project-miracl/miracl) (Milti-lingual retrieval), [BEIR](https://github.com/beir-cellar/beir/ and [MTEB](https://github.com/embeddings-benchmark/mteb) (general-domain zero-shot retrieval). However, the existing benchmarks are severely limited in the following perspectives.
 
 - **Incapability of dealing with new domains**. All of the existing benchmarks are static, which means they are established for the pre-defined domains based on human labeled data. Therefore, they are incapable of dealing with new domains which are interested by the users. 
 - **Potential risk of over-fitting and data leakage**. The existing retrievers are intensively fine-tuned in order to achieve strong performances on popular benchmarks, like BEIR and MTEB. Despite that these benchmarks are initially designed for zero-shot evaluation of O.O.D. Evaluation, the in-domain training data is widely used during the fine-tuning process. What is worse, given the public availability of the existing evaluation datasets, the testing data could be falsely mixed into the retrievers' training set by mistake. 
@@ -40,7 +40,7 @@ pip install air-benchmark
 - As for models that are compatible with HuggingFace Transformers, use the python script at [scripts/run_air_benchmark.py](https://github.com/AIR-Bench/AIR-Bench/blob/main/scripts/run_air_benchmark.py)
 
 ```bash
-# Run all tasks
+# Run all tasks. Running all tasks will take about hours on a GPU machines.
 python run_air_benchmark.py \
 --output_dir ./search_results \
 --encoder BAAI/bge-m3 \
@@ -57,7 +57,7 @@ python run_air_benchmark.py \
 --overwrite False
 ```
 
-- As for models that are compatible with SentenceTransformers, please refer to the example at [examples/evaluate_sentence_transformers_reranker.py](https://github.com/AIR-Bench/AIR-Bench/blob/main/examples/evaluate_sentence_transformers_embeddings.py)
+- As for models that are compatible with [SentenceTransformers](https://sbert.net/), please refer to the example at [examples/evaluate_sentence_transformers_reranker.py](https://github.com/AIR-Bench/AIR-Bench/blob/main/examples/evaluate_sentence_transformers_embeddings.py)
 
 
 ## Documentation
@@ -85,6 +85,7 @@ Analysis about the results:
 - More datasets will be generated to cover more domains and languages in the future.
 
 ## Acknowledgement
+This work is inspired by [MTEB](https://github.com/embeddings-benchmark/mteb) and [BEIR](https://github.com/beir-cellar/beir/). Many thanks for the early feedbacks from [@tomaarsen](https://github.com/tomaarsen), [@Muennighoff](https://github.com/Muennighoff), [@takatost](https://github.com/takatost), [@chtlp](https://github.com/chtlp).
 
 
 ## Citing

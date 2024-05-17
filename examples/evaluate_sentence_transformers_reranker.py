@@ -1,6 +1,6 @@
 import os
 
-from sentence_transformers import SentenceTransformer
+from sentence_transformers import CrossEncoder, SentenceTransformer
 
 from air_benchmark.air_benchmark import AIRBench
 
@@ -29,23 +29,42 @@ class SentenceTransformerEncoder:
         return self.name
 
 
+class SentenceTransformerReranker:
+    def __init__(self, model_name_or_path: str, **kwargs):
+        self.model = CrossEncoder(model_name_or_path, trust_remote_code=True)
+        self.name = os.path.basename(model_name_or_path)
+
+    def compute_score(self, sentence_pairs: list):
+        if isinstance(sentence_pairs[0], str):
+            sentence_pairs = [sentence_pairs]
+        return self.model.predict(sentence_pairs)
+
+    def __str__(self):
+        return self.name
+
+
 def main():
     encoder = SentenceTransformerEncoder("sentence-transformers/all-MiniLM-L6-v2")
 
+    reranker = SentenceTransformerReranker("jinaai/jina-reranker-v1-tiny-en")
+
     evaluation = AIRBench(
         benchmark_version="AIR-Bench_24.04",
-        task_types=["long-doc"],
-        domains=["book"],
-        languages=["en"],
+        task_types=["long-doc"],  # choose a single task for demo purpose
+        domains=["book"],  # choose a single domain for demo purpose
+        languages=["en"],  # choose a single language for demo purpose
     )
 
     evaluation.run(
         encoder,
         output_dir="./search_results",
         search_top_k=20,  # change to 1000 for proper evaluations
-        rerank_top_k=10,  # change  to 100 for proper evaluations
+        rerank_top_k=10,  # change to 100 for proper evaluations
+        reranker_list=[
+            reranker,
+        ],
         overwrite=True,
-        corpus_chunk_size=10_000_000,
+        corpus_chunk_size=10000,  # change 10_000_000 when encoding the large corpus to avoid multiple tqdm bars
     )
 
 

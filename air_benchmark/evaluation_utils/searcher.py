@@ -60,7 +60,7 @@ class Searcher:
                 )
         pairs = [(e["query"], e["doc"]) for e in sentence_pairs]
         # compute scores
-        scores = reranker.compute_score(sentence_pairs=pairs)
+        scores = reranker.compute_score(pairs)
         for i, score in enumerate(scores):
             sentence_pairs[i]["score"] = float(score)
         # rerank

@@ -13,7 +13,7 @@ from air_benchmark.model_utils.models import (
 
 
 # jina-embeddings-v2 uses ALiBi which is not support by transformers by default and therefore requires `trust_remote_code=True`
-class JinaEmbeddingsV2(DRESModel):
+class JinaEmbeddingsV2:
     def __init__(
         self,
         model_name_or_path: str,
@@ -120,9 +120,9 @@ def main():
 
     evaluation = AIRBench(
         benchmark_version="AIR-Bench_24.04",
-        task_types=["long-doc"],
-        domains=["book"],
-        languages=["en"],
+        task_types=["long-doc"],  # choose a single task for demo purpose
+        domains=["book"],  # choose a single domain for demo purpose
+        languages=["en"],  # choose a single language for demo purpose
     )
 
     evaluation.run(
@@ -132,9 +132,9 @@ def main():
         reranker_list=[
             reranker,
         ],
-        rerank_top_k=10,  # change  to 100 for proper evaluations
+        rerank_top_k=10,  # change to 100 for proper evaluations
         overwrite=True,
-        corpus_chunk_size=10_000_000,
+        corpus_chunk_size=10000,  # change 10_000_000 when encoding the large corpus to avoid multiple tqdm bars
     )
 
 

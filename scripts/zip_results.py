@@ -65,7 +65,7 @@ def zip_results(
     results_dir: str,
     save_dir: str,
     model_name: str,
-    reranker_name: str = "NoReanker",
+    reranker_name: str = "NoReranker",
     overwrite: bool = False,
 ):
     results_path = os.path.join(results_dir, model_name, reranker_name)
@@ -110,7 +110,7 @@ def main():
     print("=========================================")
     if success:
         print(
-            "Success! Now you can upload the zipped search results to the 🤗  Hugging Face Leaderboard!"
+            "Success! Now you can upload the zipped search results to https://huggingface.co/spaces/AIR-Bench/leaderboard !"
         )
     else:
         print("Failed! Please check the error message and try again!")

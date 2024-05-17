@@ -16,7 +16,7 @@ class Searcher:
 
     def dense_search(
         self,
-        model: DRESModel,
+        model,
         corpus: Dict[str, Dict[str, Any]],
         queries: Dict[str, str],
         score_function: str = "cos_sim",
@@ -33,7 +33,7 @@ class Searcher:
 
     def rerank(
         self,
-        reranker: DRESReranker,
+        reranker,
         search_results: Dict[str, Dict[str, float]],
         corpus: Dict[str, Dict[str, Any]],
         queries: Dict[str, str],

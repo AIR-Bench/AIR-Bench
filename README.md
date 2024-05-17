@@ -37,28 +37,56 @@ pip install air-benchmark
 ```
 
 ## Usage
-- As for models that are compatible with HuggingFace Transformers, use the python script at [scripts/run_air_benchmark.py](https://github.com/AIR-Bench/AIR-Bench/blob/main/scripts/run_air_benchmark.py)
+1. Run evaluations
+    - As for models that are compatible with standard architectures in HuggingFace Transformers and do not require `trust_remote_model=True`, use the python script at [scripts/run_air_benchmark.py](https://github.com/AIR-Bench/AIR-Bench/blob/main/scripts/run_air_benchmark.py)
 
-```bash
-# Run all tasks. Running all tasks will take about hours on a GPU machines.
-python run_air_benchmark.py \
---output_dir ./search_results \
---encoder BAAI/bge-m3 \
---reranker BAAI/bge-reranker-v2-m3 \
---search_top_k 1000 \
---rerank_top_k 100 \
---max_query_length 512 \
---max_passage_length 512 \
---batch_size 512 \
---pooling_method cls \
---normalize_embeddings True \
---use_fp16 True \
---add_instruction False \
---overwrite False
-```
+    ```bash
+    # Run a selected evaluation. Running all tasks will take about hours on a GPU machines.
+    python run_air_benchmark.py \
+    --output_dir ./search_results \
+    --encoder BAAI/bge-small-en-v1.5 \
+    --reranker BAAI/bge-reranker-base \
+    --task_types long-doc \  # remove this line to run on all tasks
+    --domains book \  # remove this line to run on all domains
+    --languages en \  # remove this line to run on all languages
+    --search_top_k 1000 \
+    --rerank_top_k 100 \
+    --max_query_length 512 \
+    --max_passage_length 512 \
+    --batch_size 512 \
+    --pooling_method cls \
+    --normalize_embeddings True \
+    --use_fp16 True \  # set to False for running on CPUs
+    --add_instruction False \
+    --overwrite False
+    ```
 
-- As for models that are compatible with [SentenceTransformers](https://sbert.net/), please refer to the example at [examples/evaluate_sentence_transformers_reranker.py](https://github.com/AIR-Bench/AIR-Bench/blob/main/examples/evaluate_sentence_transformers_embeddings.py)
+    - As for models that are compatible with [SentenceTransformers](https://sbert.net/), please refer to the example at [examples/evaluate_sentence_transformers_reranker.py](https://github.com/AIR-Bench/AIR-Bench/blob/main/examples/evaluate_sentence_transformers_embeddings.py)
 
+2. Submit search results
+    - Package the output files
+      - As for the results without reranking models,
+
+      ```bash
+      cd scripts
+      python zip_results.py \
+      --results_dir search_results \
+      --model_name [YOUR_RETRIEVAL_MODEL] \
+      --save_dir search_results/[YOUR_RETRIEVAL_MODEL]
+      ```
+
+      - As for the results with reranking models
+
+      ```bash
+      cd scripts
+      python zip_results.py \
+      --results_dir search_results \
+      --model_name [YOUR_RETRIEVAL_MODEL] \
+      --reranker_name [YOUR_RERANKING_MODEL] \
+      --save_dir search_results/[YOUR_RETRIEVAL_MODEL]
+      ```
+
+    - Upload the output `.zip` and fill in the model information at [AIR-Bench Leaderboard](https://github.com/AIR-Bench/AIR-Bench)
 
 ## Documentation
 

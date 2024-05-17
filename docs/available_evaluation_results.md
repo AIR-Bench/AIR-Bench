@@ -19,6 +19,12 @@
     - [nDCG@10 in healthcare](#ndcg10-in-healthcare-1)
     - [nDCG@10 in law](#ndcg10-in-law-1)
 
+## Abstract
+
+- **AIR-Bench performance scales with model size**. For example, `multilingual-e5-large` is better than `multilingual-e5-base` and `multilingual-e5-base` is better than `multilingual-e5-small`. This can also be observed in `bge-large-en-v1.5`, `bge-base-en-v1.5` and `bge-small-en-v1.5`.
+- **The generated dataset maintains good consistency with the human-labeled dataset**. The Spearman correlation between the rankings on the original MSMARCO dataset and the generated MSMARCO dataset is 0.8945.
+- **The performance of the model varies across different domains**. For example, `e5-mistral-7b-instruct` is better than `bge-m3` in the healthcare domain, but `e5-mistral-7b-instruct` is worse than `bge-m3` in the law domain.
+
 ## Models List
 
 BM25:

@@ -30,6 +30,36 @@ The new benchmark is highlighted for the following new features.
 - **Heterogeneous** **and Dynamic**: The testing data is generated w.r.t. diverse and constantly augmented domains and languages (i.e. Multi-domain, Multi-lingual). As a result, it is able to provide an increasingly comprehensive evaluation benchmark for the community developers.  
 - **Retrieval and RAG-oriented**. The new benchmark is dedicated to the evaluation of retrieval performance. In addition to the typical evaluation scenarios, like open-domain question answering or paraphrase retrieval, the new benchmark also incorporates a new setting called inner-document retrieval which is closely related with today's LLM and RAG applications. In this new setting, the model is expected to retrieve the relevant chunks of a very long documents, which contain the critical information to answer the input question. 
 
+## Installation
+
+```bash
+pip install air-benchmark
+```
+
+## Usage
+- As for models that are compatible with HuggingFace Transformers, use the python script at [scripts/run_air_benchmark.py](https://github.com/AIR-Bench/AIR-Bench/blob/main/scripts/run_air_benchmark.py)
+
+```bash
+# Run all tasks
+python run_air_benchmark.py \
+--output_dir ./search_results \
+--encoder BAAI/bge-m3 \
+--reranker BAAI/bge-reranker-v2-m3 \
+--search_top_k 1000 \
+--rerank_top_k 100 \
+--max_query_length 512 \
+--max_passage_length 512 \
+--batch_size 512 \
+--pooling_method cls \
+--normalize_embeddings True \
+--use_fp16 True \
+--add_instruction False \
+--overwrite False
+```
+
+- As for models that are compatible with SentenceTransformers, please refer to the example at [examples/evaluate_sentence_transformers_reranker.py](https://github.com/AIR-Bench/AIR-Bench/blob/main/examples/evaluate_sentence_transformers_embeddings.py)
+
+
 ## Documentation
 
 | Documentation                                                |                                                           |
@@ -58,6 +88,4 @@ Analysis about the results:
 
 
 ## Citing
-
-```
-```
+TBD

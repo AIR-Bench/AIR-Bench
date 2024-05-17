@@ -49,7 +49,7 @@ clean:
 
 ## Install requirement package, see deps for available packages
 install:
-	pip install .
+	pip install -e .
 
 ## Install pre-commit hooks
 pre-commit:

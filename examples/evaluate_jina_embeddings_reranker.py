@@ -128,13 +128,13 @@ def main():
     evaluation.run(
         encoder,
         output_dir="./search_results",
-        search_top_k=20,
+        search_top_k=20,  # change to 1000 for proper evaluations
         reranker_list=[
             reranker,
         ],
-        rerank_top_k=10,
+        rerank_top_k=10,  # change  to 100 for proper evaluations
         overwrite=True,
-        corpus_chunk=10_000_000,
+        corpus_chunk_size=10_000_000,
     )
 
 

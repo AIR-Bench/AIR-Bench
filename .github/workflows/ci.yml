@@ -19,7 +19,7 @@ jobs:
           make install
 
   core-test:
-    needs: prepare-testbdd
+    needs: prepare-testbed
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2.5.0

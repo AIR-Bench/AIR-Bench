@@ -1,5 +1,9 @@
 <h1 align="center"> AIR-Bench: Automated Heterogeneous Information Retrieval Benchmark </h1>
 
+<h1 align="center">
+<img style="vertical-align:middle" width="450" height="180" src="https://github.com/AIR-Bench/AIR-Bench/blob/main/docs/images/banner.png" />
+</h1>
+
 <h4 align="center">
     <p>
         <a href="#introduction">Introduction</a> |

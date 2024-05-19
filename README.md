@@ -18,7 +18,7 @@
 
 ## ☁️ Motivation
 
-Evaluation is crucial for the development of information retrieval models. In recent years, a series of milestone works have been introduced to the community, such as [MSMARCO](https://microsoft.github.io/msmarco/), [Natural Question](https://ai.google.com/research/NaturalQuestions), (open-domain QA), [MIRACL](https://github.com/project-miracl/miracl) (Milti-lingual retrieval), [BEIR](https://github.com/beir-cellar/beir/) and [MTEB](https://github.com/embeddings-benchmark/mteb) (general-domain zero-shot retrieval). However, the existing benchmarks are severely limited in the following perspectives.
+Evaluation is crucial for the development of information retrieval models. In recent years, a series of milestone works have been introduced to the community, such as [MSMARCO](https://microsoft.github.io/msmarco/), [Natural Question](https://ai.google.com/research/NaturalQuestions) (open-domain QA), [MIRACL](https://github.com/project-miracl/miracl) (multilingual retrieval), [BEIR](https://github.com/beir-cellar/beir/) and [MTEB](https://github.com/embeddings-benchmark/mteb) (general-domain zero-shot retrieval). However, the existing benchmarks are severely limited in the following perspectives.
 
 - **Incapability of dealing with new domains**. All of the existing benchmarks are static, which means they are established for the pre-defined domains based on human labeled data. Therefore, they are incapable of dealing with new domains which are interested by the users. 
 - **Potential risk of over-fitting and data leakage**. The existing retrievers are intensively fine-tuned in order to achieve strong performances on popular benchmarks, like BEIR and MTEB. Despite that these benchmarks are initially designed for zero-shot evaluation of O.O.D. Evaluation, the in-domain training data is widely used during the fine-tuning process. What is worse, given the public availability of the existing evaluation datasets, the testing data could be falsely mixed into the retrievers' training set by mistake. 
@@ -84,7 +84,7 @@ pip install air-benchmark
       python zip_results.py \
       --results_dir search_results \
       --model_name [YOUR_RETRIEVAL_MODEL] \
-      --save_dir search_results/[YOUR_RETRIEVAL_MODEL]
+      --save_dir search_results
       ```
 
       - As for the results with reranking models
@@ -95,10 +95,10 @@ pip install air-benchmark
       --results_dir search_results \
       --model_name [YOUR_RETRIEVAL_MODEL] \
       --reranker_name [YOUR_RERANKING_MODEL] \
-      --save_dir search_results/[YOUR_RETRIEVAL_MODEL]
+      --save_dir search_results
       ```
 
-    - Upload the output `.zip` and fill in the model information at [AIR-Bench Leaderboard](https://github.com/AIR-Bench/AIR-Bench)
+    - Upload the output `.zip` and fill in the model information at [AIR-Bench Leaderboard](https://huggingface.co/spaces/AIR-Bench/leaderboard)
 
 ## ☁️ Documentation
 

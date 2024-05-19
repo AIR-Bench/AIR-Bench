@@ -1,7 +1,7 @@
 <h1 align="center"> AIR-Bench: Automated Heterogeneous Information Retrieval Benchmark </h1>
 
 <h1 align="center">
-<img style="vertical-align:middle" width="494" height="161" src="https://github.com/AIR-Bench/AIR-Bench/blob/eaee9fa1e9e5d989a04c9b074ab3df824e1c68da/docs/images/banner.png" />
+<img style="vertical-align:middle" width="741" height="242" src="https://github.com/AIR-Bench/AIR-Bench/blob/eaee9fa1e9e5d989a04c9b074ab3df824e1c68da/docs/images/banner.png" />
 </h1>
 
 <h4 align="center">

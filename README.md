@@ -4,11 +4,11 @@
 
 <h4 align="center">
     <p>
-        <a href="#%EF%B8%8Fmotivation">Motivation</a> |
-        <a href="#%EF%B8%8Ffeatures">Features</a> |
-        <a href="#%EF%B8%8Fdocumentation">Documentation</a> |
+        <a href="#%EF%B8%8F-motivation">Motivation</a> |
+        <a href="#%EF%B8%8F-features">Features</a> |
+        <a href="#%EF%B8%8F-documentation">Documentation</a> |
         <a href="https://huggingface.co/spaces/AIR-Bench/leaderboard">Leaderboard</a> |
-        <a href="#%EF%B8%8Fciting">Citing</a>
+        <a href="#%EF%B8%8F-citing">Citing</a>
     <p>
 </h4>
 

@@ -2,6 +2,7 @@ import json
 import logging
 import os
 from typing import Any, Dict
+from abc import ABC, abstractmethod
 
 from mteb.evaluation.evaluators import RetrievalEvaluator
 
@@ -10,15 +11,84 @@ from air_benchmark.model_utils import DRESModel, DRESReranker
 logger = logging.getLogger(__name__)
 
 
-class Searcher:
+class Searcher(ABC):
+    """
+    Base class for searchers.
+    Extend this class and implement __call__ for custom searchers.
+    """
     def __init__(self, search_top_k: int = 1000):
         self.search_top_k = search_top_k
-
-    def dense_search(
+    
+    @abstractmethod
+    def __call__(
         self,
-        model,
         corpus: Dict[str, Dict[str, Any]],
         queries: Dict[str, str],
+        **kwargs,
+    ):
+        """
+        This is called during the retrieval process.
+        
+        Parameters:
+            corpus: Dict[str, Dict[str, Any]]: Corpus of documents. 
+                Structure: {<docid>: {"text": <text>}}.
+                Example: {"doc-0": {"text": "This is a document."}}
+            queries: Dict[str, str]: Queries to search for.
+                Structure: {<qid>: <query>}.
+                Example: {"q-0": "This is a query."}
+            **kwargs: Any: Additional arguments.
+        
+        Returns: Dict[str, Dict[str, float]]: Top-k search results for each query. k is specified by search_top_k.
+            Structure: {qid: {docid: score}}. The higher is the score, the more relevant is the document.
+            Example: {"q-0": {"doc-0": 0.9}}
+        """
+        pass
+
+
+class Reranker(ABC):
+    """
+    Base class for rerankers.
+    Extend this class and implement __call__ for custom rerankers.
+    """
+    def __init__(self, rerank_top_k: int = 100):
+        self.rerank_top_k = rerank_top_k
+    
+    @abstractmethod
+    def __call__(
+        self,
+        corpus: Dict[str, Dict[str, Any]],
+        queries: Dict[str, str],
+        search_results: Dict[str, Dict[str, float]],
+        **kwargs,
+    ):
+        """
+        This is called during the reranking process.
+        
+        Parameters:
+            corpus: Dict[str, Dict[str, Any]]: Corpus of documents. 
+                Structure: {<docid>: {"text": <text>}}.
+                Example: {"doc-0": {"text": "This is a document."}}
+            queries: Dict[str, str]: Queries to search for.
+                Structure: {<qid>: <query>}.
+                Example: {"q-0": "This is a query."}
+            search_results: Dict[str, Dict[str, float]]: Search results for each query.
+                Structure: {qid: {docid: score}}. The higher is the score, the more relevant is the document.
+                Example: {"q-0": {"doc-0": 0.9}}
+            **kwargs: Any: Additional arguments.
+        
+        Returns: Dict[str, Dict[str, float]]: Reranked search results for each query. k is specified by rerank_top_k.
+            Structure: {qid: {docid: score}}. The higher is the score, the more relevant is the document.
+            Example: {"q-0": {"doc-0": 0.9}}
+        """
+        pass
+
+
+class EmbeddingModelSearcher(Searcher):
+    def __call__(
+        self,
+        corpus: Dict[str, Dict[str, Any]],
+        queries: Dict[str, str],
+        model: DRESModel,
         score_function: str = "cos_sim",
         **kwargs,
     ):
@@ -31,13 +101,16 @@ class Searcher:
         search_results = retriever(corpus=corpus, queries=queries)
         return search_results
 
-    def rerank(
+
+class CrossEncoderReranker(Reranker):
+    def __call__(
         self,
-        reranker,
-        search_results: Dict[str, Dict[str, float]],
         corpus: Dict[str, Dict[str, Any]],
         queries: Dict[str, str],
+        reranker: DRESReranker,
+        search_results: Dict[str, Dict[str, float]],
         rerank_top_k: int = 100,
+        **kwargs,
     ):
         # truncate search results to top_k
         for qid in search_results:
@@ -69,6 +142,8 @@ class Searcher:
             reranked_results[pair["qid"]][pair["docid"]] = pair["score"]
         return reranked_results
 
+
+class BM25Searcher(Searcher):
     def _bm25_save_corpus(
         self, corpus: Dict[str, Dict[str, Any]], corpus_save_dir: str
     ):
@@ -145,12 +220,12 @@ class Searcher:
                     search_results[qid][docid] = float(score)
         return search_results
 
-    def bm25_search(
+    def search(
         self,
-        bm25_tmp_dir: str,
         corpus: Dict[str, Dict[str, Any]],
         queries: Dict[str, str],
         language: str,
+        bm25_tmp_dir: str,
         remove_bm25_tmp_dir: bool = False,
         **kwargs,
     ):

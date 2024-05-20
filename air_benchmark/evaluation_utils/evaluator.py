@@ -15,13 +15,11 @@ class Evaluator:
         data_loader: DataLoader,
         searcher: Optional[Searcher] = None,
         rerank_top_k: int = 100,
-        k_values: List[int] = [1, 3, 5, 10, 100, 1000],
         overwrite: bool = False,
     ):
         self.data_loader = data_loader
         self.searcher = searcher if searcher is not None else Searcher(max(k_values))
         self.rerank_top_k = rerank_top_k
-        self.k_values = k_values
         self.overwrite = overwrite
         self.benchmark_version = data_loader.benchmark_version
 
@@ -53,7 +51,20 @@ class Evaluator:
             raise ValueError(
                 f'domain or language or task_name mismatch: {data_info["domain"]} vs {domain} or {data_info["language"]} vs {language} or {data_info["task_name"]} vs {task_name}'
             )
-
+    
+    def __call__(
+        self,
+        task_type: str,
+        domain: str,
+        language: str,
+        task_name: str,
+        search_results_save_dir: str,
+        searcher: Searcher,
+        reranker_list: List,
+        **kwargs,
+    ):
+        pass
+    
     def generate_search_results(
         self,
         model,

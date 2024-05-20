@@ -18,12 +18,11 @@ The following table gives you an overview of the tasks in `AIR-Bench_24.04`.
 | QA        | Web        | English  | [mC4](https://huggingface.co/datasets/mc4)                   | 1,707  | 81                    | 5,543  | 2,459,587 | 7,439     |
 | QA        | Web        | Chinese  | [mC4](https://huggingface.co/datasets/mc4)                   | 1,683  | 24                    | 6,250  | 956,699   | 6,721     |
 | QA        | News       | English  | [CC-News](https://huggingface.co/datasets/cc_news)           | 1,614  | 83                    | 5,798  | 574,417   | 6,784     |
-| QA        | News       | Chinese  | [CC-News](https://huggingface.co/datasets/intfloat/multilingual_cc_news) | 1,697  | 25                    | 7,381  | 935,162   | 6,618     |
+| QA        | News       | Chinese  | [Multilingual CC-News](https://huggingface.co/datasets/intfloat/multilingual_cc_news) | 1,697  | 25                    | 7,381  | 935,162   | 6,618     |
 | QA        | Healthcare | English  | [PubMedQA](https://huggingface.co/datasets/qiaojin/PubMedQA) | 1,707  | 96                    | 5,052  | 847,395   | 7,023     |
 | QA        | Healthcare | Chinese  | [Huatuo-26M](https://huggingface.co/datasets/FreedomIntelligence/huatuo_encyclopedia_qa) (Encyclopedia QA) | 1,874  | 22                    | 10,029 | 360,218   | 7,336     |
 | QA        | Law        | English  | [pile-of-law](https://huggingface.co/datasets/pile-of-law/pile-of-law) (EUR-Lex) | 1,801  | 91                    | 5,372  | 141,678   | 6,574     |
-| QA        | Law        | Chinese  | [npc.gov.cn](https://flk.npc.gov.cn/index.html)              | 1,816  | 27                    | 6,118  | 25,857    | 4,725     |
-| QA        | Finance    | English  | [Reuters-Financial](https://huggingface.co/datasets/reuters21578) | 1,585  | 87                    | 3,357  | 26,266    | 5,595     |
+| QA        | Finance    | English  | [Reuters-21578](https://huggingface.co/datasets/reuters21578) | 1,585  | 87                    | 3,357  | 26,266    | 5,595     |
 | QA        | Finance    | Chinese  | [FinCorpus](https://huggingface.co/datasets/Duxiaoman-DI/FinCorpus) (fin_articles) | 1,805  | 24                    | 7,836  | 2,398,095 | 7,211     |
 | QA        | Arxiv      | English  | [Arxiv](https://github.com/armancohan/long-summarization) (abstract) | 1,731  | 98                    | 5,340  | 222,877   | 6,288     |
 | QA        | Web        | English  | [MS MARCO](https://huggingface.co/datasets/intfloat/simlm-msmarco) (dev) | 6,319  | 78                    | 31,447 | 8,872,840 | 26,828    |

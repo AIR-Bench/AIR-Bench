@@ -40,12 +40,6 @@ QALawTask = {
             "source": "https://huggingface.co/datasets/pile-of-law/pile-of-law",
         }
     },
-    "zh": {
-        "default": {
-            "name": "Law and Regulations Database of the People's Republic of China",
-            "source": "https://flk.npc.gov.cn/index.html",
-        }
-    },
 }
 
 QAArxivTask = {

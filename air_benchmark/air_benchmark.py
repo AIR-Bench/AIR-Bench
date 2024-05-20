@@ -4,8 +4,7 @@ from typing import List, Optional
 from air_benchmark.console import console, style_head, style_row
 from air_benchmark.evaluation_utils.data_loader import DataLoader
 from air_benchmark.evaluation_utils.evaluator import Evaluator
-from air_benchmark.evaluation_utils.searcher import Searcher
-from air_benchmark.model_utils.models import DRESModel, DRESReranker
+from air_benchmark.evaluation_utils.searcher import Retriever, Reranker
 from air_benchmark.tasks.tasks import (
     BenchmarkTable,
     check_benchmark_version,
@@ -75,48 +74,31 @@ class AIRBench:
                             )
 
     @staticmethod
-    def check_encoder(encoder):
-        if encoder == "BM25":
-            return
-        for method in ["__str__", "encode_queries", "encode_corpus"]:
-            if not hasattr(encoder, method) or not callable(
-                getattr(encoder, method, None)
+    def check_retriever(retriever):
+        for method in ["__str__", "__call__"]:
+            if not hasattr(retriever, method) or not callable(
+                getattr(retriever, method, None)
             ):
-                raise ValueError(f"Encoder should have `{method}` method.")
+                raise ValueError(f"Retriever should have `{method}` method.")
 
     @staticmethod
     def check_reranker(reranker):
-        for method in ["__str__", "compute_score"]:
+        for method in ["__str__", "__call__"]:
             if not hasattr(reranker, method) or not callable(
                 getattr(reranker, method, None)
             ):
-                raise ValueError(f"DRESReranker should have `{method}` method.")
+                raise ValueError(f"Reranker should have `{method}` method.")
 
     def run(
         self,
-        encoder,
-        output_dir: str = "search_results",
-        search_top_k: int = 1000,
-        reranker_list: Optional[List] = None,
-        rerank_top_k: int = 100,
+        retriever: Retriever,
+        reranker: Optional[Reranker] = None,
+        output_dir: str = "./search_results",
         overwrite: bool = False,
         **kwargs,
     ):
-        self.check_encoder(encoder)
-        if reranker_list is None:
-            reranker_list = []
-        for reranker in reranker_list:
-            self.check_reranker(reranker)
-
-        searcher = Searcher(search_top_k)
-        evaluator = Evaluator(
-            self.data_loader,
-            searcher,
-            rerank_top_k=rerank_top_k,
-            k_values=[search_top_k],
-            overwrite=overwrite,
-        )
-
+        evaluator = Evaluator(self.data_loader, overwrite=overwrite)
+        
         for task_type in self.task_types:
             console.print(f"Task Type: {task_type}", style=style_head, justify="center")
             for domain in self.domains:
@@ -142,29 +124,26 @@ class AIRBench:
                             style=style_head,
                             justify="center",
                         )
-
-                        evaluator.generate_search_results(
-                            model=encoder,
-                            reranker_list=reranker_list,
-                            search_results_save_dir=output_dir,
+                        
+                        evaluator(
                             task_type=task_type,
                             domain=domain,
                             language=language,
                             task_name=task_name,
+                            search_results_save_dir=output_dir,
+                            retriever=retriever,
+                            reranker=reranker,
                             **kwargs,
                         )
         console.rule("[bold red]Evaluation Summary")
-        console.print(f"Encoder: {encoder}", style=style_row, justify="center")
-        reranker_names = [item.name for item in reranker_list]
-        console.print(
-            f"Rerankers: {*reranker_names,}", style=style_row, justify="center"
-        )
+        console.print(f"Retriever: {retriever}", style=style_row, justify="center")
+        console.print(f"Reranker: {reranker}", style=style_row, justify="center")
         console.print(
             f"Output directory: {output_dir}", style=style_row, justify="center"
         )
         console.print(
-            f"Search Top K: {search_top_k}", style=style_row, justify="center"
+            f"Search Top K: {retriever.search_top_k}", style=style_row, justify="center"
         )
         console.print(
-            f"Rerank Top K: {rerank_top_k}", style=style_row, justify="center"
+            f"Rerank Top K: {reranker.rerank_top_k}", style=style_row, justify="center"
         )

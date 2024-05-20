@@ -268,8 +268,8 @@ class DRESReranker:
         self,
         model_name_or_path: str,
         use_fp16: bool = True,
-        query_instruction_for_retrieval: Optional[str] = None,
-        passage_instruction_for_retrieval: Optional[str] = None,
+        query_instruction_for_reranking: Optional[str] = None,
+        passage_instruction_for_reranking: Optional[str] = None,
         max_length: int = 512,
         batch_size: int = 256,
         **kwargs,
@@ -282,12 +282,13 @@ class DRESReranker:
             self.model = AutoModelForSequenceClassification.from_pretrained(
                 model_name_or_path, num_labels=1, trust_remote_code=True
             )
-        self.model = AutoModelForSequenceClassification.from_pretrained(
-            model_name_or_path
-        )
+        else:
+            self.model = AutoModelForSequenceClassification.from_pretrained(
+                model_name_or_path
+            )
 
-        self.query_instruction_for_retrieval = query_instruction_for_retrieval
-        self.passage_instruction_for_retrieval = passage_instruction_for_retrieval
+        self.query_instruction_for_reranking = query_instruction_for_reranking
+        self.passage_instruction_for_reranking = passage_instruction_for_reranking
         self.max_length = max_length
         self.batch_size = batch_size
 
@@ -310,14 +311,14 @@ class DRESReranker:
         return self.name
 
     def add_instruction(self, sentence_pairs: List[Tuple[str, str]]):
-        if self.query_instruction_for_retrieval is not None:
+        if self.query_instruction_for_reranking is not None:
             sentence_pairs = [
-                (f"{self.query_instruction_for_retrieval}{query}", passage)
+                (f"{self.query_instruction_for_reranking}{query}", passage)
                 for query, passage in sentence_pairs
             ]
-        if self.passage_instruction_for_retrieval is not None:
+        if self.passage_instruction_for_reranking is not None:
             sentence_pairs = [
-                (query, f"{self.passage_instruction_for_retrieval}{passage}")
+                (query, f"{self.passage_instruction_for_reranking}{passage}")
                 for query, passage in sentence_pairs
             ]
         return sentence_pairs

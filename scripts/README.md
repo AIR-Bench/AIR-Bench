@@ -111,7 +111,7 @@ evaluation.run(
 
 ### HuggingFace Transformers
 
-As for models that are compatible with the HuggingFace Transformers, you can use the scripts at [hf-transformers](https://github.com/AIR-Bench/AIR-Bench/blob/main/examples/hf-transformers/evaluate_hf_transformers.py) to evaluate the models on AIR-Bench.
+As for models that are compatible with the [HuggingFace Transformers](https://huggingface.co/docs/transformers/index), you can use the scripts at [hf-transformers](https://github.com/AIR-Bench/AIR-Bench/blob/main/examples/hf-transformers/evaluate_hf_transformers.py) to evaluate the models on AIR-Bench.
 
 ```bash
 pip install mteb transformers

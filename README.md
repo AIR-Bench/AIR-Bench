@@ -49,7 +49,7 @@ pip install air-benchmark
 Refer to the steps below to run evaluations and submit the results to the leaderboard.
 
 1. Run evaluations
-    See the [scripts](https://github.com/AIR-Bench/AIR-Bench/blob/main/scripts) to run evaluations on AIR-Bench for your models.
+    - See the [scripts](https://github.com/AIR-Bench/AIR-Bench/blob/main/scripts) to run evaluations on AIR-Bench for your models.
 
 2. Submit search results
     - Package the output files

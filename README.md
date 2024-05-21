@@ -1,5 +1,5 @@
 <h1 align="center">
-<img style="vertical-align:middle" width="620" height="213" src="https://github.com/AIR-Bench/AIR-Bench/blob/main/docs/images/banner.png" />
+<img style="vertical-align:middle" width="640" height="320" src="https://github.com/AIR-Bench/AIR-Bench/blob/main/docs/images/banner.png" />
 </h1>
 
 <h4 align="center">
@@ -13,7 +13,7 @@
 </h4>
 
 <h3 align="center">
-    <a href="https://huggingface.co/spaces/AIR-Bench/leaderboard"><img style="float: middle; padding: 10px 10px 10px 10px;" width="60" height="55" src="https://github.com/AIR-Bench/AIR-Bench/blob/main/docs/images/hf_logo.png" /></a>
+    <a href="https://huggingface.co/spaces/AIR-Bench"><img style="float: middle; padding: 10px 10px 10px 10px;" width="60" height="55" src="https://github.com/AIR-Bench/AIR-Bench/blob/main/docs/images/hf_logo.png" /></a>
 </h3>
 
 ## ☁️ Motivation

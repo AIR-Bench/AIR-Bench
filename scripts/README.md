@@ -52,6 +52,8 @@ class MyRetriever(Retriever):
 You need to implement a reranker that takes a set of queries, a corpus, and the search results and returns the reranked search results.
 
 ```python
+from air_benchmark import Reranker
+
 class MyReranker(Reranker):
     def __str__(self):
         """
@@ -116,7 +118,7 @@ As for models that are compatible with the [HuggingFace Transformers](https://hu
 ```bash
 pip install mteb transformers
 
-cd examples/hf-transformers
+cd scripts/hf-transformers
 ```
 
 <details><summary>click to see details</summary>
@@ -173,7 +175,7 @@ As for models that are compatible with [SentenceTransformers](https://sbert.net/
 ```bash
 pip install mteb transformers sentence-transformers
 
-cd examples/sentence-transformers
+cd scripts/sentence-transformers
 ```
 
 <details><summary>click to see details</summary>
@@ -225,7 +227,7 @@ As for the BM25 method implemented in [Pyserini](https://github.com/castorini/py
 ```bash
 pip install pyserini transformers
 
-cd examples/bm25
+cd scripts/bm25
 ```
 
 <details><summary>click to see details</summary>

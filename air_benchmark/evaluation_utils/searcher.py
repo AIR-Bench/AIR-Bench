@@ -5,7 +5,7 @@ from abc import ABC, abstractmethod
 class Retriever(ABC):
     """
     Base class for retrievers.
-    Extend this class and implement __call__ for custom retrievers.
+    Extend this class and implement __str__ and __call__ for custom retrievers.
     """
     def __init__(self, search_top_k: int = 1000):
         self.search_top_k = search_top_k
@@ -45,7 +45,7 @@ class Retriever(ABC):
 class Reranker(ABC):
     """
     Base class for rerankers.
-    Extend this class and implement __call__ for custom rerankers.
+    Extend this class and implement __str__ and __call__ for custom rerankers.
     """
     def __init__(self, rerank_top_k: int = 100):
         self.rerank_top_k = rerank_top_k

@@ -21,9 +21,6 @@ classifiers = [
 keywords = ["embedding", "benchmark", "air-bench", "reranker", "information retrieval"]
 dependencies = [
     "datasets>=2.18.0",
-    "mteb>=1.7.17",
-    "torch>=1.6.0",
-    "transformers>=4.33.0",
     "rich>=13.7.1",
 ]
 requires-python = ">=3.8"

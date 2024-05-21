@@ -114,6 +114,8 @@ evaluation.run(
 As for models that are compatible with the HuggingFace Transformers, you can use the scripts at [hf-transformers](https://github.com/AIR-Bench/AIR-Bench/blob/main/examples/hf-transformers/evaluate_hf_transformers.py) to evaluate the models on AIR-Bench.
 
 ```bash
+pip install mteb transformers
+
 cd examples/hf-transformers
 ```
 
@@ -169,6 +171,8 @@ python run_air_benchmark.py \
 As for models that are compatible with [SentenceTransformers](https://sbert.net/), you can use the scripts at [sentence-transformers](https://github.com/AIR-Bench/AIR-Bench/blob/main/examples/hf-transformers/evaluate_sentence_transformers.py) to evaluate the models on AIR-Bench.
 
 ```bash
+pip install mteb transformers sentence-transformers
+
 cd examples/sentence-transformers
 ```
 
@@ -215,6 +219,8 @@ python run_air_benchmark.py \
 As for the BM25 method implemented in [Pyserini](https://github.com/castorini/pyserini), you can use the scripts at [bm25](https://github.com/AIR-Bench/AIR-Bench/blob/main/examples/hf-transformers/evaluate_bm25.py) to evaluate the BM25 method on AIR-Bench.
 
 ```bash
+pip install pyserini transformers
+
 cd examples/bm25
 ```
 

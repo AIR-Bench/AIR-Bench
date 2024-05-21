@@ -1,7 +1,7 @@
 import json
 import logging
 import os
-from typing import Dict, List, Optional
+from typing import Dict, Optional
 
 from air_benchmark.evaluation_utils.data_loader import DataLoader
 from air_benchmark.evaluation_utils.searcher import Retriever, Reranker

@@ -25,13 +25,6 @@ class EvalArgs:
     cache_dir: str = field(
         default=None, metadata={"help": "Cache directory for datasets."}
     )
-    bm25_tmp_dir: str = field(
-        default="./bm25_tmp_dir",
-        metadata={"help": "Cache directory for evaluating BM25."},
-    )
-    remove_bm25_tmp_dir: bool = field(
-        default=True, metadata={"help": "Remove BM25 tmp dir or not."}
-    )
     overwrite: bool = field(
         default=False, metadata={"help": "whether to overwrite evaluation results"}
     )

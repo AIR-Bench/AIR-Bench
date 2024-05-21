@@ -45,35 +45,11 @@ pip install air-benchmark
 ```
 
 ### Evaluations
+
+Refer to the steps below to run evaluations and submit the results to the leaderboard.
+
 1. Run evaluations
-    - As for models that are compatible with standard architectures in HuggingFace Transformers and do not require `trust_remote_model=True`, use the python script at [scripts/run_air_benchmark.py](https://github.com/AIR-Bench/AIR-Bench/blob/main/scripts/run_air_benchmark.py)
-
-   <details><summary>click to see details</summary>
-   
-    ```bash
-    # Run a selected evaluation. Running all tasks will take about hours on a GPU machines.
-    python run_air_benchmark.py \
-    --output_dir ./search_results \
-    --encoder BAAI/bge-small-en-v1.5 \
-    --reranker BAAI/bge-reranker-base \
-    --task_types long-doc \  # remove this line to run on all tasks
-    --domains book \  # remove this line to run on all domains
-    --languages en \  # remove this line to run on all languages
-    --search_top_k 1000 \
-    --rerank_top_k 100 \
-    --max_query_length 512 \
-    --max_passage_length 512 \
-    --batch_size 512 \
-    --pooling_method cls \
-    --normalize_embeddings True \
-    --use_fp16 True \  # set to False for running on CPUs
-    --add_instruction False \
-    --overwrite False
-    ```
-   
-   </details>
-
-    - As for models that are compatible with [SentenceTransformers](https://sbert.net/), please refer to the example at [examples/evaluate_sentence_transformers_reranker.py](https://github.com/AIR-Bench/AIR-Bench/blob/main/examples/evaluate_sentence_transformers_embeddings.py)
+    See the [scripts](https://github.com/AIR-Bench/AIR-Bench/blob/main/scripts) to run evaluations on AIR-Bench for your models.
 
 2. Submit search results
     - Package the output files
@@ -83,7 +59,7 @@ pip install air-benchmark
       cd scripts
       python zip_results.py \
       --results_dir search_results \
-      --model_name [YOUR_RETRIEVAL_MODEL] \
+      --retriever_name [YOUR_RETRIEVAL_MODEL] \
       --save_dir search_results
       ```
 
@@ -93,7 +69,7 @@ pip install air-benchmark
       cd scripts
       python zip_results.py \
       --results_dir search_results \
-      --model_name [YOUR_RETRIEVAL_MODEL] \
+      --retriever_name [YOUR_RETRIEVAL_MODEL] \
       --reranker_name [YOUR_RERANKING_MODEL] \
       --save_dir search_results
       ```

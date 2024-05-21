@@ -61,7 +61,7 @@ def get_available_task_types() -> List[str]:
 
 
 def get_available_domains() -> List[str]:
-    return sorted(frozenset(chain(QATaskTable, LongDocTaskTable)))
+    return sorted(list(frozenset(chain(QATaskTable, LongDocTaskTable))))
 
 
 def get_available_languages() -> List[str]:

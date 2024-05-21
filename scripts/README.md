@@ -1,13 +1,13 @@
-# Evaluation Examples
+# Evaluation Scripts
 
 - [Overview](#overview)
-- [Available Examples](#available-examples)
+- [Available Scripts](#available-scripts)
   - [HuggingFace Transformers](#huggingface-transformers)
   - [Sentence Transformers](#sentence-transformers)
   - [BM25](#bm25)
 
 
-Here are some examples showing how to evaluate the performance of a model on AIR-Bench.
+This document shows how to evaluate the performance of a model on AIR-Bench using the provided evaluation scripts.
 
 ## Overview
 
@@ -107,7 +107,7 @@ evaluation.run(
 )
 ```
 
-## Available Examples
+## Available Scripts
 
 ### HuggingFace Transformers
 
@@ -124,7 +124,7 @@ cd examples/hf-transformers
 - Run all tasks:
 
 ```bash
-python run_air_benchmark.py \
+python evaluate_hf_transformers.py \
 --output_dir ./search_results \
 --encoder BAAI/bge-m3 \
 --search_top_k 1000 \
@@ -144,7 +144,7 @@ python run_air_benchmark.py \
 - Run the tasks in the specified task type, domains, and languages:
 
 ```bash
-python run_air_benchmark.py \
+python evaluate_hf_transformers.py \
 --task_types qa \
 --domains finance law \
 --languages en \
@@ -181,7 +181,7 @@ cd examples/sentence-transformers
 - Run all tasks:
 
 ```bash
-python run_air_benchmark.py \
+python evaluate_sentence_transformers.py \
 --output_dir ./search_results \
 --encoder sentence-transformers/all-MiniLM-L6-v2 \
 --search_top_k 1000 \
@@ -196,7 +196,7 @@ python run_air_benchmark.py \
 - Run the tasks in the specified task type, domains, and languages:
 
 ```bash
-python run_air_benchmark.py \
+python evaluate_sentence_transformers.py \
 --task_types qa \
 --domains finance law \
 --languages en \
@@ -229,7 +229,7 @@ cd examples/bm25
 - Run all tasks:
 
 ```bash
-python run_air_benchmark.py \
+python evaluate_bm25.py \
 --output_dir ./search_results \
 --bm25_tmp_dir ./bm25_tmp_dir \
 --remove_bm25_tmp_dir True \
@@ -239,7 +239,7 @@ python run_air_benchmark.py \
 - Run the tasks in the specified task type, domains, and languages:
 
 ```bash
-python run_air_benchmark.py \
+python evaluate_bm25.py \
 --task_types qa \
 --domains finance law \
 --languages en \

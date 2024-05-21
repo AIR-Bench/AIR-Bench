@@ -1,13 +1,13 @@
 """
 # Run all tasks
-python run_air_benchmark.py \
+python evaluate_bm25.py \
 --output_dir ./search_results \
 --bm25_tmp_dir ./bm25_tmp_dir \
 --remove_bm25_tmp_dir True \
 --overwrite False
 
 # Run the tasks in the specified task type, domains, and languages
-python run_air_benchmark.py \
+python evaluate_bm25.py \
 --task_types qa \
 --domains finance law \
 --languages en \

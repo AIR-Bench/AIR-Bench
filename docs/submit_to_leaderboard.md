@@ -1,75 +1,83 @@
 # Submit to Leaderboard
 
-The AIR-Bench is designed to be a closed-book benchmark. The golden truth is kept private. In this repo 
+The AIR-Bench is designed to be a closed-book benchmark. The golden truth is kept private. We provide a leaderboard for participants to submit
+the top-k search results of their models and compare their performance with others. The leaderboard is hosted on the HuggingFace Hub.
 
 To submit your model to the leaderboard, please follow the steps below.
 
-## Run Evaluation
-
-### Use Transformers standard models
-If your model uses the standard model architecture defined in huggingface transformers and is publicly available on Huggingface Hub or locally, you could use 
- [this script](https://github.com/AIR-Bench/AIR-Bench/tree/main/scripts/README.md#run_air_benchmarkpy) to evaluate your model.
-
-<details>
-<summary> Scripts for checking models </summary>>
-
-A simple way to check is to run the following codes and make sure you don't see any warnings.
-
-```python
-from transformers import AutoModel, AutoTokenizer
-
-model_name_or_path = "BAAI/bge-small-en-v1.5"
-model = AutoModel.from_pretrained(model_name_or_path)
-tokenizer = AutoTokenizer.from_pretrained(model_name_or_path)
-```
-</details>
-
-<details>
-  <summary> Example usage (click to unfold) </summary>
+## Installation
 
 ```bash
-# Run a selected evaluation. Running all tasks will take about hours on a GPU machines.
-python run_air_benchmark.py \
---output_dir ./search_results \
---encoder BAAI/bge-small-en-v1.5 \
---reranker BAAI/bge-reranker-base \
---task_types long-doc \  # remove this line to run on all tasks
---domains book \  # remove this line to run on all domains
---languages en \  # remove this line to run on all languages
---search_top_k 1000 \
---rerank_top_k 100 \
---max_query_length 512 \
---max_passage_length 512 \
---batch_size 512 \
---pooling_method cls \
---normalize_embeddings True \
---use_fp16 True \  # set to False for running on CPUs
---add_instruction False \
---overwrite False
+pip install air-benchmark
 ```
 
-</details>
+## Run evaluations
 
-## Pack up Results
-Run [this script](https://github.com/AIR-Bench/AIR-Bench/tree/main/scripts/README.md#zip_resultspy) to pack up the results into a `.zip` file.
+We provide a set of scripts to run evaluations on AIR-Bench for models that are compatible with different frameworks, such HuggingFace Transformers, Sentence Transformers, etc.
 
-### Submit results without reranking models
+See the [scripts](https://github.com/AIR-Bench/AIR-Bench/blob/main/scripts) to run evaluations on AIR-Bench for your models. If you have a model that is not compatible with the provided scripts, you should implement the evaluation script like the scripts provided.
+
+After running the evaluation, you will get the search results in the `output_dir` that you specified in the evaluation script. The `output_dir` is set to `./search_results` by default. 
+
+For example, if you run the evaluation script for the `bge-m3` retrieval model and the `bge-reranker-v2-m3` reranking model, the file structure of the search results will be like this:
+
+```shell
+search_results/
+├── bge-m3/
+│   ├── NoReranker/
+│   │   ├── qa
+│   │   │   ├── arxiv
+│   │   │   │   ├── en_default.json
+│   │   │   ├── finance
+│   │   │   │   ├── en_default.json
+│   │   │   │   ├── zh_default.json
+│   │   │   │   ...
+│   │   ├── long-doc
+│   │   │   ├── book
+│   │   │   │   ├── en_a-brief-history-of-time_stephen-hawking.json
+│   │   │   │   ├── en_origin-of-species_darwin.json
+│   │   │   │   ...
+│   ├── bge-reranker-v2-m3/
+│   │   ├── qa
+│   │   │   ├── arxiv
+│   │   │   │   ├── en_default.json
+│   │   │   ├── finance
+│   │   │   │   ├── en_default.json
+│   │   │   │   ├── zh_default.json
+│   │   │   │   ...
+│   │   ├── long-doc
+│   │   │   ├── book
+│   │   │   │   ├── en_a-brief-history-of-time_stephen-hawking.json
+│   │   │   │   ├── en_origin-of-species_darwin.json
+│   │   │   │   ...
+```
+
+## Submit search results
+
+### Package the output files
+
+You should package the output files into a `.zip` file before submitting the results to the leaderboard. Use the [zip_results.py](https://github.com/AIR-Bench/AIR-Bench/tree/main/scripts/zip_results.py) script to pack up the results.
+
+- As for the results without reranking models
 
 ```bash
 cd scripts
+
 python zip_results.py \
---results_dir search_results \
---model_name [YOUR_RETRIEVAL_MODEL] \
---save_dir .
+  --results_dir ./search_results \
+  --retriever_name [YOUR_RETRIEVER_NAME] \
+  --save_dir ./search_results
 ```
 
 <details> 
 <summary> Output </summary>
 
+For our example, the output will be like this:
+
 ```shell
 =========================================
 Zipping search results...
-Zip search results in search_results/all-MiniLM-L6-v2/NoReranker to ./all-MiniLM-L6-v2_NoReranker.zip.
+Zip search results in ./search_results/bge-m3/NoReranker to ./search_results/bge-m3_NoReranker.zip.
 
 =========================================
 Success! Now you can upload the zipped search results to https://huggingface.co/spaces/AIR-Bench/leaderboard !
@@ -77,24 +85,27 @@ Success! Now you can upload the zipped search results to https://huggingface.co/
 
 </details>
 
-### Submit results with reranking models
+- As for the results with reranking models
 
 ```bash
 cd scripts
+
 python zip_results.py \
---results_dir search_results \
---model_name [YOUR_RETRIEVAL_MODEL] \
---reranker_name [YOUR_RERANKING_MODEL] \
---save_dir .
+  --results_dir ./search_results \
+  --retriever_name [YOUR_RETRIEVAL_MODEL] \
+  --reranker_name [YOUR_RERANKING_MODEL] \
+  --save_dir ./search_results
 ```
 
 <details> 
 <summary> Output </summary>
 
+For our example, the output will be like this:
+
 ```shell
 =========================================
 Zipping search results...
-Zip search results in search_results/jina-embeddings-v2-small-en/jina-reranker-v1-tiny-en to ./jina-embeddings-v2-small-en_jina-reranker-v1-tiny-en.zip.
+Zip search results in ./search_results/bge-m3/bge-reranker-v2-m3 to ./search_results/bge-m3_bge-reranker-v2-m3.zip.
 
 =========================================
 Success! Now you can upload the zipped search results to https://huggingface.co/spaces/AIR-Bench/leaderboard !
@@ -102,7 +113,8 @@ Success! Now you can upload the zipped search results to https://huggingface.co/
 
 </details>
 
-## Submit Results
+### Submit to Leaderboard
+
 Go to [AIR-Bench leaderboard](https://huggingface.co/spaces/AIR-Bench/leaderboard) and upload the `.zip` file from the previous step at the `Submit here!` tab. Please provide the model name together with a valid URL of the model. 
 
 We recommend to [create a model card on HuggingFace Hub](https://huggingface.co/new) and put your model card URL in the model URL field. So that we could display more details about your model. 

@@ -46,7 +46,7 @@ pip install air-benchmark
 
 ### Evaluations
 
-Refer to the steps below to run evaluations and submit the results to the leaderboard.
+Refer to the steps below to run evaluations and submit the results to the leaderboard (refer to [here](https://github.com/AIR-Bench/AIR-Bench/blob/main/docs/submit_to_leaderboard.md) for more detailed information).
 
 1. Run evaluations
     - See the [scripts](https://github.com/AIR-Bench/AIR-Bench/blob/main/scripts) to run evaluations on AIR-Bench for your models.

@@ -191,7 +191,7 @@ python evaluate_sentence_transformers.py \
 --max_passage_length 512 \
 --batch_size 512 \
 --normalize_embeddings True \
---reranker jinaai/jina-reranker-v1-tiny-en \
+--reranker BAAI/bge-reranker-base \
 --rerank_top_k 100 \
 --batch_size_for_reranking 512 \
 --overwrite False
@@ -211,7 +211,7 @@ python evaluate_sentence_transformers.py \
 --max_passage_length 512 \
 --batch_size 512 \
 --normalize_embeddings True \
---reranker jinaai/jina-reranker-v1-tiny-en \
+--reranker BAAI/bge-reranker-base \
 --rerank_top_k 100 \
 --batch_size_for_reranking 512 \
 --overwrite False

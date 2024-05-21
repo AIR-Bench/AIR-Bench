@@ -136,13 +136,14 @@ class AIRBench:
                         )
         console.rule("[bold red]Evaluation Summary")
         console.print(f"Retriever: {retriever}", style=style_row, justify="center")
-        console.print(f"Reranker: {reranker}", style=style_row, justify="center")
-        console.print(
-            f"Output directory: {output_dir}", style=style_row, justify="center"
-        )
         console.print(
             f"Search Top K: {retriever.search_top_k}", style=style_row, justify="center"
         )
+        if reranker is not None:
+            console.print(f"Reranker: {reranker}", style=style_row, justify="center")
+            console.print(
+                f"Rerank Top K: {reranker.rerank_top_k}", style=style_row, justify="center"
+            )
         console.print(
-            f"Rerank Top K: {reranker.rerank_top_k}", style=style_row, justify="center"
+            f"Output directory: {output_dir}", style=style_row, justify="center"
         )

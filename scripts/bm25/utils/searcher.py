@@ -1,5 +1,6 @@
 import json
 import os
+import shutil
 from typing import Dict, Any
 
 from air_benchmark import Retriever
@@ -124,6 +125,6 @@ class BM25Retriever(Retriever):
         )
 
         if self.remove_bm25_tmp_dir:
-            os.rmdir(self.bm25_tmp_dir)
+            shutil.rmtree(self.bm25_tmp_dir)
 
         return search_results

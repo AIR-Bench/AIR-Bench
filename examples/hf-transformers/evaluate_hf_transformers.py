@@ -19,7 +19,7 @@ python run_air_benchmark.py \
 # Run the tasks in the specified task type, domains, and languages
 python run_air_benchmark.py \
 --task_types qa \
---domains healthcare web \
+--domains finance law \
 --languages en \
 --output_dir ./search_results \
 --encoder BAAI/bge-m3 \
@@ -37,8 +37,7 @@ python run_air_benchmark.py \
 """
 from transformers import HfArgumentParser
 
-from air_benchmark.air_benchmark import AIRBench
-from air_benchmark.evaluation_utils.evaluation_arguments import EvalArgs
+from air_benchmark import EvalArgs, AIRBench
 
 from utils.arguments import ModelArgs
 from utils.models import DRESModel, DRESReranker
@@ -52,17 +51,17 @@ def get_models(model_args: ModelArgs):
         normalize_embeddings=model_args.normalize_embeddings,
         use_fp16=model_args.use_fp16,
         query_instruction_for_retrieval=(
-            model_args.query_instruction_for_retrieval
-            if model_args.add_instruction_for_retrieval
+            model_args.query_instruction
+            if model_args.add_instruction
             else None
         ),
         passage_instruction_for_retrieval=(
-            model_args.passage_instruction_for_retrieval
-            if model_args.add_instruction_for_retrieval
+            model_args.passage_instruction
+            if model_args.add_instruction
             else None
         ),
-        max_query_length=model_args.max_query_length_for_retrieval,
-        max_passage_length=model_args.max_passage_length_for_retrieval,
+        max_query_length=model_args.max_query_length,
+        max_passage_length=model_args.max_passage_length,
         batch_size=model_args.batch_size,
         corpus_batch_size=model_args.corpus_batch_size,
     )

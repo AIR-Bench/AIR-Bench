@@ -12,10 +12,9 @@ python run_air_benchmark.py \
 --overwrite False
 
 # Run the tasks in the specified task type, domains, and languages
-
 python run_air_benchmark.py \
 --task_types qa \
---domains healthcare web \
+--domains finance law \
 --languages en \
 --output_dir ./search_results \
 --encoder sentence-transformers/all-MiniLM-L6-v2 \
@@ -29,8 +28,7 @@ python run_air_benchmark.py \
 """
 from transformers import HfArgumentParser
 
-from air_benchmark.air_benchmark import AIRBench
-from air_benchmark.evaluation_utils.evaluation_arguments import EvalArgs
+from air_benchmark import EvalArgs, AIRBench
 
 from utils.arguments import ModelArgs
 from utils.models import SentenceTransformerEncoder, SentenceTransformerReranker
@@ -41,8 +39,8 @@ def get_models(model_args: ModelArgs):
     embedding_model = SentenceTransformerEncoder(
         model_args.encoder,
         normalize_embeddings=model_args.normalize_embeddings,
-        query_instruction_for_retrieval=model_args.query_instruction_for_retrieval if model_args.add_instruction_for_retrieval else None,
-        passage_instruction_for_retrieval=model_args.passage_instruction_for_retrieval if model_args.add_instruction_for_retrieval else None,
+        query_instruction_for_retrieval=model_args.query_instruction if model_args.add_instruction else None,
+        passage_instruction_for_retrieval=model_args.passage_instruction if model_args.add_instruction else None,
         batch_size=model_args.batch_size,
         corpus_batch_size=model_args.corpus_batch_size
     )

@@ -9,7 +9,7 @@ python run_air_benchmark.py \
 # Run the tasks in the specified task type, domains, and languages
 python run_air_benchmark.py \
 --task_types qa \
---domains healthcare web \
+--domains finance law \
 --languages en \
 --output_dir ./search_results \
 --bm25_tmp_dir ./bm25_tmp_dir \
@@ -18,8 +18,7 @@ python run_air_benchmark.py \
 """
 from transformers import HfArgumentParser
 
-from air_benchmark.air_benchmark import AIRBench
-from air_benchmark.evaluation_utils.evaluation_arguments import EvalArgs
+from air_benchmark import EvalArgs, AIRBench
 
 from utils.searcher import BM25Retriever
 from utils.arguments import BM25Args

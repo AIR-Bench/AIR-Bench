@@ -12,11 +12,11 @@ class ModelArgs:
     normalize_embeddings: bool = field(
         default=True, metadata={"help": "Normalize embeddings or not"}
     )
-    add_instruction_for_retrieval: bool = field(default=False, metadata={"help": "Add instruction for retrieval?"})
-    query_instruction_for_retrieval: str = field(
+    add_instruction: bool = field(default=False, metadata={"help": "Add instruction for retrieval?"})
+    query_instruction: str = field(
         default=None, metadata={"help": "query instruction for retrieval"}
     )
-    passage_instruction_for_retrieval: str = field(
+    passage_instruction: str = field(
         default=None, metadata={"help": "passage instruction for retrieval"}
     )
     batch_size: int = field(default=256, metadata={"help": "Inference batch size for retrieval."})

@@ -2,7 +2,7 @@ import json
 import os
 from typing import Dict, Any
 
-from air_benchmark.evaluation_utils.searcher import Retriever
+from air_benchmark import Retriever
 
 
 class BM25Retriever(Retriever):

@@ -1,14 +1,14 @@
 """
-# Zip "Embedding Model + NoReranker" search results in <search_results>/<model_name>/NoReranker to <save_dir>/<model_name>_NoReranker.zip.
+# Zip "Retrieval Model + NoReranker" search results in <search_results>/<retriever_name>/NoReranker to <save_dir>/<retriever_name>_NoReranker.zip.
 python zip_results.py \
 --results_dir search_results \
---model_name bge-m3 \
+--retriever_name bge-m3 \
 --save_dir search_results/zipped_results
 
-# Zip "Embedding Model + Reranker" search results in <search_results>/<model_name>/<reranker_name> to <save_dir>/<model_name>_<reranker_name>.zip.
+# Zip "Retrieval Model + Reranker" search results in <search_results>/<retriever_name>/<reranker_name> to <save_dir>/<retriever_name>_<reranker_name>.zip.
 python zip_results.py \
 --results_dir search_results \
---model_name bge-m3 \
+--retriever_name bge-m3 \
 --reranker_name bge-reranker-v2-m3 \
 --save_dir search_results/zipped_results
 """
@@ -29,7 +29,7 @@ def get_args():
         help="Path to the search results directory",
     )
     parser.add_argument(
-        "--model_name", type=str, required=True, help="Model name used for the search"
+        "--retriever_name", type=str, required=True, help="Model name used for the search"
     )
     parser.add_argument(
         "--reranker_name",
@@ -64,11 +64,11 @@ def check_results_path(results_path: str):
 def zip_results(
     results_dir: str,
     save_dir: str,
-    model_name: str,
+    retriever_name: str,
     reranker_name: str = "NoReranker",
     overwrite: bool = False,
 ):
-    results_path = os.path.join(results_dir, model_name, reranker_name)
+    results_path = os.path.join(results_dir, retriever_name, reranker_name)
     try:
         check_results_path(results_path)
     except Exception as e:
@@ -76,7 +76,7 @@ def zip_results(
         return False
 
     os.makedirs(save_dir, exist_ok=True)
-    zip_filename = os.path.join(save_dir, f"{model_name}_{reranker_name}.zip")
+    zip_filename = os.path.join(save_dir, f"{retriever_name}_{reranker_name}.zip")
     if os.path.exists(zip_filename) and not overwrite:
         print(f"Zipped file {zip_filename} already exists.\n")
         return False
@@ -103,7 +103,7 @@ def main():
     success = zip_results(
         args.results_dir,
         args.save_dir,
-        args.model_name,
+        args.retriever_name,
         reranker_name=args.reranker_name,
         overwrite=args.overwrite,
     )

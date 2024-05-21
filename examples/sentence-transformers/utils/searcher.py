@@ -1,6 +1,7 @@
-from air_benchmark.evaluation_utils.searcher import Retriever, Reranker
 from mteb.evaluation.evaluators import RetrievalEvaluator
 from typing import Any, Dict
+
+from air_benchmark import Retriever, Reranker
 
 from utils.models import SentenceTransformerEncoder, SentenceTransformerReranker
 

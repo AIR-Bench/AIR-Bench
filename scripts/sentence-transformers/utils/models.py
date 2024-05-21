@@ -10,18 +10,19 @@ class SentenceTransformerEncoder:
         normalize_embeddings: bool = True,
         query_instruction_for_retrieval: Optional[str] = None,
         passage_instruction_for_retrieval: Optional[str] = None,
+        max_query_length: int = 512,
+        max_passage_length: int = 8192,
         batch_size: int = 256,
         corpus_batch_size: int = 0,
         **kwargs
     ):
         self.name = os.path.basename(model_name_or_path)
 
-        self.model = SentenceTransformer(
-            model_name_or_path,
-            trust_remote_code=True if 'jina' in model_name_or_path else False,
-        )
+        self.model = SentenceTransformer(model_name_or_path)
         self.query_instruction_for_retrieval = query_instruction_for_retrieval
         self.passage_instruction_for_retrieval = passage_instruction_for_retrieval
+        self.max_query_length = max_query_length
+        self.max_passage_length = max_passage_length
         self.normalize_embeddings = normalize_embeddings
         self.batch_size = batch_size
         self.corpus_batch_size = (
@@ -35,6 +36,7 @@ class SentenceTransformerEncoder:
                 "{} {}".format(doc.get("title", ""), doc.get("text", "")).strip()
                 for doc in corpus
             ]
+        self.model.max_seq_length = self.max_passage_length
         return self.model.encode(
             input_texts,
             prompt=self.passage_instruction_for_retrieval,
@@ -46,6 +48,7 @@ class SentenceTransformerEncoder:
         input_texts = queries
         if isinstance(queries[0], dict):
             input_texts = [doc.get("text", "").strip() for doc in queries]
+        self.model.max_seq_length = self.max_query_length
         return self.model.encode(
             input_texts,
             prompt=self.query_instruction_for_retrieval,
@@ -65,12 +68,12 @@ class SentenceTransformerReranker:
         batch_size: int = 256,
         **kwargs
     ):
-        self.name = os.path.basename(model_name_or_path, **kwargs)
+        self.name = os.path.basename(model_name_or_path)
         
         self.model = CrossEncoder(
-            model_name_or_path, 
-            trust_remote_code=True if 'jina' in model_name_or_path else False,
-            max_length=max_length
+            model_name_or_path,
+            max_length=max_length,
+            **kwargs
         )
         self.batch_size = batch_size
 

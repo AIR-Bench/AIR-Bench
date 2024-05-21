@@ -40,7 +40,7 @@ class OpenAIEmbeddingModel:
 
 
 class OpenAIEmbeddingModelRetriever(Retriever):
-    def __init__(self, openai_embedding_model: str, search_top_k: int = 1000, **kwargs):
+    def __init__(self, openai_embedding_model: OpenAIEmbeddingModel, search_top_k: int = 1000, **kwargs):
         self.openai_embedding_model = openai_embedding_model
         super().__init__(search_top_k)
         self.retriever = RetrievalEvaluator(

@@ -185,6 +185,8 @@ python evaluate_sentence_transformers.py \
 --output_dir ./search_results \
 --encoder sentence-transformers/all-MiniLM-L6-v2 \
 --search_top_k 1000 \
+--max_query_length 512 \
+--max_passage_length 512 \
 --batch_size 512 \
 --normalize_embeddings True \
 --reranker jinaai/jina-reranker-v1-tiny-en \
@@ -203,6 +205,8 @@ python evaluate_sentence_transformers.py \
 --output_dir ./search_results \
 --encoder sentence-transformers/all-MiniLM-L6-v2 \
 --search_top_k 1000 \
+--max_query_length 512 \
+--max_passage_length 512 \
 --batch_size 512 \
 --normalize_embeddings True \
 --reranker jinaai/jina-reranker-v1-tiny-en \

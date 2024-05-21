@@ -10,6 +10,8 @@ python evaluate_sentence_transformers.py \
 --output_dir ./search_results \
 --encoder sentence-transformers/all-MiniLM-L6-v2 \
 --search_top_k 1000 \
+--max_query_length 512 \
+--max_passage_length 512 \
 --batch_size 512 \
 --normalize_embeddings True \
 --reranker jinaai/jina-reranker-v1-tiny-en \
@@ -25,6 +27,8 @@ python evaluate_sentence_transformers.py \
 --output_dir ./search_results \
 --encoder sentence-transformers/all-MiniLM-L6-v2 \
 --search_top_k 1000 \
+--max_query_length 512 \
+--max_passage_length 512 \
 --batch_size 512 \
 --normalize_embeddings True \
 --reranker jinaai/jina-reranker-v1-tiny-en \
@@ -47,6 +51,8 @@ def get_models(model_args: ModelArgs):
         normalize_embeddings=model_args.normalize_embeddings,
         query_instruction_for_retrieval=model_args.query_instruction if model_args.add_instruction else None,
         passage_instruction_for_retrieval=model_args.passage_instruction if model_args.add_instruction else None,
+        max_query_length=model_args.max_query_length,
+        max_passage_length=model_args.max_passage_length,
         batch_size=model_args.batch_size,
         corpus_batch_size=model_args.corpus_batch_size
     )

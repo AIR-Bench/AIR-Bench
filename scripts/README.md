@@ -113,7 +113,7 @@ evaluation.run(
 
 ### HuggingFace Transformers
 
-As for models that are compatible with the [HuggingFace Transformers](https://huggingface.co/docs/transformers/index), you can use the scripts at [hf-transformers](https://github.com/AIR-Bench/AIR-Bench/blob/main/examples/hf-transformers/evaluate_hf_transformers.py) to evaluate the models on AIR-Bench.
+As for models that are compatible with the [HuggingFace Transformers](https://huggingface.co/docs/transformers/index), you can use the scripts at [hf-transformers](https://github.com/AIR-Bench/AIR-Bench/blob/main/scripts/hf-transformers/evaluate_hf_transformers.py) to evaluate the models on AIR-Bench.
 
 ```bash
 pip install mteb transformers
@@ -172,7 +172,7 @@ python evaluate_hf_transformers.py \
 
 ### Sentence Transformers
 
-As for models that are compatible with [SentenceTransformers](https://sbert.net/), you can use the scripts at [sentence-transformers](https://github.com/AIR-Bench/AIR-Bench/blob/main/examples/hf-transformers/evaluate_sentence_transformers.py) to evaluate the models on AIR-Bench.
+As for models that are compatible with [SentenceTransformers](https://sbert.net/), you can use the scripts at [sentence-transformers](https://github.com/AIR-Bench/AIR-Bench/blob/main/scripts/hf-transformers/evaluate_sentence_transformers.py) to evaluate the models on AIR-Bench.
 
 ```bash
 pip install mteb transformers sentence-transformers
@@ -226,7 +226,7 @@ python evaluate_sentence_transformers.py \
 
 ### BM25
 
-As for the BM25 method implemented in [Pyserini](https://github.com/castorini/pyserini), you can use the scripts at [bm25](https://github.com/AIR-Bench/AIR-Bench/blob/main/examples/hf-transformers/evaluate_bm25.py) to evaluate the BM25 method on AIR-Bench.
+As for the BM25 method implemented in [Pyserini](https://github.com/castorini/pyserini), you can use the scripts at [bm25](https://github.com/AIR-Bench/AIR-Bench/blob/main/scripts/bm25/evaluate_bm25.py) to evaluate the BM25 method on AIR-Bench.
 
 ```bash
 pip install pyserini transformers

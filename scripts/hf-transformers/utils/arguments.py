@@ -52,3 +52,8 @@ class ModelArgs:
     batch_size_for_reranking: int = field(default=256, metadata={"help": "Inference batch size for reranking."})
 
     use_fp16: bool = field(default=True, metadata={"help": "Use fp16 for retrieval and reranking."})
+
+    corpus_chunk_size: int = field(
+        default=50000,
+        metadata={"help": "Chunk size for encoding corpus."}
+    )

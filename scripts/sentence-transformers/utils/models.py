@@ -41,7 +41,8 @@ class SentenceTransformerEncoder:
             input_texts,
             prompt=self.passage_instruction_for_retrieval,
             batch_size=self.corpus_batch_size,
-            normalize_embeddings=self.normalize_embeddings
+            normalize_embeddings=self.normalize_embeddings,
+            show_progress_bar=True,
         )
 
     def encode_queries(self, queries, **kwargs):
@@ -53,7 +54,8 @@ class SentenceTransformerEncoder:
             input_texts,
             prompt=self.query_instruction_for_retrieval,
             batch_size=self.batch_size,
-            normalize_embeddings=self.normalize_embeddings
+            normalize_embeddings=self.normalize_embeddings,
+            show_progress_bar=True,
         )
 
     def __str__(self):

@@ -39,3 +39,8 @@ class ModelArgs:
     )
     max_length_for_reranking: int = field(default=512, metadata={"help": "Max length for reranking."})
     batch_size_for_reranking: int = field(default=256, metadata={"help": "Inference batch size for reranking."})
+
+    corpus_chunk_size: int = field(
+        default=50000,
+        metadata={"help": "Chunk size for encoding corpus."}
+    )

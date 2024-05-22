@@ -140,6 +140,7 @@ python evaluate_hf_transformers.py \
 --max_length_for_reranking 512 \
 --batch_size_for_reranking 512 \
 --use_fp16 True \
+--corpus_chunk_size 50000 \     # set to 10M if you have enough memory and want to avoid multiple tqdm bars
 --overwrite False
 ```
 
@@ -162,6 +163,7 @@ python evaluate_hf_transformers.py \
 --rerank_top_k 100 \
 --batch_size_for_reranking 512 \
 --use_fp16 True \
+--corpus_chunk_size 50000 \     # set to 10M if you have enough memory and want to avoid multiple tqdm bars
 --overwrite False
 ```
 
@@ -194,6 +196,7 @@ python evaluate_sentence_transformers.py \
 --reranker BAAI/bge-reranker-base \
 --rerank_top_k 100 \
 --batch_size_for_reranking 512 \
+--corpus_chunk_size 50000 \     # set to 10M if you have enough memory and want to avoid multiple tqdm bars
 --overwrite False
 ```
 
@@ -214,6 +217,7 @@ python evaluate_sentence_transformers.py \
 --reranker BAAI/bge-reranker-base \
 --rerank_top_k 100 \
 --batch_size_for_reranking 512 \
+--corpus_chunk_size 50000 \     # set to 10M if you have enough memory and want to avoid multiple tqdm bars
 --overwrite False
 ```
 

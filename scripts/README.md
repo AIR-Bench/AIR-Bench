@@ -95,9 +95,9 @@ reranker = MyReranker(rerank_top_k=100)
 
 evaluation = AIRBench(
     benchmark_version="AIR-Bench_24.04",
-    task_types="long-doc",      # remove this line if you want to evaluate on all tasks
-    domains="arxiv",            # remove this line if you want to evaluate on all domains
-    languages="en",             # remove this line if you want to evaluate on all languages
+    task_types=["long-doc"],    # remove this line if you want to evaluate on all task types
+    domains=["arxiv"],          # remove this line if you want to evaluate on all domains
+    languages=["en"],           # remove this line if you want to evaluate on all languages
     cache_dir="<CACHE_DIR>"     # path to the cache directory (**NEED ~52GB FOR FULL BENCHMARK**)
 )
 

@@ -95,6 +95,8 @@ def check_task_types(task_types: Optional[List[str]]) -> List[str]:
     if task_types is None:
         task_types = available_task_types
     else:
+        if isinstance(task_types, str):
+            task_types = [task_types]
         task_types = list(set(task_types))
         task_types = [task_type.lower() for task_type in task_types]
         for task_type in task_types:
@@ -110,6 +112,8 @@ def check_domains(domains: Optional[List[str]]) -> List[str]:
     if domains is None:
         domains = available_domains
     else:
+        if isinstance(domains, str):
+            domains = [domains]
         domains = list(set(domains))
         domains = [domain.lower() for domain in domains]
         for domain in domains:
@@ -125,6 +129,8 @@ def check_languages(languages: Optional[List[str]]) -> List[str]:
     if languages is None:
         languages = available_languages
     else:
+        if isinstance(languages, str):
+            languages = [languages]
         languages = list(set(languages))
         languages = [language.lower() for language in languages]
         for language in languages:

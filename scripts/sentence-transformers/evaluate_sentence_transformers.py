@@ -56,7 +56,8 @@ def get_models(model_args: ModelArgs):
         max_query_length=model_args.max_query_length,
         max_passage_length=model_args.max_passage_length,
         batch_size=model_args.batch_size,
-        corpus_batch_size=model_args.corpus_batch_size
+        corpus_batch_size=model_args.corpus_batch_size,
+        trust_remote_code=model_args.trust_remote_code,
     )
     cross_encoder = None
     if model_args.reranker is not None:
@@ -64,6 +65,7 @@ def get_models(model_args: ModelArgs):
             model_args.reranker,
             max_length=model_args.max_length_for_reranking,
             batch_size=model_args.batch_size_for_reranking,
+            trust_remote_code=model_args.reranker_trust_remote_code,
         )
     return embedding_model, cross_encoder
 

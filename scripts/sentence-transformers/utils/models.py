@@ -18,7 +18,7 @@ class SentenceTransformerEncoder:
     ):
         self.name = os.path.basename(model_name_or_path)
 
-        self.model = SentenceTransformer(model_name_or_path)
+        self.model = SentenceTransformer(model_name_or_path, **kwargs)
         self.query_instruction_for_retrieval = query_instruction_for_retrieval
         self.passage_instruction_for_retrieval = passage_instruction_for_retrieval
         self.max_query_length = max_query_length

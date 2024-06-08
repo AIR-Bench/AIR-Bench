@@ -34,6 +34,10 @@ class ModelArgs:
             "help": "Inference batch size for corpus. If 0, then use `batch_size`."
         },
     )
+    trust_remote_code: bool = field(
+        default=False,
+        metadata={"help": "Trust remote code or not."},
+    )
     
     reranker: str = field(
         default=None,

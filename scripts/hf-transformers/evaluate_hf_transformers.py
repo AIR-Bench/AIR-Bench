@@ -71,6 +71,7 @@ def get_models(model_args: ModelArgs):
         max_passage_length=model_args.max_passage_length,
         batch_size=model_args.batch_size,
         corpus_batch_size=model_args.corpus_batch_size,
+        trust_remote_code=model_args.trust_remote_code,
     )
     cross_encoder = None
     if model_args.reranker is not None:

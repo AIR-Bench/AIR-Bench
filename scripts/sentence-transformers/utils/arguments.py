@@ -30,6 +30,10 @@ class ModelArgs:
             "help": "Inference batch size for corpus. If 0, then use `batch_size`."
         },
     )
+    trust_remote_code: bool = field(
+        default=False,
+        metadata={"help": "Trust remote code or not."},
+    )
     
     reranker: str = field(
         default=None,
@@ -39,6 +43,10 @@ class ModelArgs:
     )
     max_length_for_reranking: int = field(default=512, metadata={"help": "Max length for reranking."})
     batch_size_for_reranking: int = field(default=256, metadata={"help": "Inference batch size for reranking."})
+    reranker_trust_remote_code: bool = field(
+        default=False,
+        metadata={"help": "Trust remote code or not for reranker."},
+    )
 
     corpus_chunk_size: int = field(
         default=50000,

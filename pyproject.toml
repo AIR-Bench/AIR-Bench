@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "air-benchmark"
-version = "0.0.2"
+version = "0.0.4"
 description = "AIR-Bench: Automated Heterogeneous Information Retrieval Benchmark"
 readme = "README.md"
 authors = [{ name = "BAAI", email = "zhengliu1026@gmail.com" }, { name = "Jina AI", email = "research@jina.ai" }]
@@ -22,6 +22,7 @@ keywords = ["embedding", "benchmark", "air-bench", "reranker", "information retr
 dependencies = [
     "datasets>=2.19.0",
     "rich>=13.7.1",
+    "mteb>=1.14.15",
 ]
 requires-python = ">=3.8"
 

@@ -1,6 +1,7 @@
 import json
 import os
 import shutil
+import random
 from typing import Dict, Any
 
 from air_benchmark import Retriever
@@ -58,7 +59,7 @@ class BM25Retriever(Retriever):
         ]
         with open(queries_save_path, "w", encoding="utf-8") as f:
             for query in queries_list:
-                assert "\n" not in query["id"] and "\t" not in query["id"]
+                assert "\n" not in query["content"] and "\t" not in query["content"]
                 line = f"{query['id']}\t{query['content']}"
                 f.write(line + "\n")
 
@@ -96,6 +97,26 @@ class BM25Retriever(Retriever):
                     search_results[qid][docid] = float(score)
         return search_results
 
+    def _fill_empty_search_results(
+        self,
+        search_results: Dict[str, Dict[str, float]],
+        queries: Dict[str, str],
+        corpus: Dict[str, Dict[str, Any]],
+    ):
+        """Randomly fill empty search results with 0.0 score."""
+        random.seed(42)
+        random_docid = random.sample(list(corpus.keys()), min(self.search_top_k, len(corpus)))
+        count = 0
+        for qid in queries:
+            if qid not in search_results:
+                count += 1
+                search_results[qid] = {
+                    docid: 0.0
+                    for docid in random_docid
+                }
+        print(f"Warning: {count} queries have empty search results.")
+        return search_results
+
     def __call__(
         self,
         corpus: Dict[str, Dict[str, Any]],
@@ -123,6 +144,9 @@ class BM25Retriever(Retriever):
         search_results = self._bm25_load_search_results(
             search_results_save_path, self.search_top_k
         )
+
+        # Top-k retrieval from bm25 maybe empty: https://github.com/castorini/pyserini/discussions/1252
+        search_results = self._fill_empty_search_results(search_results, queries, corpus)
 
         if self.remove_bm25_tmp_dir:
             shutil.rmtree(self.bm25_tmp_dir)

@@ -1,5 +1,5 @@
+import os
 import logging
-
 import datasets
 
 logger = logging.getLogger(__name__)
@@ -31,3 +31,22 @@ class DataLoader:
         corpus = datasets.DatasetDict(corpus)
         queries = datasets.DatasetDict(queries)
         return corpus, queries
+
+    def load_qrels(self, task_type: str, domain: str, language: str, task_name: str):
+        task_name = task_name.replace('-', '_')
+        qrels_data = datasets.load_dataset(
+            f'AIR-Bench/qrels-{task_type}_{domain}_{language}',
+            self.benchmark_version,
+            split=f"qrels_{task_name}",
+            cache_dir=self.cache_dir,
+            token=os.getenv('HF_TOKEN', None),
+        )
+        
+        qrels = {}
+        for data in qrels_data:
+            qid = data['qid']
+            if qid not in qrels:
+                qrels[qid] = {}
+            qrels[qid][data['docid']] = data['relevance']
+        
+        return datasets.DatasetDict(qrels)

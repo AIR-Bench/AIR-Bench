@@ -290,6 +290,9 @@ class Evaluator:
                     if 'dataset_name' not in data_info:
                         data_info['dataset_name'] = data_info['task_name']     # To be compatible with the AIR-Bench_24.04 version
                     
+                    _benchmark_version = data_info['benchmark_version']
+                    assert _benchmark_version == self.benchmark_version, f'Mismatch benchmark_version: {_benchmark_version} vs {self.benchmark_version} in {file_path}'
+                    
                     _split = data_info.get('split', 'test')     # To be compatible with the AIR-Bench_24.04 version
                     _task_type = data_info['task_type']
                     _domain = data_info['domain']

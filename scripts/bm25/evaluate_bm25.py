@@ -21,16 +21,16 @@ from transformers import HfArgumentParser
 from air_benchmark import EvalArgs, AIRBench
 
 from utils.searcher import BM25Retriever
-from utils.arguments import BM25Args, RerankerArgs
+from utils.arguments import BM25Args, ModelArgs
 from utils.models import Reranker
 
 
 def main():
-    parser = HfArgumentParser([BM25Args, EvalArgs, RerankerArgs])
-    bm25_args, eval_args, reranker_args = parser.parse_args_into_dataclasses()
+    parser = HfArgumentParser([BM25Args, EvalArgs, ModelArgs])
+    bm25_args, eval_args, model_args = parser.parse_args_into_dataclasses()
     bm25_args: BM25Args
     eval_args: EvalArgs
-    reranker_args: RerankerArgs
+    model_args: ModelArgs
     
     evaluation = AIRBench(
         benchmark_version=eval_args.benchmark_version,
@@ -48,13 +48,13 @@ def main():
     )
     
     reranker = Reranker(
-        reranker_args.model_name_or_path,
-        use_fp16=reranker_args.use_fp16,
-        query_instruction_for_reranking=reranker_args.query_instruction_for_reranking,
-        passage_instruction_for_reranking=reranker_args.passage_instruction_for_reranking,
-        max_length=reranker_args.max_length,
-        batch_size=reranker_args.batch_size,
-        trust_remote_code=reranker_args.trust_remote_code,
+        model_args.reranker,
+        use_fp16=model_args.use_fp16,
+        query_instruction_for_reranking=model_args.query_instruction_for_reranking,
+        passage_instruction_for_reranking=model_args.passage_instruction_for_reranking,
+        max_length=model_args.max_length,
+        batch_size=model_args.batch_size,
+        trust_remote_code=model_args.trust_remote_code,
     )
     
     evaluation.run(

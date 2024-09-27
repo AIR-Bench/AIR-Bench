@@ -13,8 +13,8 @@ class BM25Args:
 
 
 @dataclass
-class RerankerArgs:
-    model_name_or_path: str = field(
+class ModelArgs:
+    reranker: str = field(
         default=None,
         metadata={
             "help": 'One or more reranker name or path. For example, "BAAI/bge-reranker-v2-m3" or "path/to/reranker".',

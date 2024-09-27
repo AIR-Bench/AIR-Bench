@@ -29,12 +29,23 @@ Evaluation is crucial for the development of information retrieval models. In re
 - 🔍 **Retrieval and RAG-oriented**. The new benchmark is dedicated to the evaluation of retrieval performance. In addition to the typical evaluation scenarios, like open-domain question answering or paraphrase retrieval, the new benchmark also incorporates a new setting called inner-document retrieval which is closely related with today's LLM and RAG applications. In this new setting, the model is expected to retrieve the relevant chunks of a very long documents, which contain the critical information to answer the input question. 
 - 🔄 **Heterogeneous and Dynamic**. The testing data is generated w.r.t. diverse and constantly augmented domains and languages (i.e. Multi-domain, Multi-lingual). As a result, it is able to provide an increasingly comprehensive evaluation benchmark for the community developers.
 
+## ☁️ Versions
+
+We plan to release new test datasets on regular basis. The latest version of is `AIR-Bench_24.05`.
+
+|      Version      | Release Date | # of domains | # of languages | # of datasets |                           Details                            |
+| `AIR-Bench_24.05` | Sep 27, 2024 |      9       |       13       |      69       | [here](https://github.com/AIR-Bench/AIR-Bench/blob/main/air_benchmark/tasks/v24_05) |
+| :---------------: | :----------: | :----------: | :------------: | :-----------: | :----------------------------------------------------------: |
+| `AIR-Bench_24.04` | May 21, 2024 |      8       |       2        |      28       | [here](https://github.com/AIR-Bench/AIR-Bench/blob/main/air_benchmark/tasks/v24_04) |
+
+For the differences between different versions, please refer to [here](https://github.com/AIR-Bench/AIR-Bench/blob/main/docs/available_tasks.md).
+
 ## ☁️ Results
 
-We plan to release new test dataset on regular basis. The latest version of is `24.04`. You could check out the results at
-[AIR-Bench Leaderboard](https://huggingface.co/spaces/AIR-Bench/leaderboard).
+You could check out the results at
+[AIR-Bench Leaderboard](https://huggingface.co/spaces/AIR-Bench/leaderboard). Detailed results are available in [eval_results](https://huggingface.co/datasets/AIR-Bench/eval_results).
 
-Detailed results are available [here](https://github.com/AIR-Bench/AIR-Bench/blob/main/docs/available_evaluation_results.md).
+Some analysis results are available [here](https://github.com/AIR-Bench/AIR-Bench/blob/main/docs/available_analysis_results.md). *The technical report is coming soon*. Please stay tuned for updates!
 
 ## ☁️ Usage
 ### Installation
@@ -51,7 +62,7 @@ Refer to the steps below to run evaluations and submit the results to the leader
 1. Run evaluations
     - See the [scripts](https://github.com/AIR-Bench/AIR-Bench/blob/main/scripts) to run evaluations on AIR-Bench for your models.
 
-2. Submit search results
+2. Submit search results (*Only for test set*)
     - Package the output files
       - As for the results without reranking models,
 
@@ -92,4 +103,5 @@ This work is inspired by [MTEB](https://github.com/embeddings-benchmark/mteb) an
 
 
 ## ☁️ Citing
-TBD
+
+*The technical report is coming soon*. Please stay tuned for updates!

@@ -114,7 +114,9 @@ evaluation.run(
 
 ### 5. Compute Metrics for dev set (Optional)
 
-For the test set, we keep the gold labels private and you should submit your results to the [leaderboard](https://huggingface.co/spaces/AIR-Bench/leaderboard) to compute the metrics. However, you can compute the metrics for the dev set using the following code.
+> **Note**: *Versions that support this feature include `AIR-Bench_24.05` and later versions*.
+
+For the test set, we keep the gold labels private and you can refer to [here] to submit your results to the [leaderboard](https://huggingface.co/spaces/AIR-Bench/leaderboard) to compute the metrics. However, you can compute the metrics for the dev set using the following code.
 
 ```bash
 cd scripts

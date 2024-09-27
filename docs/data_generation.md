@@ -18,8 +18,9 @@ As AIR-Bench focuses on the retrieval and RAG benchmarks, we include two tasks.
 ### Domain & Language
 AIR-Bench is targeting at automatically generating testing data without human intervention. Therefore, it is able to instantly support the evaluation of new domains at a very small cost with the help of LLMs.
 
-As for the initial version `AIR-Bench_24.04`, we've covered 8 domains (including Wiki, Web, Healthcare, Law, Arxiv, News, Finance, Book) and 2 languages (including English and Chinese). 
+As for the initial version `AIR-Bench_24.04`, we’ve covered 8 domains (including Wiki, Web, Healthcare, Law, Arxiv, News, Finance, Book) and 2 languages (including English and Chinese). There are 28 datasets in total.
 
+As for the latest version `AIR-Bench_24.05`, we’ve covered 9 domains (including Wiki, Web, Healthcare, Law, Arxiv, News, Finance, Book, Science) and 13 languages (including English, Chinese, Spanish, French, German, Russian, Japanese, Korean, Arabic, Persian, Indonesian, Hindi, Bengali). There are 69 datasets in total.
 
 ### Pipeline
 
@@ -98,7 +99,7 @@ To verify the preference of AIR-Bench is aligned with the human, we compared the
 | BM25                             | 26.211      | 17               | 34.155            | 17     |
 
 
-**Consistency Analysis**: `correlation = 0.8211` and `p_value = 5e-5` indicate that the generated dataset maintains good consistency with the original dataset.
+**Consistency Analysis**: The Spearman's rank correlation coefficient is 0.8211 with `p_value = 5e-5`, which indicates that the generated dataset is highly consistent with the original dataset.
 
 ```python
 from scipy.stats import spearmanr

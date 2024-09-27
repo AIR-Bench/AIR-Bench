@@ -7,6 +7,7 @@ from .tasks import (
     check_splits,
     get_dataset_name_list,
     get_task_splits,
+    LATEST_BENCHMARK_VERSION
 )
 
 __all__ = [
@@ -18,4 +19,5 @@ __all__ = [
     "check_splits",
     "get_dataset_name_list",
     "get_task_splits",
+    "LATEST_BENCHMARK_VERSION",
 ]

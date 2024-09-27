@@ -4,10 +4,10 @@ import os
 import json
 import pandas as pd
 from typing import Dict, Optional, List, Union
-from mteb.evaluation.evaluators import RetrievalEvaluator
 
 from air_benchmark.evaluation_utils.data_loader import DataLoader
 from air_benchmark.evaluation_utils.searcher import Retriever, Reranker
+from air_benchmark.evaluation_utils.utils import evaluate_metrics, evaluate_mrr
 
 logger = logging.getLogger(__name__)
 
@@ -246,13 +246,13 @@ class Evaluator:
         search_results: Dict[str, Dict[str, float]],
         k_values: List[int],
     ):
-        ndcg, _map, recall, precision, _ = RetrievalEvaluator.evaluate(
+        ndcg, _map, recall, precision = evaluate_metrics(
             qrels=qrels,
             results=search_results,
             k_values=k_values,
             ignore_identical_ids=True,
         )
-        mrr, _ = RetrievalEvaluator.evaluate_custom(
+        mrr = evaluate_mrr(
             qrels=qrels,
             results=search_results,
             k_values=k_values,

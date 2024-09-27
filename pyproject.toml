@@ -22,7 +22,7 @@ keywords = ["embedding", "benchmark", "air-bench", "reranker", "information retr
 dependencies = [
     "datasets>=2.19.0",
     "rich>=13.7.1",
-    "mteb>=1.14.15",
+    "pytrec_eval",
 ]
 requires-python = ">=3.8"
 

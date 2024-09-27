@@ -5,6 +5,8 @@
   - [HuggingFace Transformers](#huggingface-transformers)
   - [Sentence Transformers](#sentence-transformers)
   - [BM25](#bm25)
+    - [BM25 Retrieval](#bm25-retrieval)
+    - [BM25-based Reranking](#bm25-based-reranking)
 
 
 This document shows how to evaluate the performance of a model on AIR-Bench using the provided evaluation scripts.
@@ -94,11 +96,12 @@ retriever = MyRetriever(search_top_k=1000)
 reranker = MyReranker(rerank_top_k=100)
 
 evaluation = AIRBench(
-    benchmark_version="AIR-Bench_24.04",
+    benchmark_version="AIR-Bench_24.05",
     task_types=["long-doc"],    # remove this line if you want to evaluate on all task types
     domains=["arxiv"],          # remove this line if you want to evaluate on all domains
     languages=["en"],           # remove this line if you want to evaluate on all languages
-    cache_dir="<CACHE_DIR>"     # path to the cache directory (**NEED ~52GB FOR FULL BENCHMARK**)
+    splits=["test"],            # remove this line if you want to evaluate on all splits
+    cache_dir="<CACHE_DIR>"     # path to the cache directory (**NEED ~103GB FOR FULL 24.05 BENCHMARK**)
 )
 
 evaluation.run(
@@ -107,6 +110,22 @@ evaluation.run(
     output_dir="<OUTPUT_DIR>"   # path to the output directory, default is "./search_results"
     overwrite=False             # set to True if you want to overwrite the existing results
 )
+```
+
+### 5. Compute Metrics for dev set (Optional)
+
+For the test set, we keep the gold labels private and you should submit your results to the [leaderboard](https://huggingface.co/spaces/AIR-Bench/leaderboard) to compute the metrics. However, you can compute the metrics for the dev set using the following code.
+
+```bash
+cd scripts
+
+python eval_dev_results.py \
+--benchmark_version AIR-Bench_24.05 \
+--search_results_save_dir ./hf-transformers/search_results \
+--cache_dir ~/.cache \
+--output_method markdown \
+--output_path ./24.05_eval_dev_results.md \
+--metrics ndcg_at_10 recall_at_10
 ```
 
 ## Available Scripts
@@ -226,6 +245,8 @@ python evaluate_sentence_transformers.py \
 
 ### BM25
 
+#### BM25 Retrieval
+
 As for the BM25 method implemented in [Pyserini](https://github.com/castorini/pyserini), you can use the scripts at [bm25](https://github.com/AIR-Bench/AIR-Bench/blob/main/scripts/bm25/evaluate_bm25.py) to evaluate the BM25 method on AIR-Bench.
 
 ```bash
@@ -256,6 +277,53 @@ python evaluate_bm25.py \
 --output_dir ./search_results \
 --bm25_tmp_dir ./bm25_tmp_dir \
 --remove_bm25_tmp_dir True \
+--overwrite False
+```
+
+</details>
+
+#### BM25-based Reranking
+
+As for the BM25-based reranking method, you can use the scripts at [bm25](https://github.com/AIR-Bench/AIR-Bench/blob/main/scripts/bm25/evaluate_bm25.py) to evaluate the BM25-based reranking method on AIR-Bench.
+
+```bash
+pip install pyserini transformers
+
+cd scripts/bm25
+```
+
+<details><summary>click to see details</summary>
+
+- Run all tasks:
+
+```bash
+python evaluate_bm25.py \
+--output_dir ./search_results \
+--bm25_tmp_dir ./bm25_tmp_dir \
+--remove_bm25_tmp_dir True \
+--reranker BAAI/bge-reranker-base \
+--rerank_top_k 100 \
+--batch_size 512 \
+--max_length 512 \
+--use_fp16 True \
+--overwrite False
+```
+
+- Run the tasks in the specified task type, domains, and languages:
+
+```bash
+python evaluate_bm25.py \
+--task_types qa \
+--domains finance law \
+--languages en \
+--output_dir ./search_results \
+--bm25_tmp_dir ./bm25_tmp_dir \
+--remove_bm25_tmp_dir True \
+--reranker BAAI/bge-reranker-base \
+--rerank_top_k 100 \
+--batch_size 512 \
+--max_length 512 \
+--use_fp16 True \
 --overwrite False
 ```
 

@@ -112,11 +112,11 @@ class AIRBench:
         self.check_retriever(retriever)
         if reranker is not None:
             self.check_reranker(reranker)
-        
+
         console.print(f"Benchmark Dataset Version: {self.benchmark_version}", style=style_head, justify="center")
-        
+
         evaluator = Evaluator(self.data_loader, overwrite=overwrite)
-        
+
         for task_type in self.task_types:
             for domain in self.domains:
                 for language in self.languages:
@@ -128,7 +128,7 @@ class AIRBench:
                             f"No task found for {task_type} in {domain} domain with {language} language, Benchmark version: {self.benchmark_version}. Skipping..."
                         )
                         continue
-                    
+
                     for dataset_name in dataset_name_list:
                         task_splits = get_task_splits(
                             self.benchmark_version, task_type, domain, language, dataset_name
@@ -139,13 +139,13 @@ class AIRBench:
                                 f"Not found {self.splits} splits for {task_type}/{domain}/{language}/{dataset_name} dataset, Benchmark version: {self.benchmark_version}. Skipping..."
                             )
                             continue
-                        
+
                         console.print(
                             f"Task Type: {task_type} | Domain: {domain} | Language: {language} | Dataset Name: {dataset_name} | Splits: {splits}",
                             style=style_head,
                             justify="center",
                         )
-                        
+
                         evaluator(
                             task_type=task_type,
                             domain=domain,
@@ -183,7 +183,7 @@ class AIRBench:
     ):
         data_loader = DataLoader(benchmark_version, cache_dir=cache_dir)
         evaluator = Evaluator(data_loader)
-        
+
         eval_results_dict = {}
         for model_name in sorted(os.listdir(search_results_save_dir)):
             model_search_results_save_dir = os.path.join(search_results_save_dir, model_name)
@@ -201,7 +201,7 @@ class AIRBench:
                 if model_name not in eval_results_dict:
                     eval_results_dict[model_name] = {}
                 eval_results_dict[model_name][reranker_name] = eval_results
-        
+
         if output_method == "json":
             Evaluator.output_eval_results_to_json(eval_results_dict, output_path)
         elif output_method == "markdown":

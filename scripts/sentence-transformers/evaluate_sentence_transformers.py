@@ -83,6 +83,7 @@ def main():
         task_types=eval_args.task_types,
         domains=eval_args.domains,
         languages=eval_args.languages,
+        splits=eval_args.splits,
         cache_dir=eval_args.cache_dir,
     )
     

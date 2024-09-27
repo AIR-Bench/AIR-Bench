@@ -3,10 +3,13 @@ import logging
 from typing import List, Optional, Union
 
 from air_benchmark.console import console, style_head, style_row
-from air_benchmark.evaluation_utils.data_loader import DataLoader
-from air_benchmark.evaluation_utils.evaluator import Evaluator
-from air_benchmark.evaluation_utils.searcher import Retriever, Reranker
-from air_benchmark.tasks.tasks import (
+from air_benchmark.evaluation_utils import (
+    DataLoader,
+    Evaluator,
+    Retriever,
+    Reranker,
+)
+from air_benchmark.tasks import (
     BenchmarkTable,
     check_benchmark_version,
     check_task_types,

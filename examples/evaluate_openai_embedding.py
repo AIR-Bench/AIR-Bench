@@ -70,6 +70,7 @@ def main():
         task_types=["long-doc"],    # choose a single task for demo purpose
         domains=["book"],           # choose a single domain for demo purpose
         languages=["en"],           # choose a single language for demo purpose
+        splits=["dev"],            # choose a single split for demo purpose
     )
     
     retriever = OpenAIEmbeddingModelRetriever(
@@ -82,6 +83,15 @@ def main():
         retriever,
         output_dir='./search_results',
         overwrite=True,
+    )
+    
+    # compute metrics for dev set
+    evaluation.evaluate_dev(
+        benchmark_version="AIR-Bench_24.05",
+        search_results_save_dir='./search_results',
+        output_method="markdown",
+        output_path='./eval_dev_results.md',
+        metrics=["ndcg_at_10", "recall_at_10"],
     )
 
 

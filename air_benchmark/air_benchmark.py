@@ -109,6 +109,10 @@ class AIRBench:
         overwrite: bool = False,
         **kwargs,
     ):
+        self.check_retriever(retriever)
+        if reranker is not None:
+            self.check_reranker(reranker)
+        
         console.print(f"Benchmark Dataset Version: {self.benchmark_version}", style=style_head, justify="center")
         
         evaluator = Evaluator(self.data_loader, overwrite=overwrite)

@@ -10,8 +10,8 @@ Latest benchmark version: `AIR-Bench_24.05`
 
 |      Version      | Release Date | # of domains | # of languages | # of datasets |                           Details                            |
 | :---------------: | :----------: | :------: | :--------: | :-------: | :----------------------------------------------------------: |
-| `AIR-Bench_24.05` | Sep 27, 2024 |    9 $^{[1]}$    |     13 $^{[2]}$    |    69     | [here](https://github.com/AIR-Bench/AIR-Bench/blob/main/air_benchmark/tasks/v24_05) |
-| `AIR-Bench_24.04` | May 21, 2024 |    8 $^{[3]}$    |     2 $^{[4]}$     |    28     | [here](https://github.com/AIR-Bench/AIR-Bench/blob/main/air_benchmark/tasks/v24_04) |
+| `AIR-Bench_24.05` | Sep 27, 2024 |    9 <sup>[1]</sup>   |     13 <sup>[2]</sup>    |    69     | [here](https://github.com/AIR-Bench/AIR-Bench/blob/main/air_benchmark/tasks/v24_05) |
+| `AIR-Bench_24.04` | May 21, 2024 |    8 <sup>[3]</sup>    |     2 <sup>[4]</sup>     |    28     | [here](https://github.com/AIR-Bench/AIR-Bench/blob/main/air_benchmark/tasks/v24_04) |
 
 > [1] wiki, web, news, healthcare, law, finance, arxiv, book, science.
 >

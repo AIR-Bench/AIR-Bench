@@ -34,9 +34,17 @@ Evaluation is crucial for the development of information retrieval models. In re
 We plan to release new test datasets on regular basis. The latest version of is `AIR-Bench_24.05`.
 
 |      Version      | Release Date | # of domains | # of languages | # of datasets |                           Details                            |
-| `AIR-Bench_24.05` | Sep 27, 2024 |      9       |       13       |      69       | [here](https://github.com/AIR-Bench/AIR-Bench/blob/main/air_benchmark/tasks/v24_05) |
-| :---------------: | :----------: | :----------: | :------------: | :-----------: | :----------------------------------------------------------: |
-| `AIR-Bench_24.04` | May 21, 2024 |      8       |       2        |      28       | [here](https://github.com/AIR-Bench/AIR-Bench/blob/main/air_benchmark/tasks/v24_04) |
+| :---------------: | :----------: | :------: | :--------: | :-------: | :----------------------------------------------------------: |
+| `AIR-Bench_24.05` | Sep 27, 2024 |    9 <sup>[1]</sup>   |     13 <sup>[2]</sup>    |    69     | [here](https://github.com/AIR-Bench/AIR-Bench/blob/main/air_benchmark/tasks/v24_05) |
+| `AIR-Bench_24.04` | May 21, 2024 |    8 <sup>[3]</sup>    |     2 <sup>[4]</sup>     |    28     | [here](https://github.com/AIR-Bench/AIR-Bench/blob/main/air_benchmark/tasks/v24_04) |
+
+> [1] wiki, web, news, healthcare, law, finance, arxiv, book, science.
+>
+> [2] en, zh, es, fr, de, ru, ja, ko, ar, fa, id, hi, bn (English, Chinese, Spanish, French, German, Russian, Japanese, Korean, Arabic, Persian, Indonesian, Hindi, Bengali).
+>
+> [3] wiki, web, news, healthcare, law, finance, arxiv, book.
+>
+> [4] en, zh (English, Chinese).
 
 For the differences between different versions, please refer to [here](https://github.com/AIR-Bench/AIR-Bench/blob/main/docs/available_tasks.md).
 
@@ -45,7 +53,7 @@ For the differences between different versions, please refer to [here](https://g
 You could check out the results at
 [AIR-Bench Leaderboard](https://huggingface.co/spaces/AIR-Bench/leaderboard). Detailed results are available in [eval_results](https://huggingface.co/datasets/AIR-Bench/eval_results).
 
-Some analysis results are available [here](https://github.com/AIR-Bench/AIR-Bench/blob/main/docs/available_analysis_results.md). *The technical report is coming soon*. Please stay tuned for updates!
+Some brief analysis results are available [here](https://github.com/AIR-Bench/AIR-Bench/blob/main/docs/available_analysis_results.md). *The technical report is coming soon*. Please stay tuned for updates!
 
 ## ☁️ Usage
 ### Installation

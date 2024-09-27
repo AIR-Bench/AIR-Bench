@@ -1,6 +1,11 @@
 # Evaluation Scripts
 
 - [Overview](#overview)
+  - [1. Print Benchmark Information](#1-print-benchmark-information)
+  - [2. Implement a Retriever](#2-implement-a-retriever)
+  - [3. Implement a Reranker (Optional)](#3-implement-a-reranker-optional)
+  - [4. Evaluate the Model](#4-evaluate-the-model)
+  - [5. Compute Metrics for dev set (Optional)](#5-compute-metrics-for-dev-set-optional)
 - [Available Scripts](#available-scripts)
   - [HuggingFace Transformers](#huggingface-transformers)
   - [Sentence Transformers](#sentence-transformers)

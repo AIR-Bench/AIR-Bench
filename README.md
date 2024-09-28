@@ -31,12 +31,12 @@ Evaluation is crucial for the development of information retrieval models. In re
 
 ## ☁️ Versions
 
-We plan to release new test datasets on regular basis. The latest version of is `AIR-Bench_24.05`.
+We plan to release new test datasets on regular basis. The latest version is `AIR-Bench_24.05`.
 
 |      Version      | Release Date | # of domains | # of languages | # of datasets |                           Details                            |
 | :---------------: | :----------: | :------: | :--------: | :-------: | :----------------------------------------------------------: |
-| `AIR-Bench_24.05` | Sep 27, 2024 |    9 <sup>[1]</sup>   |     13 <sup>[2]</sup>    |    69     | [here](https://github.com/AIR-Bench/AIR-Bench/blob/main/air_benchmark/tasks/v24_05) |
-| `AIR-Bench_24.04` | May 21, 2024 |    8 <sup>[3]</sup>    |     2 <sup>[4]</sup>     |    28     | [here](https://github.com/AIR-Bench/AIR-Bench/blob/main/air_benchmark/tasks/v24_04) |
+| `AIR-Bench_24.05` | Sep 28, 2024 |    9 <sup>[1]</sup>   |     13 <sup>[2]</sup>    |    69     | [here](https://github.com/AIR-Bench/AIR-Bench/blob/main/docs/available_tasks.md#air-bench_2405) |
+| `AIR-Bench_24.04` | May 21, 2024 |    8 <sup>[3]</sup>    |     2 <sup>[4]</sup>     |    28     | [here](https://github.com/AIR-Bench/AIR-Bench/blob/main/docs/available_tasks.md#air-bench_2404) |
 
 > [1] wiki, web, news, healthcare, law, finance, arxiv, book, science.
 >

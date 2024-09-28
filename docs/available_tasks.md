@@ -10,8 +10,8 @@ Latest benchmark version: `AIR-Bench_24.05`
 
 |      Version      | Release Date | # of domains | # of languages | # of datasets |                           Details                            |
 | :---------------: | :----------: | :------: | :--------: | :-------: | :----------------------------------------------------------: |
-| `AIR-Bench_24.05` | Sep 27, 2024 |    9 <sup>[1]</sup>   |     13 <sup>[2]</sup>    |    69     | [here](https://github.com/AIR-Bench/AIR-Bench/blob/main/air_benchmark/tasks/v24_05) |
-| `AIR-Bench_24.04` | May 21, 2024 |    8 <sup>[3]</sup>    |     2 <sup>[4]</sup>     |    28     | [here](https://github.com/AIR-Bench/AIR-Bench/blob/main/air_benchmark/tasks/v24_04) |
+| `AIR-Bench_24.05` | Sep 28, 2024 |    9 <sup>[1]</sup>   |     13 <sup>[2]</sup>    |    69     | [here](https://github.com/AIR-Bench/AIR-Bench/blob/main/docs/available_tasks.md#air-bench_2405) |
+| `AIR-Bench_24.04` | May 21, 2024 |    8 <sup>[3]</sup>    |     2 <sup>[4]</sup>     |    28     | [here](https://github.com/AIR-Bench/AIR-Bench/blob/main/docs/available_tasks.md#air-bench_2404) |
 
 > [1] wiki, web, news, healthcare, law, finance, arxiv, book, science.
 >
@@ -23,7 +23,7 @@ Latest benchmark version: `AIR-Bench_24.05`
 
 Differences between versions:
 - `AIR-Bench_24.05`: 69 datasets; 9 domains; 13 languages; dev and test sets; trimmed corpus size (~1M documents).
-- `AIR-Bench_24.04`: initial version; 28 datasets; 8 domains; 2 languages; only test set; large corpus size.
+- `AIR-Bench_24.04`: initial version; 28 datasets; 8 domains; 2 languages; only test set; no limit corpus size.
 
 ### AIR-Bench_24.05
 
@@ -57,7 +57,7 @@ Differences between versions:
 | QA | Law | German | default | [Multilingual Legal Pile](https://huggingface.co/datasets/joelniklaus/Multi_Legal_Pile) | 752913 | 3361 | test | 1382 | 25 | 5500 | 4622 |
 | QA | Science | Russian | default | [ruSciBench](https://huggingface.co/datasets/mlsa-iai-msu-lab/ru_sci_bench) | 200532 | 347 | dev | 345 | 34 | 1577 | 1160 |
 | QA | Science | Russian | default | [ruSciBench](https://huggingface.co/datasets/mlsa-iai-msu-lab/ru_sci_bench) | 200532 | 347 | test | 1382 | 33 | 6018 | 4655 |
-| QA | MSMARCO | English | default | [MS MARCO (dev)](https://huggingface.co/datasets/intfloat/simlm-msmarco) | 8872840 | 81 | dev | 6319 | 16 | 31447 | 26828 |
+| QA | MSMARCO (Web) | English | default | [MS MARCO (dev)](https://huggingface.co/datasets/intfloat/simlm-msmarco) | 8872840 | 81 | dev | 6319 | 16 | 31447 | 26828 |
 | QA | News | English | default | [CC-News](https://huggingface.co/datasets/cc_news) | 574417 | 531 | dev | 322 | 16 | 1206 | 1375 |
 | QA | News | English | default | [CC-News](https://huggingface.co/datasets/cc_news) | 574417 | 531 | test | 1292 | 16 | 4592 | 5409 |
 | QA | News | Chinese | default | [Multilingual CC-News](https://huggingface.co/datasets/intfloat/multilingual_cc_news) | 935162 | 1263 | dev | 339 | 32 | 1477 | 1354 |
@@ -163,7 +163,7 @@ Differences between versions:
 | QA | Healthcare | English | default | [PubMedQA](https://huggingface.co/datasets/qiaojin/PubMedQA) | 847395 | 103 | test | 1707 | 19 | 5052 | 7023 |
 | QA | Healthcare | Chinese | default | [Huatuo Encyclopedia QA](https://huggingface.co/datasets/FreedomIntelligence/huatuo_encyclopedia_qa) | 360218 | 751 | test | 1874 | 31 | 10029 | 7336 |
 | QA | Law | English | default | [Pile of Law (EUR-Lex)](https://huggingface.co/datasets/pile-of-law/pile-of-law) | 141678 | 1509 | test | 1801 | 19 | 5372 | 6574 |
-| QA | MSMARCO | English | default | [MS MARCO (dev)](https://huggingface.co/datasets/intfloat/simlm-msmarco) | 8872840 | 81 | test | 6319 | 16 | 31447 | 26828 |
+| QA | MSMARCO (Web) | English | default | [MS MARCO (dev)](https://huggingface.co/datasets/intfloat/simlm-msmarco) | 8872840 | 81 | test | 6319 | 16 | 31447 | 26828 |
 | QA | News | English | default | [CC-News](https://huggingface.co/datasets/cc_news) | 574417 | 531 | test | 1614 | 16 | 5798 | 6784 |
 | QA | News | Chinese | default | [Multilingual CC-News](https://huggingface.co/datasets/intfloat/multilingual_cc_news) | 935162 | 1263 | test | 1697 | 31 | 7381 | 6618 |
 | QA | Web | English | default | [mC4](https://huggingface.co/datasets/mc4) | 2459587 | 840 | test | 1707 | 16 | 5543 | 7439 |

@@ -13,20 +13,20 @@ class DataLoader:
 
     def load_qrels(self, task_type: str, domain: str, language: str, dataset_name: str, split: str = 'dev'):
         dataset_name = dataset_name.replace('-', '_')
-        if split == 'test':
+        if split == 'dev':
+            qrels_data = datasets.load_dataset(
+                f'AIR-Bench/qrels-{task_type}_{domain}_{language}-dev',
+                self.benchmark_version,
+                split=f"qrels_{dataset_name}_{split}" if self.benchmark_version != 'AIR-Bench_24.04' else f"qrels_{dataset_name}",        # To be compatible with the AIR-Bench_24.04 version
+                cache_dir=self.cache_dir,
+            )
+        else:
             qrels_data = datasets.load_dataset(
                 f'AIR-Bench/qrels-{task_type}_{domain}_{language}',
                 self.benchmark_version,
                 split=f"qrels_{dataset_name}_{split}" if self.benchmark_version != 'AIR-Bench_24.04' else f"qrels_{dataset_name}",        # To be compatible with the AIR-Bench_24.04 version
                 cache_dir=self.cache_dir,
-                token=os.getenv('HF_TOKEN', None),  # Keep private for users
-            )
-        else:
-            qrels_data = datasets.load_dataset(
-                f'AIR-Bench/{task_type}_{domain}_{language}',
-                self.benchmark_version,
-                split=f"qrels_{dataset_name}_{split}",
-                cache_dir=self.cache_dir,
+                token=os.getenv('HF_TOKEN', None),
             )
 
         qrels = {}

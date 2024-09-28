@@ -250,13 +250,11 @@ class Evaluator:
             qrels=qrels,
             results=search_results,
             k_values=k_values,
-            ignore_identical_ids=True,
         )
         mrr = evaluate_mrr(
             qrels=qrels,
             results=search_results,
             k_values=k_values,
-            metric='mrr',
         )
         scores = {
             **{f"ndcg_at_{k.split('@')[1]}": v for (k, v) in ndcg.items()},

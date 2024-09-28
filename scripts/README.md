@@ -170,13 +170,14 @@ python evaluate_hf_transformers.py \
 --overwrite False
 ```
 
-- Run the tasks in the specified task type, domains, and languages:
+- Run the tasks in the specified task type, domains, languages and splits:
 
 ```bash
 python evaluate_hf_transformers.py \
 --task_types qa \
 --domains finance law \
 --languages en \
+--splits test \
 --output_dir ./search_results \
 --encoder BAAI/bge-m3 \
 --search_top_k 1000 \
@@ -226,13 +227,14 @@ python evaluate_sentence_transformers.py \
 --overwrite False
 ```
 
-- Run the tasks in the specified task type, domains, and languages:
+- Run the tasks in the specified task type, domains, languages and splits:
 
 ```bash
 python evaluate_sentence_transformers.py \
 --task_types qa \
 --domains finance law \
 --languages en \
+--splits test \
 --output_dir ./search_results \
 --encoder sentence-transformers/all-MiniLM-L6-v2 \
 --search_top_k 1000 \
@@ -274,13 +276,14 @@ python evaluate_bm25.py \
 --overwrite False
 ```
 
-- Run the tasks in the specified task type, domains, and languages:
+- Run the tasks in the specified task type, domains, languages and splits:
 
 ```bash
 python evaluate_bm25.py \
 --task_types qa \
 --domains finance law \
 --languages en \
+--splits test \
 --output_dir ./search_results \
 --bm25_tmp_dir ./bm25_tmp_dir \
 --remove_bm25_tmp_dir True \
@@ -316,13 +319,14 @@ python evaluate_bm25.py \
 --overwrite False
 ```
 
-- Run the tasks in the specified task type, domains, and languages:
+- Run the tasks in the specified task type, domains, languages and splits:
 
 ```bash
 python evaluate_bm25.py \
 --task_types qa \
 --domains finance law \
 --languages en \
+--splits test \
 --output_dir ./search_results \
 --bm25_tmp_dir ./bm25_tmp_dir \
 --remove_bm25_tmp_dir True \

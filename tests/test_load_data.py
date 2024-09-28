@@ -44,6 +44,15 @@ def test_load_data(
                 split=split
             )
             print(f"Load {len(queries)} queries from {split} set in {task_type}/{domain}/{language}/{dataset_name} dataset. Benchmark version: {benchmark_version}.")
+            if split == 'dev':
+                qrels = data_loader.load_qrels(
+                    task_type=task_type,
+                    domain=domain,
+                    language=language,
+                    dataset_name=dataset_name,
+                    split=split
+                )
+                print(f"Load qrels from {split} set in {task_type}/{domain}/{language}/{dataset_name} dataset. Benchmark version: {benchmark_version}.")
 
 
 if __name__ == "__main__":

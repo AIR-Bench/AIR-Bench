@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "air-benchmark"
-version = "0.1.0"
+version = "0.1.0.dev"
 description = "AIR-Bench: Automated Heterogeneous Information Retrieval Benchmark"
 readme = "README.md"
 authors = [{ name = "BAAI", email = "zhengliu1026@gmail.com" }, { name = "Jina AI", email = "research@jina.ai" }]

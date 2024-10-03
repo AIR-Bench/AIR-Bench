@@ -1,12 +1,12 @@
 from air_benchmark.evaluation_utils.data_loader import DataLoader
 from air_benchmark.tasks import get_dataset_name_list, get_task_splits, LATEST_BENCHMARK_VERSION
 
-def test_load_data(
-    benchmark_version: str,
-    task_type: str,
-    domain: str,
-    language: str
-):
+def test_load_data():
+    benchmark_version = LATEST_BENCHMARK_VERSION
+    task_type = "long-doc"
+    domain = "book"
+    language = "en"
+    
     success, dataset_name_list = get_dataset_name_list(
         benchmark_version=benchmark_version,
         task_type=task_type,
@@ -53,16 +53,3 @@ def test_load_data(
                     split=split
                 )
                 print(f"Load qrels from {split} set in {task_type}/{domain}/{language}/{dataset_name} dataset. Benchmark version: {benchmark_version}.")
-
-
-if __name__ == "__main__":
-    benchmark_version = LATEST_BENCHMARK_VERSION
-    task_type = "long-doc"
-    domain = "book"
-    language = "en"
-    test_load_data(
-        benchmark_version=benchmark_version,
-        task_type=task_type,
-        domain=domain,
-        language=language
-    )

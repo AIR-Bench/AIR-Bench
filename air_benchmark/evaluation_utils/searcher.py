@@ -9,14 +9,14 @@ class Retriever(ABC):
     """
     def __init__(self, search_top_k: int = 1000):
         self.search_top_k = search_top_k
-    
+
     @abstractmethod
     def __str__(self) -> str:
         """
         Returns: str: Name of the retriever.
         """
         pass
-    
+
     @abstractmethod
     def __call__(
         self,
@@ -49,14 +49,14 @@ class Reranker(ABC):
     """
     def __init__(self, rerank_top_k: int = 100):
         self.rerank_top_k = rerank_top_k
-    
+
     @abstractmethod
     def __str__(self) -> str:
         """
         Returns: str: Name of the reranker.
         """
         pass
-    
+
     @abstractmethod
     def __call__(
         self,

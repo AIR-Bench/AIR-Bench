@@ -1,9 +1,14 @@
 # Submit to Leaderboard
 
-The AIR-Bench is designed to be a closed-book benchmark. The golden truth is kept private. We provide a leaderboard for participants to submit
-the top-k search results of their models and compare their performance with others. The leaderboard is hosted on the HuggingFace Hub.
+The initial version `AIR-Bench_24.04` is designed to be a closed-book benchmark, where the golden truth is kept private for users. We provide a leaderboard for participants to submit the top-k search results of their models and compare their performance with others. The leaderboard is hosted on the HuggingFace Hub.
 
-To submit your model to the leaderboard, please follow the steps below.
+However, according to the feedback from the community (refer to [issue #26](https://github.com/AIR-Bench/AIR-Bench/issues/26)), users could not know the evaluation results until they submit their models’ search results to the leaderboard. It is not user-friendly for users to iterate their models’ performance.
+
+Therefore, for the latest version `AIR-Bench_24.05`, we **split the queries into test set and dev set**. The golden truth of the dev set is provided to users, so that users could evaluate their models’ performance on the dev set by themselves. The golden truth for the test set is still kept private for users to submit their models’ search results to the leaderboard.
+
+To **evaluate your models on the dev set**, please refer to [here](https://github.com/AIR-Bench/AIR-Bench/blob/main/scripts#5-compute-metrics-for-dev-set-optional). *We will contribute the dev set to [MTEB](https://huggingface.co/spaces/mteb/leaderboard) to help the users compare their models with other models*.
+
+To **submit your model to the leaderboard** for evaluating on the test set, please follow the steps below.
 
 ## Installation
 
@@ -20,6 +25,49 @@ See the [scripts](https://github.com/AIR-Bench/AIR-Bench/blob/main/scripts) to r
 After running the evaluation, you will get the search results in the `output_dir` that you specified in the evaluation script. The `output_dir` is set to `./search_results` by default. 
 
 For example, if you run the evaluation script for the `bge-m3` retrieval model and the `bge-reranker-v2-m3` reranking model, the file structure of the search results will be like this:
+
+<details><summary>air-benchmark>=0.1.0 (pypi version)</summary>
+
+```shell
+search_results/
+├── bge-m3/
+│   ├── NoReranker/
+│   │   ├── qa
+│   │   │   ├── arxiv
+│   │   │   │   ├── en_default_dev.json
+│   │   │   │   ├── en_default_test.json
+│   │   │   ├── finance
+│   │   │   │   ├── en_default_dev.json
+│   │   │   │   ├── en_default_test.json
+│   │   │   │   ├── zh_default_dev.json
+│   │   │   │   ├── zh_default_test.json
+│   │   │   │   ...
+│   │   ├── long-doc
+│   │   │   ├── book
+│   │   │   │   ├── en_a-brief-history-of-time_stephen-hawking_dev.json
+│   │   │   │   ├── en_origin-of-species_darwin_test.json
+│   │   │   │   ...
+│   ├── bge-reranker-v2-m3/
+│   │   ├── qa
+│   │   │   ├── arxiv
+│   │   │   │   ├── en_default_dev.json
+│   │   │   │   ├── en_default_test.json
+│   │   │   ├── finance
+│   │   │   │   ├── en_default_dev.json
+│   │   │   │   ├── en_default_test.json
+│   │   │   │   ├── zh_default_dev.json
+│   │   │   │   ├── zh_default_test.json
+│   │   │   │   ...
+│   │   ├── long-doc
+│   │   │   ├── book
+│   │   │   │   ├── en_a-brief-history-of-time_stephen-hawking_dev.json
+│   │   │   │   ├── en_origin-of-species_darwin_test.json
+│   │   │   │   ...
+```
+
+</details>
+
+<details><summary>air-benchmark<=0.0.4 (pypi version)</summary>
 
 ```shell
 search_results/
@@ -51,6 +99,8 @@ search_results/
 │   │   │   │   ├── en_origin-of-species_darwin.json
 │   │   │   │   ...
 ```
+
+</details>
 
 ## Submit search results
 

@@ -18,6 +18,9 @@ class EvalArgs:
     languages: str = field(
         default=None, metadata={"help": "Languages to evaluate.", "nargs": "+"}
     )
+    splits: str = field(
+        default=None, metadata={"help": "Splits to evaluate.", "nargs": "+"}
+    )
     search_top_k: int = field(
         default=1000, metadata={"help": "Top k values for evaluation."}
     )

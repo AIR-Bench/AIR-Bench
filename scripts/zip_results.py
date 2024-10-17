@@ -17,7 +17,7 @@ import argparse
 import os
 import zipfile
 
-from air_benchmark.tasks.tasks import check_domains, check_task_types
+from air_benchmark.tasks import check_domains, check_task_types
 
 
 def get_args():
@@ -86,6 +86,9 @@ def zip_results(
         with zipfile.ZipFile(zip_filename, "w", zipfile.ZIP_DEFLATED) as zipf:
             for root, _, files in os.walk(results_path):
                 for file in files:
+                    if file.endswith("dev.json"):
+                        continue
+
                     file_path = os.path.join(root, file)
                     zipf.write(file_path, os.path.relpath(file_path, results_path))
     except Exception as e:

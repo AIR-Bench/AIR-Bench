@@ -19,7 +19,7 @@ python evaluate_hf_transformers.py \
 --max_length_for_reranking 512 \
 --batch_size_for_reranking 512 \
 --use_fp16 True \
---corpus_chunk_size 50000 \     # set to 10M if you have enough memory and want to avoid multiple tqdm bars
+--corpus_chunk_size 50000 \
 --overwrite False
 
 # Run the tasks in the specified task type, domains, and languages
@@ -39,7 +39,7 @@ python evaluate_hf_transformers.py \
 --rerank_top_k 100 \
 --batch_size_for_reranking 512 \
 --use_fp16 True \
---corpus_chunk_size 50000 \     # set to 10M if you have enough memory and want to avoid multiple tqdm bars
+--corpus_chunk_size 50000 \
 --overwrite False
 """
 from transformers import HfArgumentParser
@@ -107,6 +107,7 @@ def main():
         task_types=eval_args.task_types,
         domains=eval_args.domains,
         languages=eval_args.languages,
+        splits=eval_args.splits,
         cache_dir=eval_args.cache_dir,
     )
     

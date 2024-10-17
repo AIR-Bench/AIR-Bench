@@ -3,7 +3,7 @@ Requirements:
     mteb>=1.7.17
     torch>=1.6.0
     transformers>=4.33.0
-    sentence_transformers>=2.2.0
+    sentence_transformers>=3.1.0
 
 # Run all tasks
 python evaluate_sentence_transformers.py \

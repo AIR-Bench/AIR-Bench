@@ -3,6 +3,16 @@ from sentence_transformers import CrossEncoder, SentenceTransformer
 from typing import Optional
 
 
+# MultiGPUModel: from https://github.com/embeddings-benchmark/mteb/issues/27
+class MultiGPUModel:
+    def __init__(self, model: SentenceTransformer):
+        self.model = model
+        self.gpu_pool = self.model.start_multi_process_pool()
+
+    def encode(self, sentences, **kwargs):
+        return self.model.encode_multi_process(sentences, self.gpu_pool, **kwargs)
+
+
 class SentenceTransformerEncoder:
     def __init__(
         self,
@@ -19,6 +29,7 @@ class SentenceTransformerEncoder:
         self.name = os.path.basename(model_name_or_path)
 
         self.model = SentenceTransformer(model_name_or_path, **kwargs)
+        self.model = MultiGPUModel(self.model)
         self.query_instruction_for_retrieval = query_instruction_for_retrieval
         self.passage_instruction_for_retrieval = passage_instruction_for_retrieval
         self.max_query_length = max_query_length
@@ -36,7 +47,7 @@ class SentenceTransformerEncoder:
                 "{} {}".format(doc.get("title", ""), doc.get("text", "")).strip()
                 for doc in corpus
             ]
-        self.model.max_seq_length = self.max_passage_length
+        self.model.model.max_seq_length = self.max_passage_length
         return self.model.encode(
             input_texts,
             prompt=self.passage_instruction_for_retrieval,
@@ -49,7 +60,7 @@ class SentenceTransformerEncoder:
         input_texts = queries
         if isinstance(queries[0], dict):
             input_texts = [doc.get("text", "").strip() for doc in queries]
-        self.model.max_seq_length = self.max_query_length
+        self.model.model.max_seq_length = self.max_query_length
         return self.model.encode(
             input_texts,
             prompt=self.query_instruction_for_retrieval,

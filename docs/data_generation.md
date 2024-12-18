@@ -26,7 +26,7 @@ As for the latest version `AIR-Bench_24.05`, we’ve covered 9 domains (includin
 
 Note that we use `gpt-4-1106-preview` as the LLM through the generation pipeline.
 
-![Data Generation Pipeline](images/generate_pipeline.png)
+![Data Generation Pipeline](images/generation_pipeline.png)
 
 #### Corpus Preparation
 

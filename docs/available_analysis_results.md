@@ -13,7 +13,7 @@
 
 ## Outline
 
-Here only lists some brief analysis results on AIR-Bench (*24.05 version*). *The technical report is coming soon*. Please stay tuned for updates!
+Here only lists some brief analysis results on AIR-Bench (*24.05 version*). For the detailed analysis of the evaluation results, please refer to our [technical report](https://arxiv.org/abs/2412.13102).
 
 - **The generated dataset is highly consistent with the human-labeled dataset**. The Spearman’s rank correlation between the 17 mainstream models' rankings on the raw MSMARCO passage ranking dataset (<u>*R-MSMARCO*</u>) and the generated MSMARCO passage ranking dataset (<u>*G-MSMARCO*</u>) is 0.8211 with `p-value = 5e-5`. Refer to [Fig 1](#consistency-with-human-labeled-data) for more details.
 - **More MTEB-related data in the training of embedding model will probably cause the degradation of generalization ability of embedding models**. According to [2409.15700](https://arxiv.org/abs/2409.15700), BAAI/bge-en-icl uses more MTEB-related training data than BAAI/bge-en-icl-e5data and achieves better results on MTEB/BEIR than bge-en-icl-e5data. However, BAAI/bge-en-icl-e5data achieves better results on AIR-Bench than BAAI/bge-en-icl. This indicates that the embedding model trained with more MTEB-related data may have a better performance on MTEB/BEIR but a worse performance on AIR-Bench. AIR-Bench provides a new benchmark for evaluating the generalization ability of embedding models. Refer to [Fig 2](#zero-shot-evaluation-results) for more details.

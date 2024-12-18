@@ -53,7 +53,7 @@ For the differences between different versions, please refer to [here](https://g
 You could check out the results at
 [AIR-Bench Leaderboard](https://huggingface.co/spaces/AIR-Bench/leaderboard). Detailed results are available in [eval_results](https://huggingface.co/datasets/AIR-Bench/eval_results/tree/main).
 
-Some brief analysis results are available [here](https://github.com/AIR-Bench/AIR-Bench/blob/main/docs/available_analysis_results.md). *The technical report is coming soon*. Please stay tuned for updates!
+For the detailed analysis of the evaluation results, please refer to our [technical report](https://arxiv.org/abs/2412.13102).
 
 ## ☁️ Usage
 ### Installation
@@ -105,6 +105,16 @@ Refer to the steps below to run evaluations and submit the results to the leader
 | 🚀 [Submit](https://github.com/AIR-Bench/AIR-Bench/blob/main/docs/submit_to_leaderboard.md) | Information related to how to submit a model to AIR-Bench |
 | 🤝 [Contributing](https://github.com/AIR-Bench/AIR-Bench/blob/main/docs/community_contribution.md) | How to contribute to AIR-Bench                            |
 
+## License
+
+The code in this repository is licensed under the MIT license.
+
+The testing data in AIR-Bench is licensed under the CC BY-NC-SA 4.0 license. This means:
+
+- You are free to share and adapt the data for non-commercial purposes.
+- You must give appropriate credit and indicate if changes were made.
+
+If you need to use the testing data in AIR-Bench, you must understand and agree to the following: **The testing data in AIR-Bench may only be used for evaluation purposes and cannot be used for any commercial or other purposes. The user assumes all effects arising from any other use and dissemination of the data.**
 
 ## ☁️ Acknowledgement
 This work is inspired by [MTEB](https://github.com/embeddings-benchmark/mteb) and [BEIR](https://github.com/beir-cellar/beir/). Many thanks for the early feedbacks from [@tomaarsen](https://github.com/tomaarsen), [@Muennighoff](https://github.com/Muennighoff), [@takatost](https://github.com/takatost), [@chtlp](https://github.com/chtlp).
@@ -112,4 +122,16 @@ This work is inspired by [MTEB](https://github.com/embeddings-benchmark/mteb) an
 
 ## ☁️ Citing
 
-*The technical report is coming soon*. Please stay tuned for updates!
+If you find this repository useful, please consider giving a star :star: and citation
+
+```
+@misc{chen2024airbench,
+      title={AIR-Bench: Automated Heterogeneous Information Retrieval Benchmark}, 
+      author={Jianlyu Chen and Nan Wang and Chaofan Li and Bo Wang and Shitao Xiao and Han Xiao and Hao Liao and Defu Lian and Zheng Liu},
+      year={2024},
+      eprint={2412.13102},
+      archivePrefix={arXiv},
+      primaryClass={cs.IR},
+      url={https://arxiv.org/abs/2412.13102}, 
+}
+```

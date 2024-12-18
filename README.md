@@ -53,7 +53,7 @@ For the differences between different versions, please refer to [here](https://g
 You could check out the results at
 [AIR-Bench Leaderboard](https://huggingface.co/spaces/AIR-Bench/leaderboard). Detailed results are available in [eval_results](https://huggingface.co/datasets/AIR-Bench/eval_results/tree/main).
 
-Some brief analysis results are available [here](https://github.com/AIR-Bench/AIR-Bench/blob/main/docs/available_analysis_results.md). For the detailed analysis of the evaluation results, please refer to our [technical report](https://arxiv.org/abs/2412.13102).
+For the detailed analysis of the evaluation results, please refer to our [technical report](https://arxiv.org/abs/2412.13102).
 
 ## ☁️ Usage
 ### Installation

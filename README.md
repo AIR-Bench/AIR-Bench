@@ -16,6 +16,13 @@
     <a href="https://huggingface.co/AIR-Bench"><img style="float: middle; padding: 10px 10px 10px 10px;" width="60" height="55" src="https://github.com/AIR-Bench/AIR-Bench/blob/main/docs/images/hf_logo.png" /></a>
 </h3>
 
+## ☁️ News
+
+- **[2025/05/15]** We are excited to announce that AIR-Bench has been accepted to the 63rd Annual Meeting of the Association for Computational Linguistics (ACL 2025, Main Conference)! 🎉
+- **[2025/12/17]** Release our preprint paper on arXiv: https://arxiv.org/abs/2412.13102. 🎉
+- **[2024/10/17]** Release version `AIR-Bench_24.05`, which includes 9 domains and 13 languages on 69 datasets. The new version now includes both `dev` and `test` sets, where the golden labels of the `dev` set are made publicly available to help developers to perform evaluation by themselves. 🔥
+- **[2024/05/21]** Release the initial version of AIR-Bench, `AIR-Bench_24.04`, which includes 8 domains and 2 languages on 28 datasets. 🔥
+
 ## ☁️ Motivation
 
 Evaluation is crucial for the development of information retrieval models. In recent years, a series of milestone works have been introduced to the community, such as [MSMARCO](https://microsoft.github.io/msmarco/), [Natural Question](https://ai.google.com/research/NaturalQuestions) (open-domain QA), [MIRACL](https://github.com/project-miracl/miracl) (multilingual retrieval), [BEIR](https://github.com/beir-cellar/beir/) and [MTEB](https://github.com/embeddings-benchmark/mteb) (general-domain zero-shot retrieval). However, the existing benchmarks are severely limited in the following perspectives.

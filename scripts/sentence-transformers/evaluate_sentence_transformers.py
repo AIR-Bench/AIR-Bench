@@ -1,7 +1,7 @@
 """
 Requirements:
-    mteb>=1.7.17
     torch>=1.6.0
+    faiss-gpu>=1.7.3
     transformers>=4.33.0
     sentence_transformers>=3.1.0
 

@@ -1,20 +1,15 @@
-from mteb.evaluation.evaluators import RetrievalEvaluator
 from typing import Any, Dict
 
 from air_benchmark import Retriever, Reranker
 
 from utils.models import SentenceTransformerEncoder, SentenceTransformerReranker
+from utils.utils import index, search
 
 
 class EmbeddingModelRetriever(Retriever):
     def __init__(self, embedding_model: SentenceTransformerEncoder, search_top_k: int = 1000, **kwargs):
         super().__init__(search_top_k)
         self.embedding_model = embedding_model
-        self.retriever = RetrievalEvaluator(
-            retriever=embedding_model,
-            k_values=[self.search_top_k],
-            **kwargs,
-        )
     
     def __str__(self):
         return str(self.embedding_model)
@@ -25,7 +20,33 @@ class EmbeddingModelRetriever(Retriever):
         queries: Dict[str, str],
         **kwargs,
     ):
-        search_results = self.retriever(corpus=corpus, queries=queries)
+        corpus_ids = []
+        corpus_texts = []
+        for docid, doc in corpus.items():
+            corpus_ids.append(docid)
+            corpus_texts.append(
+                doc["text"]
+            )
+        queries_ids = []
+        queries_texts = []
+        for qid, query in queries.items():
+            queries_ids.append(qid)
+            queries_texts.append(query)
+
+        # encode corpus and queries
+        corpus_emb = self.embedding_model.encode_corpus(corpus_texts, **kwargs)
+        queries_emb = self.embedding_model.encode_queries(queries_texts, **kwargs)
+
+        faiss_index = index(corpus_embeddings=corpus_emb)
+        all_scores, all_indices = search(query_embeddings=queries_emb, faiss_index=faiss_index, k=self.search_top_k)
+
+        search_results = {}
+        for idx, (scores, indices) in enumerate(zip(all_scores, all_indices)):
+            search_results[queries_ids[idx]] = {}
+            for score, indice in zip(scores, indices):
+                if indice != -1:
+                    search_results[queries_ids[idx]][corpus_ids[indice]] = float(score)
+
         return search_results
 
 

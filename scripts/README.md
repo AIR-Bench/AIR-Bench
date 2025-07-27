@@ -142,7 +142,8 @@ python eval_dev_results.py \
 As for models that are compatible with the [HuggingFace Transformers](https://huggingface.co/docs/transformers/index), you can use the scripts at [hf-transformers](https://github.com/AIR-Bench/AIR-Bench/blob/main/scripts/hf-transformers/evaluate_hf_transformers.py) to evaluate the models on AIR-Bench.
 
 ```bash
-pip install mteb transformers
+pip install transformers
+pip install https://github.com/kyamagu/faiss-wheels/releases/download/v1.7.3/faiss_gpu-1.7.3-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl
 
 cd scripts/hf-transformers
 ```
@@ -202,7 +203,8 @@ python evaluate_hf_transformers.py \
 As for models that are compatible with [SentenceTransformers](https://sbert.net/), you can use the scripts at [sentence-transformers](https://github.com/AIR-Bench/AIR-Bench/blob/main/scripts/hf-transformers/evaluate_sentence_transformers.py) to evaluate the models on AIR-Bench.
 
 ```bash
-pip install mteb transformers sentence-transformers
+pip install transformers sentence-transformers
+pip install https://github.com/kyamagu/faiss-wheels/releases/download/v1.7.3/faiss_gpu-1.7.3-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl
 
 cd scripts/sentence-transformers
 ```

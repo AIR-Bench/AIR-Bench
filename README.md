@@ -19,7 +19,7 @@
 ## ☁️ News
 
 - **[2025/05/15]** We are excited to announce that AIR-Bench has been accepted to the 63rd Annual Meeting of the Association for Computational Linguistics (ACL 2025, Main Conference)! 🎉
-- **[2025/12/17]** Release our preprint paper on arXiv: https://arxiv.org/abs/2412.13102. 🎉
+- **[2024/12/17]** Release our preprint paper on arXiv: https://arxiv.org/abs/2412.13102. 🎉
 - **[2024/10/17]** Release version `AIR-Bench_24.05`, which includes 9 domains and 13 languages on 69 datasets. The new version now includes both `dev` and `test` sets, where the golden labels of the `dev` set are made publicly available to help developers to perform evaluation by themselves. 🔥
 - **[2024/05/21]** Release the initial version of AIR-Bench, `AIR-Bench_24.04`, which includes 8 domains and 2 languages on 28 datasets. 🔥
 

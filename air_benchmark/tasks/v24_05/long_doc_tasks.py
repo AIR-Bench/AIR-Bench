@@ -2,7 +2,7 @@ LongDocHealthcareTask = {
     "en": {
         "pubmed_100K-200K_1": {
             "name": "pubmed_100K-200K_1",
-            "source": "https://huggingface.co/datasets/lexlms/lex_files",
+            "source": "https://github.com/armancohan/long-summarization",
             "splits": ["test"],
             "size": {
                 "corpus": 899,
@@ -34,7 +34,7 @@ LongDocHealthcareTask = {
         },
         "pubmed_100K-200K_2": {
             "name": "pubmed_100K-200K_2",
-            "source": "https://huggingface.co/datasets/lexlms/lex_files",
+            "source": "https://github.com/armancohan/long-summarization",
             "splits": ["test"],
             "size": {
                 "corpus": 872,
@@ -66,7 +66,7 @@ LongDocHealthcareTask = {
         },
         "pubmed_100K-200K_3": {
             "name": "pubmed_100K-200K_3",
-            "source": "https://huggingface.co/datasets/lexlms/lex_files",
+            "source": "https://github.com/armancohan/long-summarization",
             "splits": ["dev"],
             "size": {
                 "corpus": 873,
@@ -98,7 +98,7 @@ LongDocHealthcareTask = {
         },
         "pubmed_40K-50K_5-merged": {
             "name": "pubmed_40K-50K_5-merged",
-            "source": "https://huggingface.co/datasets/lexlms/lex_files",
+            "source": "https://github.com/armancohan/long-summarization",
             "splits": ["test"],
             "size": {
                 "corpus": 1731,
@@ -130,7 +130,7 @@ LongDocHealthcareTask = {
         },
         "pubmed_30K-40K_10-merged": {
             "name": "pubmed_30K-40K_10-merged",
-            "source": "https://huggingface.co/datasets/lexlms/lex_files",
+            "source": "https://github.com/armancohan/long-summarization",
             "splits": ["test"],
             "size": {
                 "corpus": 2154,
